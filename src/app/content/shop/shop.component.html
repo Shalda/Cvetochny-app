@@ -1,0 +1,35 @@
+<section>
+    <div class="sidebars_wrapper">
+        <div class="sidebar-left">
+            <div class="sidebar-left-wrapper">
+                <a><h2 (click)="selectedCategory = undefined" [routerLink]="['/category', parentCategory]">{{title}}</h2>
+                </a>
+                <div class="sidebar-left_list">
+                    <ul>
+                        <li class="mainMenu_elem" *ngFor=" let category of categories">
+                            <a class="navLink"
+                               routerLinkActive="active-link"
+                               (click)="selectedCategory = category"
+                               [routerLink]="['/category', parentCategory, category]"
+                            >
+                                {{category}}
+                            </a>
+                            <ul *ngIf="getSubcategories(category) as subcategories">
+                                <li class="subMenu_elem">
+                                    <a class="navLink"
+                                       *ngFor="let subc of subcategories"
+                                       routerLinkActive="active-link"
+                                       [routerLink]="['/category', parentCategory, category, subc]"
+                                       (click)="selectedCategory = subc">{{subc}}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-right">
+        <router-outlet></router-outlet>
+        </div>
+    </div>
+</section>

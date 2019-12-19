@@ -1,0 +1,26 @@
+<section class="textMobileMenuSection">
+    <div class="textMobileMenu_wrapper">
+        <div class="contact__wrapper">
+            <div class="textMobileMenu about_mobile">
+                <h3>Цветочный</h3>
+                <span>Прекрасный магазин в удобном месте. Всегда свежие цветы, оригинальные букеты.</span>
+                <span>Огромный выбор декора, свечей и комнатных растеней.</span>
+            </div>
+            <div class="contact-info">
+                <div class="contact-info_box"><p>Телефон:</p>
+                    <p>095-697-95-20</p></div>
+                <div class="contact-info_box"><p>Режим работы:</p>
+                    <p>10:00 - 20:00</p></div>
+                <div class="contact-info_box"><p>Адрес:</p>
+                    <p>Сумская 77/79</p></div>
+                <div class="contact-info_box"><p>Сайт:</p>
+                    <p>cvetochniy.com</p></div>
+            </div>
+            <div class="google-maps_wrapper about-map">
+                <agm-map [styles]="styles" [latitude]="lat" [zoom]="zoom" [longitude]="lng">
+                    <agm-marker [latitude]="lat" [longitude]="lng" [title]="text" [iconUrl]="icon"></agm-marker>
+                </agm-map>
+            </div>
+        </div>
+    </div>
+</section>

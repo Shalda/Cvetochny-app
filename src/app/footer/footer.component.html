@@ -1,0 +1,69 @@
+<footer id="footer">
+  <div class="footer">
+    <div class="footer_elem footer_social">
+      <a class="navLink" href="">Instagram</a>
+      <a class="navLink" href="">Linkedin</a>
+      <a class="navLink" href="">Facebook</a>
+    </div>
+    <div class="footer_elem footer_adress">
+      <a class="navbar-phone" href="tel:+380956979520">095&#8209;697&#8209;95&#8209;20</a>
+      <span class="footer-address-fullsize">Сумская 77/79 (напротив ЛетоПарка)&nbsp;</span>
+      <span class="footer-address-mobile">Сумская 77/79</span>
+    </div>
+    <div class="footer_elem footer_consultation ">
+      <a class="navLink" id="consultationPopup"
+         (click)="modalSwitcger()"><span>Бесплатная консультация</span>
+        <svg width="60" height="8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M59.354 4.354a.5.5 0 0 0 0-.708L56.172.464a.5.5 0 1 0-.707.708L58.293 4l-2.828 2.828a.5.5 0 1 0 .707.708l3.182-3.182zM0 4.5h59v-1H0v1z"
+                fill="#4D4D4D"/>
+        </svg>
+      </a>
+      <div class="consultation consultation-wrapper">
+        <div class="consultation_popup-overlay" (click)="modalSwitcger()" [class.modal_open]="class"></div>
+        <!-- //оверлей - отображение формы на затемненном фоне -->
+
+        <div class="consultation_popWindow consultation_subscribe_window" [class.modal_open]="class">
+          <!-- //основное окно формы Подписки -->
+          <p class="consultation_subcsribe-text">Оставьте ваш комментарий и мы свяжемся с Вами в
+            ближайшее время</p>
+          <form class="consultation_subscribe-form" autocomplete="off">
+            <div>
+              <input type="text" id="name-subscribe" name="Name" placeholder=" " required>
+              <label for="name-subscribe">Имя <span>*</span></label>
+            </div>
+            <div>
+              <input type="tel" id="tel-subscribe" name="tel" placeholder=" " required>
+              <label for="tel-subscribe">Телефон<span> *</span></label>
+            </div>
+            <div>
+              <input type="email" id="email-subscribe" name="E-mail" placeholder=" " required>
+              <label for="email-subscribe">Почта </label>
+            </div>
+            <div class="message-block">
+              <textarea id="message" class="field" required name="message" rows="4"></textarea>
+              <label class="messageLabel" for="message">Текст сообщения:</label>
+
+            </div>
+            <div class="consultation_aligncenter">
+              <button type="submit" class="consultation_btn"><i class="fa fa-check"
+                                                                aria-hidden="true"></i> Отправить
+              </button>
+            </div>
+            <div class="consultation_req-fields"><sup>*</sup> обязательные поля</div>
+          </form>
+          <div class="consultation_close-btn" (click)="modalSwitcger()">&times;</div>
+        </div><!-- /subscribe_window -->
+        <!--<div class="consultation_popWindow thank_you_window">-->
+        <!--&lt;!&ndash; //благодарственное окно после успешной отправки формы &ndash;&gt;-->
+        <!--<p class="thank_you_title">Thank you for subscribing!</p>-->
+        <!--<p class="thank_you_body">We've sent some useful tips to your email. Go ahead and check them-->
+        <!--now!</p>-->
+        <!--<div class="consultation_close-btn">&times;</div>-->
+        <!--</div>&lt;!&ndash; /thank_you_window &ndash;&gt;-->
+
+        <!-- /popup-overlay -->
+
+      </div>
+    </div>
+  </div>
+</footer>

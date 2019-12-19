@@ -1,0 +1,45 @@
+.admin__section{
+    max-width: 98vw;
+}
+.admin__title {
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 25px;
+}
+
+.admin__wrapper {
+    padding: 20px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.admin__nav {
+    display: flex;
+    flex-direction: column;
+    margin-right: 40px;
+}
+
+button {
+    font-size: 18px;
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 0;
+    border: solid 1px transparent;
+    border-radius: 4px;
+    padding: 0.8em 1em;
+    color: #dddddd;
+    background-color: #22a222;
+}
+
+.admin__nav_visualLink {
+    background-color: blueviolet;
+
+}
+
+.admin__nav_exitLink {
+    background-color: darkred;
+
+}

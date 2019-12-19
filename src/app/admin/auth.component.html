@@ -1,0 +1,26 @@
+<section class="auth__section">
+    <div class="auth__title">
+        <h3>Цветочный Admin</h3>
+    </div>
+    <div class="auth__error"
+         *ngIf="errorMessage != null">
+        {{errorMessage}}
+    </div>
+    <div class="">
+        <form novalidate #form="ngForm" (ngSubmit)="authenticate(form)">
+            <div class="form-group auth__elem">
+                <label>Login</label>
+                <input class="form-control" name="username"
+                       [(ngModel)]="username" required/>
+            </div>
+            <div class="form-group auth__elem">
+                <label>Password</label>
+                <input class="form-control" type="password" name="password"
+                       [(ngModel)]="password" required/>
+            </div>
+            <div>
+                <button class="auth__button" type="submit">Войти</button>
+            </div>
+        </form>
+    </div>
+</section>

@@ -1,0 +1,13 @@
+
+gallery{
+    background-color: #4d4d4d;
+}
+.visual__wrapper {
+    min-height: 75vh;
+}
+.g-nav-prev {
+    left: 3em!important;
+}
+.g-nav-next {
+    right: 3em!important;
+}

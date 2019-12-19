@@ -1,0 +1,116 @@
+<div [class.bg-warning]="editing"
+     [class.text-dark]="editing">
+    <h5>{{editing ? "Редактировать: " + product.name : "Добавить Товар"}}</h5>
+</div>
+<form novalidate #form="ngForm" (ngSubmit)="save(form)">
+    <div class="form-group">
+        <label>Название: </label>
+        <input class="form-control" name="name" [(ngModel)]="product.name"
+               required
+               [class.formSub_edit]="formSubmitted"
+        />
+    </div>
+    <div class="form-group" *ngIf="!editing">
+        <label>Родительская категория: {{product.parentCategory}}</label>
+        <div>Выберите родительскую категорию:</div>
+        <select class="form-control" name="parentCategory" #parentCatSelector [value]="product.parentCategory"
+                [(ngModel)]="product.parentCategory"
+                [class.formSub_edit]="formSubmitted"
+                required
+        >
+            <option [value]="c" *ngFor="let c of parentCategory"
+                    required
+                    [class.formSub_edit]="formSubmitted"
+            >{{c}}
+            </option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Категория: {{newCat || product.category}}</label>
+        <div>Выберите существующую категорию или создайте новую:</div>
+        <select class="form-control"
+                name="category"
+                #catSelector
+                [(ngModel)]="product.category"
+                [class.formSub_edit]="formSubmitted"
+                required
+        >
+            <option [value]="c" *ngFor="let c of categories">{{c}}</option>
+            <option value="Новая">--создать новую--</option>
+        </select>
+        <div *ngIf="product.category == 'Новая'">
+            <label>создайте категорию:</label>
+            <input class="form-control"
+                   #newCatSelector
+                   name="newCategory"
+                   (keydown.enter)="changeProductCategory(newCatSelector.value)"
+                   (input)="newCat = $event.target.value"
+                   [class.formSub_edit]="formSubmitted"
+                   required
+            />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Подкатегория:
+            {{newSubCat || product.subcategory}}</label>
+        <div>Если нужно выберите существующую подкатегорию или создайте новую:</div>
+        <select class="form-control"
+                name="subcategory"
+                #SubSelector
+                [value]="product.subcategory"
+                [(ngModel)]="product.subcategory">
+            <option [value]='s' *ngFor="let s of subCategories">{{s}}</option>
+            <option value=''>--без подкатегории--</option>
+            <option value='Новая'>--создать новую--</option>
+        </select>
+        <div *ngIf="product.subcategory == 'Новая'">
+            <label >создайте подкатегорию:</label>
+            <input class="form-control"
+                   #newSubCatSelector
+                   name="newSubcategory"
+                   (keydown.enter)="changeProductSubCategory(newSubCatSelector.value)"
+                   (input)="newSubCat = $event.target.value"
+                   required
+                   [class.formSub_edit]="formSubmitted"
+            />
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Описание:</label>
+        <textarea class="form-control" name="description"
+                  [(ngModel)]="product.description"
+                  required
+                  [class.formSub_edit]="formSubmitted"
+        >
+</textarea>
+    </div>
+    <div class="form-group">
+        <label>Изображение (в формате: photo.jpg):</label>
+        <input class="form-control" name="img"
+               [(ngModel)]="product.img"/>
+    </div>
+    <div class="form-group">
+        <label>Диаметр:</label>
+        <input class="form-control" name="diameter" [(ngModel)]="product.diameter"/>
+    </div>
+    <div class="form-group">
+        <label>Цена:</label>
+        <input class="form-control" name="price" [(ngModel)]="product.price"
+               required
+               pattern="^[0-9\.]+$"
+               [class.formSub_edit]="formSubmitted"
+        />
+    </div>
+    <button class="auth__button_edit" type="submit"
+            (click)="changeProductCategory(newCat); changeProductSubCategory(newSubCat)"
+            [disabled]="formSubmitted && form.invalid"
+            [class.blocked]="formSubmitted && form.invalid"
+    >
+        {{editing ? "Сохранить" : "Создать"}}
+    </button>
+    <button class="auth__button_edit" type="reset" routerLink="/admin/main/products">
+        Отмена
+    </button>
+</form>

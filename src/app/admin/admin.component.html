@@ -1,0 +1,25 @@
+<section class="admin__section"><p>
+        <div class="admin__title">
+            <a class="navbar-brand">Админ панель: {{title}}</a>
+        </div>
+    <div class="admin__wrapper">
+        <div class="admin__nav">
+                <button class="admin__nav_shopLink"
+                        routerLink="/admin/main/products"
+                        routerLinkActive="active" (click)="titleChange('МАГАЗИН')">
+                    Магазин
+                </button>
+                <button class="admin__nav_visualLink"
+                        routerLink="/admin/main/visuals"
+                        routerLinkActive="active" (click)="titleChange('ОФОРМЛЕНИЕ')">
+                    Оформление
+                </button>
+                <button class="admin__nav_exitLink" (click)="logout()">
+                    Logout
+                </button>
+        </div>
+        <div class="admin__content">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</section>

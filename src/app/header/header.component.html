@@ -1,0 +1,80 @@
+<header id="header">
+    <div class="navbar">
+        <div class="navbar_wrapper">
+            <div class="navbar_elem navbar_logo">
+                <a id="logo" [routerLink]="['']">цветочный.</a>
+            </div>
+            <div class="navbar_elem navbar_menu" [class.link_disable]="menuStatus">
+                <a class="navLink" [routerLink]="['category', 'shop']" routerLinkActive="active-link">Магазин</a>
+                <a class="navLink" [routerLink]="['category', 'wedding']" routerLinkActive="active-link">Свадебное
+                    оформление</a>
+                <a class="navLink" [routerLink]="['category', 'oformlenie']"
+                   routerLinkActive="active-link">Оформление</a>
+                <a class="navLink" [routerLink]="['category', 'contact']" routerLinkActive="active-link">Контакты</a>
+            </div>
+            <div class="navbar_elem navbar_phone">
+                <a class="navbar-phone navLink" href="tel:+380956979520">095&#8209;697&#8209;95&#8209;20</a>
+            </div>
+            <div class="navbar_elem navbar_button">
+                <div id="nav-icon1" (click)="menuToggle()" [class.open]="menuStatus">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div id="nav-menu" [class.open]="menuStatus">
+                    <div class="nav_menu_wrap">
+                        <div id="navMenuLeft" class="nav_menu_left">
+                            <a [routerLink]="linkEnabled ? ['category', 'shop'] : null" class="shop"
+                               (click)="menuBigScreen('shop')">магазин</a>
+                            <a [routerLink]="linkEnabled ? ['category', 'wedding'] : null" class="weddingLinkMobile"
+                               (click)="menuBigScreen('wedding')">свадебное оформление
+                            </a>
+                            <a [routerLink]="['category', 'oformlenie']" class="visualLinkMobile"
+                               (click)="menuToggle()">оформление
+                            </a>
+                            <a [routerLink]="linkEnabled ? ['about-us'] : null" class="about"
+                               (click)="menuBigScreen('about-us')">о нас
+                            </a>
+                            <a [routerLink]="linkEnabled ? ['cooperation'] : null" class="cooperation"
+                               (click)="menuBigScreen('cooperation')">сотрудничество
+                            </a>
+                            <a [routerLink]="linkEnabled ? ['delivery'] : null" class="delivery"
+                               (click)="menuBigScreen('delivery')">доставка и оплата
+                            </a>
+
+                        </div>
+                        <div class="nav_menu_right" [ngSwitch]="menuCategory">
+                                <div *ngSwitchDefault id="shop" class="menu_right_text open">
+                                    <a *ngFor="let category of getCategory('shop')" class="navLink" [routerLink]="['category', 'shop', category]"
+                                       (click)="menuToggle()">{{category}}</a>
+                                </div>
+                            <div *ngSwitchCase="'wedding'" id="wedding" class="menu_right_text open">
+                                <a *ngFor="let category of getCategory('wedding')" class="navLink" [routerLink]="['category', 'wedding', category]"
+                                   (click)="menuToggle()">{{category}}</a>
+                            </div>
+                            <div *ngSwitchCase="'about-us'" id="about open" class="menu_right_text open">
+                                <h3>Цветочный</h3>
+                                <span>Прекрасный магазин в удобном месте. Всегда свежие цветы, оригинальные букеты.</span>
+                                <span>Огромный выбор декора, свечей и комнатных растеней.</span>
+                            </div>
+                            <div *ngSwitchCase="'cooperation'" id="cooperation open" class="menu_right_text open">
+                                <h3>Предложения сотрудничества </h3>
+                                <span>096-609-12-55 </span>
+                                <span>lazutikovnikita@gmail.com</span>
+                                <h3>Корпоративные и оптовые заказы </h3>
+                                <span>096-609-12-55</span>
+                                <span>corporative@gmail.com</span>
+                            </div>
+                            <div *ngSwitchCase="'delivery'" id="delivery open" class="menu_right_text open">
+                                <h3>Доставка курьреом</h3>
+                                <span>Харькову - 50 гривен</span>
+                                <span>за город - 50 гривен</span>
+                                <span>Бесплатная доставка <strong>от 1 000 гривен</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

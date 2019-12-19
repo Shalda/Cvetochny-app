@@ -1,0 +1,99 @@
+<div class="sidebar-right" >
+    <div class="back-link_wrapper">
+        <a href="#" class="previous-round" onclick="history.back(); return false;">&#8249;</a>
+        <a class="back-link" onclick="history.back(); return false;">
+            назад
+        </a>
+        <svg class="arrow-svg" width="60" height="8" viewBox="0 0 60 8" fill="black"
+             xmlns="http://www.w3.org/2000/svg">
+            <path opacity="0.75"
+                  d="M0.646446 3.64644C0.451183 3.8417 0.451183 4.15829 0.646446 4.35355L3.82843 7.53553C4.02369 7.73079 4.34027 7.73079 4.53553 7.53553C4.7308 7.34027 4.7308 7.02368 4.53553 6.82842L1.70711 3.99999L4.53553 1.17157C4.7308 0.976306 4.7308 0.659723 4.53553 0.464461C4.34027 0.269199 4.02369 0.269199 3.82843 0.464461L0.646446 3.64644ZM60 3.5L1 3.49999L1 4.49999L60 4.5L60 3.5Z"
+                  fill="white"/>
+        </svg>
+    </div>
+    <div class="visual__wrapper">
+        <div class="visual__left">
+            <gallery [items]="images$ | async"></gallery>
+            <!--<div class="visual__slider slider-for">-->
+                <!--<div class="visual__slider__slide" *ngFor="let img of visual.img">-->
+                    <!--<img [src]='img' alt="slider image">-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="visual__slider slider-nav">-->
+                <!--<div class="visual__slider__slide" *ngFor="let img of visual.img">-->
+                    <!--<img [src]='img' alt="slider image">-->
+                <!--</div>-->
+
+            <!--</div>-->
+        </div>
+
+        <div class="visual__right">
+            <div class="product-card__name " id="productName">{{visual.name}}</div>
+            <div class="product-card__description">
+                <span class="product-card__small-text"> Описание</span>
+                <span id="productDesc">{{visual.description}}</span>
+            </div>
+            <div class="product-card__prices">
+                <span class="product-card__small-text">Цена</span>
+                <span id="productPrice">{{visual.price}}грн</span>
+            </div>
+            <div class="orderText">
+                <span>Для заказа услуги свяжитесь с нами по одному из указанных телефонов или же воспользуйтесь</span>
+                <a class="navLink callbackForm" id="consultationPopup"
+                   href="javascript:void(0);"><span (click)="modalSwitcger()"> формой обратной связи</span>
+                </a>
+                <div class="consultation consultation-wrapper">
+                    <div class="consultation_popup-overlay" (click)="modalSwitcger()" [class.modal_open]="class"></div>
+                    <!-- //оверлей - отображение формы на затемненном фоне -->
+
+                    <div class="consultation_popWindow consultation_subscribe_window" [class.modal_open]="class">
+                        <!-- //основное окно формы Подписки -->
+                        <p class="consultation_subcsribe-text">Оставьте ваш комментарий к заказу и мы свяжемся с Вами в
+                            ближайшее время</p>
+                        <form class="consultation_subscribe-form" autocomplete="off">
+                            <div>
+                                <input type="text" id="name-subscribe" name="Name" placeholder=" " required>
+                                <label for="name-subscribe">Имя <span>*</span></label>
+                            </div>
+                            <div>
+                                <input type="tel" id="tel-subscribe" name="tel" placeholder=" " required>
+                                <label for="tel-subscribe">Телефон<span> *</span></label>
+                            </div>
+                            <div>
+                                <input type="email" id="email-subscribe" name="E-mail" placeholder=" " required>
+                                <label for="email-subscribe">Почта </label>
+                            </div>
+                            <div class="message-block">
+                                <textarea id="message" class="field" required name="message" rows="4"></textarea>
+                                <label class="messageLabel" for="message">Текст сообщения:</label>
+
+                            </div>
+                            <div class="consultation_aligncenter">
+                                <button type="submit" class="consultation_btn"><i class="fa fa-check"
+                                                                                  aria-hidden="true"></i> Отправить
+                                </button>
+                            </div>
+                            <div class="consultation_req-fields"><sup>*</sup> обязательные поля</div>
+                        </form>
+                        <div class="consultation_close-btn" (click)="modalSwitcger()">&times;</div>
+                    </div><!-- /subscribe_window -->
+                    <!--<div class="consultation_popWindow thank_you_window">-->
+                    <!--&lt;!&ndash; //благодарственное окно после успешной отправки формы &ndash;&gt;-->
+                    <!--<p class="thank_you_title">Thank you for subscribing!</p>-->
+                    <!--<p class="thank_you_body">We've sent some useful tips to your email. Go ahead and check them-->
+                    <!--now!</p>-->
+                    <!--<div class="consultation_close-btn">&times;</div>-->
+                    <!--</div>&lt;!&ndash; /thank_you_window &ndash;&gt;-->
+
+                    <!-- /popup-overlay -->
+
+                </div>
+            </div>
+
+            <!--<div class="product-card__btn">-->
+            <!--<button type="submit" class="product-button-buy">Заказать</button>-->
+            <!--</div>-->
+        </div>
+    </div>
+
+</div>

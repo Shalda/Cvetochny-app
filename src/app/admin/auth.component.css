@@ -1,0 +1,36 @@
+.auth__section {
+    margin: 25px auto;
+    width: 720px;
+    text-align: center;
+}
+
+.auth__section div {
+    padding: 10px;
+}
+
+.auth__error {
+    font-size: 20px;
+    color: red;
+    padding: 10px;
+    border: 1px solid red;
+    background-color: #dddddd;
+    font-weight: bold;
+}
+
+.auth__section label, button {
+    margin-right: 15px;
+}
+
+.auth__button {
+    font-size: 18px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    margin: 2px 0;
+    border: solid 1px #ffffff;
+    border-radius: 4px;
+    padding: 0.5em 1em;
+    color: #ffffff;
+    background-color: #4d4d4d;
+    
+}

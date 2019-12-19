@@ -1,0 +1,34 @@
+<table class="">
+    <thead>
+    <tr>
+        <th>ID</th><th>Название</th><th>Род. Категория</th><th>Категория</th><th *ngIf="categoryIsProduct">Подкатегория</th><th>Фото</th><th *ngIf="categoryIsProduct"  >Диамтр</th><th>Описание</th><th>Цена</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let p of getProducts()">
+        <td>{{p.id}}</td>
+        <td>{{p.name}}</td>
+        <td>{{p.parentCategory}}</td>
+        <td>{{p.category}}</td>
+        <td *ngIf="categoryIsProduct">{{p.subcategory || ' '}}</td>
+        <td *ngIf="categoryIsProduct">{{p.img}}</td>
+        <td *ngIf="!categoryIsProduct"><span class="admin__img_visual" *ngFor="let i of p.img">{{i}};</span></td>
+        <td *ngIf="categoryIsProduct">{{p.diameter || ' '}}</td>
+        <td>{{p.description}}</td>
+        <td>{{p.price}}</td>
+        <td>
+            <button class="admin__btn"
+                    [routerLink]="categoryIsProduct ? ['/admin/main/products/edit', p.id, {parentCategory: p.parentCategory}] : ['/admin/main/visuals/edit', p.id, {parentCategory: p.parentCategory}]">
+                Редактировать
+            </button>
+            <button class="admin__btn admin__btn-delete" (click)="deleteProduct(p.id)">
+                Удалить
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<button class="admin__btn admin__btn-new" [routerLink]="categoryIsProduct ?  ['/admin/main/products/create'] : ['/admin/main/visuals/create']">
+   Добавить новый товар
+</button>
