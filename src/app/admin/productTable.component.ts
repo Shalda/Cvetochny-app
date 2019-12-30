@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ProductRepository} from '../model/product.repository';
 import {Product} from '../model/product.model';
 import {ActivatedRoute, Router} from '@angular/router';
+import {RestDataSource} from '../model/rest.datasource';
+import {Observable} from 'rxjs';
 
 @Component({
     templateUrl: 'productTable.component.html',
@@ -20,6 +22,7 @@ export class ProductTableComponent implements OnInit {
             return this.repository.getVisuals();
         } else {
             return this.repository.getProducts();
+
         }
     }
 

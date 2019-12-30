@@ -13,7 +13,7 @@ export class VisualModelResolver {
     }
 
     resolve(route: ActivatedRouteSnapshot,
-            state: RouterStateSnapshot): Observable<Visual[]> {
+            state: RouterStateSnapshot): Observable<{message: string, visuals: Visual[]}> {
         return this.model.getVisualByCat() == undefined
             ? this.dataSource.getVisuals() : null;
     }

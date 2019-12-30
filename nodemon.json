@@ -1,0 +1,6 @@
+{
+  "env": {
+    "MONGO_ATLAS_PW": "K9ocRGcgbQrpUOfc",
+    "JWT_KEY": "The_film_was_a_moderate_box_office_success_and_is_considered_a_cult_film"
+  }
+}

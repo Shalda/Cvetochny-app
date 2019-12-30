@@ -1,6 +1,7 @@
-.admin__section{
+.admin__section {
     max-width: 98vw;
 }
+
 .admin__title {
     text-align: center;
     font-size: 25px;
@@ -20,26 +21,15 @@
     margin-right: 40px;
 }
 
-button {
-    font-size: 18px;
-    width: 100%;
-    display: inline-block;
-    text-align: center;
-    text-decoration: none;
-    margin: 5px 0;
-    border: solid 1px transparent;
-    border-radius: 4px;
-    padding: 0.8em 1em;
-    color: #dddddd;
-    background-color: #22a222;
+.admin__nav button {
+    margin-bottom: 16px;
 }
 
-.admin__nav_visualLink {
-    background-color: blueviolet;
+.navbar-brand {
+    font-family: Roboto, sans-serif, Arial;
+    font-weight: normal;
+}
+button[mat-raised-button]{
 
 }
 
-.admin__nav_exitLink {
-    background-color: darkred;
-
-}

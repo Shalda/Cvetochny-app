@@ -5,10 +5,12 @@ import {RestDataSource} from './rest.datasource';
 import {ProductRepository} from './product.repository';
 import {VisualModelResolver} from './visual.resolver';
 import {AuthService} from './auth.service';
+import {SendEmailService} from './send-email.service';
+
 
 @NgModule({
     imports: [HttpClientModule],
-    providers: [RestDataSource, ProductRepository, VisualModelResolver, AuthService],
+    providers: [RestDataSource, ProductRepository, VisualModelResolver, AuthService, SendEmailService],
 })
 export class ModelModule {
 }

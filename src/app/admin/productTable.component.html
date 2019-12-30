@@ -1,3 +1,6 @@
+<button class="add_item_btn" mat-raised-button [routerLink]="categoryIsProduct ?  ['/admin/main/products/create'] : ['/admin/main/visuals/create']">
+    Добавить новый товар
+</button>
 <table class="">
     <thead>
     <tr>
@@ -7,7 +10,7 @@
     </thead>
     <tbody>
     <tr *ngFor="let p of getProducts()">
-        <td>{{p.id}}</td>
+        <td>{{p._id}}</td>
         <td>{{p.name}}</td>
         <td>{{p.parentCategory}}</td>
         <td>{{p.category}}</td>
@@ -18,17 +21,16 @@
         <td>{{p.description}}</td>
         <td>{{p.price}}</td>
         <td>
-            <button class="admin__btn"
-                    [routerLink]="categoryIsProduct ? ['/admin/main/products/edit', p.id, {parentCategory: p.parentCategory}] : ['/admin/main/visuals/edit', p.id, {parentCategory: p.parentCategory}]">
+            <button 
+                    mat-raised-button color="primary"
+                    [routerLink]="categoryIsProduct ? ['/admin/main/products/edit', p._id, {parentCategory: p.parentCategory}] : ['/admin/main/visuals/edit', p._id, {parentCategory: p.parentCategory}]">
                 Редактировать
             </button>
-            <button class="admin__btn admin__btn-delete" (click)="deleteProduct(p.id)">
+            <button mat-raised-button color="warn"
+                    (click)="deleteProduct(p._id)">
                 Удалить
             </button>
         </td>
     </tr>
     </tbody>
 </table>
-<button class="admin__btn admin__btn-new" [routerLink]="categoryIsProduct ?  ['/admin/main/products/create'] : ['/admin/main/visuals/create']">
-   Добавить новый товар
-</button>

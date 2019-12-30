@@ -1,21 +1,24 @@
 <section class="admin__section"><p>
         <div class="admin__title">
-            <a class="navbar-brand">Админ панель: {{title}}</a>
+            <a class="navbar-brand">админ панель: {{title}}</a>
         </div>
     <div class="admin__wrapper">
         <div class="admin__nav">
-                <button class="admin__nav_shopLink"
+                <button mat-raised-button
+                        class="admin__nav_shopLink"
                         routerLink="/admin/main/products"
-                        routerLinkActive="active" (click)="titleChange('МАГАЗИН')">
+                        routerLinkActive="mat-accent" (click)="titleChange('Магазин')">
                     Магазин
                 </button>
-                <button class="admin__nav_visualLink"
+                <button mat-raised-button
+                        class="admin__nav_visualLink"
                         routerLink="/admin/main/visuals"
-                        routerLinkActive="active" (click)="titleChange('ОФОРМЛЕНИЕ')">
+                        routerLinkActive="mat-accent" (click)="titleChange('оформление')">
                     Оформление
                 </button>
-                <button class="admin__nav_exitLink" (click)="logout()">
-                    Logout
+                <button mat-raised-button color="warn"
+                        class="admin__nav_exitLink" (click)="logout()">
+                    Выход
                 </button>
         </div>
         <div class="admin__content">

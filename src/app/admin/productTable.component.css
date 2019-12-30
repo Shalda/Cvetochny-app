@@ -1,13 +1,27 @@
+button[mat-raised-button] {
+    margin-bottom: 16px;
+    width: 100%;
+    display: inline-block;
+
+}
+
+button.add_item_btn {
+    width: unset;
+}
+
 table {
     border-spacing: 0 10px;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: bold;
+    font-family: Roboto, 'Open Sans', sans-serif;
+    border-radius: 3px;
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.75);;
 }
 
 th {
     padding: 10px 20px;
-    border: 2px solid #fff;
-
+    /*border: 2px solid #cecccc;*/
+    border: 2px solid #9a9a9a;
     font-size: 0.9em;
 }
 
@@ -15,51 +29,18 @@ th:first-child {
     text-align: left;
 }
 
-
 td {
     vertical-align: middle;
     padding: 10px;
     font-size: 14px;
     text-align: center;
-    border: 2px solid #fff;
+    border: 2px solid #9a9a9a;
 }
 
 td:nth-child(2) {
     text-align: left;
 }
 
-.admin__btn {
-    width: 100%;
-    display: inline-block;
-    text-align: center;
-    text-decoration: none;
-
-    margin: 2px 0;
-
-    border: solid 1px transparent;
-    border-radius: 4px;
-
-    padding: 0.5em 1em;
-
-    color: #3d3d3d;
-    background-color: #f8f85d;
-}
-
-.admin__btn-delete {
-    background-color: #ff4500;
-    color: #dddddd;
-}
-
-.admin__btn-new {
-    margin-top: 15px;
-    font-family: Arial, Helvetica, sans-serif;
-    text-transform: uppercase;
-    font-weight: bold;
-    color: #4d4d4d;
-    padding: 10px;
-    font-size: 22px;
-    background-color: #58f679;
-}
-.admin__img_visual{
+.admin__img_visual {
     display: block;
 }

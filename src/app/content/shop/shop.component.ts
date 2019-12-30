@@ -1,6 +1,7 @@
 import {Component, OnInit, Output} from '@angular/core';
 import {ProductRepository} from '../../model/product.repository';
 import {ActivatedRoute, Router} from '@angular/router';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
     selector: 'app-shop',
@@ -10,7 +11,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class ShopComponent implements OnInit {
     public parentCategory: string;
     public title;
-
     constructor(private _repository: ProductRepository, private _activeRoute: ActivatedRoute, private _router: Router) {
         _router.events
             .subscribe(e => {

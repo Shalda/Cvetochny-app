@@ -1,4 +1,4 @@
-<div class="sidebar-right" >
+<div class="sidebar-right">
     <div class="back-link_wrapper">
         <a href="#" class="previous-round" onclick="history.back(); return false;">&#8249;</a>
         <a class="back-link" onclick="history.back(); return false;">
@@ -11,22 +11,10 @@
                   fill="white"/>
         </svg>
     </div>
-    <div class="visual__wrapper">
+    <div class="visual__wrapper" *ngIf="visual">
         <div class="visual__left">
             <gallery [items]="images$ | async"></gallery>
-            <!--<div class="visual__slider slider-for">-->
-                <!--<div class="visual__slider__slide" *ngFor="let img of visual.img">-->
-                    <!--<img [src]='img' alt="slider image">-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="visual__slider slider-nav">-->
-                <!--<div class="visual__slider__slide" *ngFor="let img of visual.img">-->
-                    <!--<img [src]='img' alt="slider image">-->
-                <!--</div>-->
-
-            <!--</div>-->
         </div>
-
         <div class="visual__right">
             <div class="product-card__name " id="productName">{{visual.name}}</div>
             <div class="product-card__description">
@@ -40,42 +28,60 @@
             <div class="orderText">
                 <span>Для заказа услуги свяжитесь с нами по одному из указанных телефонов или же воспользуйтесь</span>
                 <a class="navLink callbackForm" id="consultationPopup"
-                   href="javascript:void(0);"><span (click)="modalSwitcger()"> формой обратной связи</span>
+                   href="javascript:void(0);"><span (click)="modalSwitcher()"> формой обратной связи</span>
                 </a>
                 <div class="consultation consultation-wrapper">
-                    <div class="consultation_popup-overlay" (click)="modalSwitcger()" [class.modal_open]="class"></div>
+                    <div class="consultation_popup-overlay" (click)="modalSwitcher()" [class.modal_open]="class"></div>
                     <!-- //оверлей - отображение формы на затемненном фоне -->
 
                     <div class="consultation_popWindow consultation_subscribe_window" [class.modal_open]="class">
                         <!-- //основное окно формы Подписки -->
                         <p class="consultation_subcsribe-text">Оставьте ваш комментарий к заказу и мы свяжемся с Вами в
                             ближайшее время</p>
-                        <form class="consultation_subscribe-form" autocomplete="off">
+                        <form novalidate #form="ngForm" (ngSubmit)="sendEmail(form)" class="consultation_subscribe-form">
                             <div>
-                                <input type="text" id="name-subscribe" name="Name" placeholder=" " required>
-                                <label for="name-subscribe">Имя <span>*</span></label>
+                                <input type="text"
+                                       id="name-contact"
+                                       placeholder=" "
+                                       name="username"
+                                       [(ngModel)]="username"
+                                       #name="ngModel"
+                                       required>
+                                <label for="name-contact">Имя <span>*</span></label>
+                                <ul class="form_error_message" *ngIf="name.touched && name.invalid || loading && name.invalid">
+                                    <li *ngIf="name.errors.required">
+                                        Введите имя
+                                    </li>
+                                </ul>
                             </div>
                             <div>
-                                <input type="tel" id="tel-subscribe" name="tel" placeholder=" " required>
-                                <label for="tel-subscribe">Телефон<span> *</span></label>
-                            </div>
-                            <div>
-                                <input type="email" id="email-subscribe" name="E-mail" placeholder=" " required>
-                                <label for="email-subscribe">Почта </label>
-                            </div>
-                            <div class="message-block">
-                                <textarea id="message" class="field" required name="message" rows="4"></textarea>
-                                <label class="messageLabel" for="message">Текст сообщения:</label>
-
+                                <input [(ngModel)]="phonenumber"
+                                       #phone="ngModel"
+                                       type='tel'
+                                       prefix="+38"
+                                       mask="(000) 000 00 00"
+                                       [showMaskTyped]="true"
+                                       id="tel-contact"
+                                       name="tel"
+                                       required
+                                       minlength="10"
+                                >
+                                <span class="star_req_form"> *</span>
+                                <ul class="form_error_message" *ngIf="phone.touched && phone.invalid || loading && phone.invalid">
+                                    <li *ngIf="phone.errors.required || phone.errors.minlength">
+                                        Укажите телефон
+                                    </li>
+                                </ul>
                             </div>
                             <div class="consultation_aligncenter">
-                                <button type="submit" class="consultation_btn"><i class="fa fa-check"
-                                                                                  aria-hidden="true"></i> Отправить
+                                <button [disabled]="form.invalid && loading"
+                                        type="submit"
+                                        class="consultation_btn">
+                                    <i class="fa fa-check" aria-hidden="true"></i> {{buttonText}}
                                 </button>
                             </div>
-                            <div class="consultation_req-fields"><sup>*</sup> обязательные поля</div>
                         </form>
-                        <div class="consultation_close-btn" (click)="modalSwitcger()">&times;</div>
+                        <div class="consultation_close-btn" (click)="modalSwitcher()">&times;</div>
                     </div><!-- /subscribe_window -->
                     <!--<div class="consultation_popWindow thank_you_window">-->
                     <!--&lt;!&ndash; //благодарственное окно после успешной отправки формы &ndash;&gt;-->

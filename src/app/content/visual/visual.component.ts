@@ -5,6 +5,8 @@ import {Visual} from '../../model/product.model';
 import {GalleryItem, ImageItem} from '@ngx-gallery/core';
 import {from, Observable, of} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {NgForm} from '@angular/forms';
+import {SendEmailService} from '../../model/send-email.service';
 
 @Component({
     selector: 'app-view',
@@ -19,25 +21,52 @@ export class VisualComponent {
     slides: GalleryItem[];
     public class: boolean = false;
 
-    constructor(private _repository: ProductRepository, private _activeRoute: ActivatedRoute) {
+    constructor(private _sendService: SendEmailService, private _repository: ProductRepository, private _activeRoute: ActivatedRoute) {
         _activeRoute.pathFromRoot.forEach(route => route.params.subscribe(params => {
             if (params['category']) {
                 this.selectedCategory = params['category'];
             }
             this.getVisual();
-            this.images$ = of((this.visual.img).map(res => new ImageItem({
-                src: `/assets/images/visual/${res}`,
-                thumb: `/assets/images/visual/${res}`
-            })));
+            if (this.visual) {
+                this.images$ = of((this.visual.img).map(res => new ImageItem({
+                    src: res,
+                    thumb: res
+                })));
+            }
         }));
     }
 
-    public modalSwitcger(): void {
-        if (!this.class) {
-            this.class = true;
-        } else {
-            this.class = false;
+    public loading = false;
+    public buttonText = 'Отправить';
+    public username: string;
+    public phonenumber: number;
+    sendEmail(form: NgForm) {
+        this.loading = true;
+        if (form.valid) {
+            this.loading = true;
+            this.buttonText = 'Отправка...';
+            this._sendService.sendEmail(this.username, this.phonenumber, this.visual._id, this.visual.name).subscribe(
+                data => {
+                    const res: any = data;
+                    console.log(
+                        `mail has been sent`
+                    );
+                },
+                err => {
+                    console.log(err);
+                    this.loading = false;
+                    this.buttonText = 'Произошла ошибка при отправке, попробуйте позже';
+                }, () => {
+                    this.loading = false;
+                    this.buttonText = 'Отправлено';
+                    form.reset();
+                }
+            );
         }
+    }
+
+    public modalSwitcher(): void {
+        this.class = !this.class;
     }
 
     getVisual(): any {

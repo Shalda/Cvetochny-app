@@ -11,12 +11,12 @@ export class OrderByPipe implements PipeTransform {
         switch (orderText) {
             case 'expensive':
                 sortedProducts = products.sort((a, b) => {
-                    return b.price - a.price;
+                    return +b.price - +a.price;
                 });
                 break;
             case 'cheap':
                 sortedProducts = products.sort((a, b) => {
-                    return a.price - b.price;
+                    return +a.price - +b.price;
                 });
                 break;
             case 'novelty':

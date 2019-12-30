@@ -2,64 +2,78 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Product, Visual} from './product.model';
-import {map} from 'rxjs/operators';
-
-const PROTOCOL = 'http';
-const PORT = 3500;
+import {AuthData} from './auth-data';
+import {Router} from '@angular/router';
+import {ClientData} from './client-data.model';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class RestDataSource {
-    baseUrl: string;
-    auth_token: string;
+    dbUrl: string = environment.apiUrl;
 
-    constructor(private _http: HttpClient) {
-        this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
+    constructor(private _http: HttpClient, private _router: Router) {
+        this.dbUrl = 'http://localhost:3000/api/';
     }
 
-    getVisuals(): Observable<Visual[]> {
-        return this._http.get<Visual[]>(this.baseUrl + 'visual');
+    getVisuals(): Observable<{ message: string, visuals: Visual[] }> {
+        return this._http.get<{ message: string, visuals: Visual[] }>(this.dbUrl + 'visuals');
     }
 
-    getProducts(): Observable<Product[]> {
-        return this._http.get<Product[]>(this.baseUrl + 'products');
+    getProducts(): Observable<{ message: string, products: Product[] }> {
+        return this._http.get<{ message: string, products: Product[] }>(this.dbUrl + 'products');
     }
 
-    authenticate(user: string, pass: string): Observable<boolean> {
-        return this._http.post<any>(this.baseUrl + 'login', {
-            name: user, password: pass
-        }).pipe(map(response => {
-            this.auth_token = response.success ? response.token : null;
-            return response.success;
-        }));
+    getProduct(id: string): Observable<{ message: string, product: Product }> {
+        return this._http.get<{ message: string, product: Product }>(`${this.dbUrl}products/${id}`);
     }
 
-    saveProduct(product: Product): Observable<Product> {
-        return this._http.post<Product>(this.baseUrl + 'products',
-            product, this.getOptions());
+    authenticate(user: string, pass: string): Observable<{ token: string, expiresIn: number, userId: string }> {
+        const authData: AuthData = {username: user, password: pass};
+        return this._http.post<{ token: string, expiresIn: number, userId: string }>(this.dbUrl + 'user/' + 'login', authData);
     }
 
-    updateProduct(product): Observable<Product> {
-        return this._http.put<Product>(`${this.baseUrl}products/${product.id}`,
-            product, this.getOptions());
+
+    sendEmail(userData: ClientData) {
+        return this._http.post(this.dbUrl + 'sendmail', userData);
     }
 
-    deleteProduct(id: number): Observable<Product> {
-        return this._http.delete<Product>(`${this.baseUrl}products/${id}`,
-            this.getOptions());
-    }
-    saveVisual(visual: Visual): Observable<Visual> {
-        return this._http.post<Visual>(this.baseUrl + 'visual',
-            visual, this.getOptions());
-    }
-
-    updateVisual(visual): Observable<Visual> {
-        return this._http.put<Visual>(`${this.baseUrl}visual/${visual.id}`,
-            visual, this.getOptions());
+    createUser(email: string, user: string, pass: string) {
+        const authData: AuthData = {email: email, username: user, password: pass};
+        this._http.post(this.dbUrl + 'user/' + 'signup', authData).subscribe(
+            () => {
+                this._router.navigate(['/']);
+            },
+            error => {
+                console.log(error.Error);
+            }
+        );
     }
 
-    deleteVisual(id: number): Observable<Product> {
-        return this._http.delete<Product>(`${this.baseUrl}visual/${id}`,
-            this.getOptions());
+    saveProduct(product: FormData): Observable<{ message: string, product: Product }> {
+        return this._http.post<{ message: string, product: Product }>(this.dbUrl + 'products', product);
+    }
+
+    saveVisual(visual: FormData): Observable<{ message: string, visual: Visual }> {
+        return this._http.post<{ message: string, visual: Visual }>(this.dbUrl + 'visuals',
+            visual);
+    }
+
+    updateProduct(product: Product | FormData, id): Observable<{ message: string, product: Product }> {
+        return this._http.put<{ message: string, product: Product }>(`${this.dbUrl}products/${id}`,
+            product);
+    }
+
+    updateVisual(visual: Visual | FormData, id): Observable<{ message: string, visual: Visual }> {
+        return this._http.put<{ message: string, visual: Visual }>(`${this.dbUrl}visuals/${id}`,
+            visual);
+    }
+
+    deleteProduct(id: number): Observable<{ message: string, product: Product }> {
+        return this._http.delete<{ message: string, product: Product }>(`${this.dbUrl}products/${id}`);
+    }
+
+    deleteVisual(id: number): Observable<{ message: string, visual: Visual }> {
+        return this._http.delete<{ message: string, visual: Visual }>(`${this.dbUrl}visuals/${id}`);
     }
 
     // getOrders(): Observable<Order[]> {
@@ -75,14 +89,5 @@ export class RestDataSource {
     //     return this.http.put<Order>(`${this.baseUrl}orders/${order.id}`,
     //         this.getOptions());
     // }
-
-    private getOptions() {
-        return {
-            headers: new HttpHeaders({
-                'Authorization': `Bearer<${this.auth_token}>`
-            })
-        };
-    }
-
 
 }

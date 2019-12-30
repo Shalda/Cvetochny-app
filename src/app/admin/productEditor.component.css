@@ -1,0 +1,30 @@
+.product-ed_cr-container {
+    display: flex;
+    flex-direction: column;
+    max-width:720px;
+}
+
+.product-ed_cr-container > * {
+    width: 100%;
+}
+
+mat-form-field {
+    padding: 1rem 2rem;
+    margin: 16px 0;
+    border-radius: 2px;
+    color: #4d4d4d;
+    -webkit-box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.75);
+    box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.75);
+    background-color: #dddddd;
+}
+mat-radio-button{
+    color: #ffffff;
+    margin-right: 16px;
+}
+input:disabled, select:disabled {
+    background-color: #9c9c9c;
+}
+.admin_sub_ex{
+    background-color: #4d4d4d;
+}

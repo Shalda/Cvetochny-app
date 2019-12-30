@@ -9,7 +9,7 @@ export class AuthGuard {
     }
     canActivate(route: ActivatedRouteSnapshot,
                 state: RouterStateSnapshot): boolean {
-        if (!this._auth.authenticated) {
+        if (!this._auth.getIsAuth) {
             this._router.navigateByUrl('/admin/auth');
             return false;
         }

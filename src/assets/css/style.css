@@ -642,7 +642,7 @@ div[class$="_root"] {
 .consultation_popWindow {
     z-index: 101;
     display: none;
-    background-color: #161613;
+    background-color: #4d4d4d;
     color: #fff;
     width: 90%;
     max-width: 720px;
@@ -708,7 +708,7 @@ div[class$="_root"] {
     font-size: 16px;
     line-height: 32px;
     padding: 5px 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     outline: 0;
     background: #2e2e2b;
     color: #fff;
@@ -718,7 +718,7 @@ div[class$="_root"] {
 
 .consultation_btn {
     color: #161613;
-    background-color: #ffba00;
+    background-color: #ffffff;
     padding: 10px 50px;
     text-align: center;
     font-size: 13px;
@@ -2079,7 +2079,7 @@ header {
 }
 
 .main_page_section {
-    background: url(../images/visual/oformlenie6.jpg) no-repeat center center fixed;
+    background: url(../images/main/main.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     background-size: cover
 }
@@ -3679,7 +3679,7 @@ agm-map {
     border-radius: 4px;
     padding: 0.5em 1em;
     color: #ffffff;
-    background-color: #4d4d4d;
+    background-color: #ffffff;
     margin: 15px 15px 15px 0;
 }
 
@@ -3688,10 +3688,102 @@ agm-map {
     background-color: whitesmoke;
     color: #b9b5b5;
 }
-.ng-invalid.formSub_edit{
+
+.ng-invalid.formSub_edit {
     border: 1px solid orangered;
+}
+
+.form-group, .image-preview img {
+    -webkit-box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.75);
+    box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.75);
+}
+
+button[mat-raised-button], .auth__button_edit {
+    -webkit-box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.75) !important;
+    -moz-box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.75) !important;
+    box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.75) !important;
 }
 
 /*input.ng-dirty.ng-invalid { border: 2px solid #ff0000 }*/
 /*input.ng-dirty.ng-valid { border: 2px solid #6bc502 }*/
 
+.admin__content {
+    flex: 1;
+}
+
+.checkbox_edit_new {
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.product-ed_cr-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 720px;
+}
+
+.product-ed_cr-container > * {
+    width: 100%;
+}
+
+mat-form-field {
+    padding: 1rem 2rem;
+    margin: 16px 0;
+    border-radius: 2px;
+    color: #4d4d4d;
+    -webkit-box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.75);
+    box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.75);
+    background-color: #dddddd;
+}
+
+mat-radio-button {
+    color: #ffffff;
+    margin-right: 16px;
+}
+
+input:disabled, select:disabled {
+    background-color: #9c9c9c;
+}
+
+.admin_sub_ex, .auth__button_edit {
+    background-color: #4d4d4d;
+}
+
+input[type="file"] {
+    visibility: hidden;
+}
+
+.image-preview {
+    height: 5rem;
+    margin: 1rem 0;
+}
+
+.image-preview img {
+    height: 100%;
+}
+
+.visual_img__remove {
+    margin-left: 11px;
+}
+
+.label_img_add {
+    margin-bottom: 10px;
+}
+.auth_box{
+    background-color: #fff;
+}
+.form_error_message{
+    padding: 0 0 10px;
+}
+input[name="tel"]{
+    position: relative;
+}
+
+.star_req_form{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    color: #ffba00;
+}

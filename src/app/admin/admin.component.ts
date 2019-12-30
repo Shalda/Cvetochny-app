@@ -8,7 +8,8 @@ import {Router} from '@angular/router';
     styleUrls: ['./admin.component.css']
 })
 export class AdminComponent {
-    public title = 'МАГАЗИН';
+    public title = 'Магазин';
+
     constructor(private auth: AuthService,
                 private router: Router) {
     }
