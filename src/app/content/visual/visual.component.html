@@ -42,12 +42,12 @@
                             <div>
                                 <input type="text"
                                        id="name-contact"
-                                       placeholder=" "
+                                       placeholder="Имя"
                                        name="username"
                                        [(ngModel)]="username"
                                        #name="ngModel"
                                        required>
-                                <label for="name-contact">Имя <span>*</span></label>
+                              <span class="star_req_form"> *</span>
                                 <ul class="form_error_message" *ngIf="name.touched && name.invalid || loading && name.invalid">
                                     <li *ngIf="name.errors.required">
                                         Введите имя

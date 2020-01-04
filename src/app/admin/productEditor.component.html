@@ -1,121 +1,124 @@
 <div class="product-ed_cr-container">
 
-    <div [class.bg-warning]="editing"
-         [class.text-dark]="editing">
-        <h5>{{editing ? "Редактировать: " + product.name : "Добавить Товар"}}</h5>
+  <div [class.bg-warning]="editing"
+       [class.text-dark]="editing">
+    <h5>{{editing ? "Редактировать: " + product.name : "Добавить Товар"}}</h5>
+  </div>
+  <form [formGroup]="form" novalidate (ngSubmit)="save()" enctype="multipart/form-data">
+    <div class="form-group">
+      <label>Название: </label>
+      <input class="form-control" formControlName="name"
+             [class.formSub_edit]="formSubmitted"
+             (input)="product.name = $event.target.value"
+      />
     </div>
-    <form [formGroup]="form" novalidate (ngSubmit)="save()" enctype="multipart/form-data">
-        <div class="form-group">
-            <label>Название: </label>
-            <input class="form-control" formControlName="name"
-                   [class.formSub_edit]="formSubmitted"
-            />
-        </div>
-        <div class="form-group" *ngIf="!editing">
-            <label>Родительская категория: {{product.parentCategory}}</label>
-            <div>Выберите родительскую категорию:</div>
-            <select class="form-control"
-                    [formControlName]="'parentCategory'"
-                    [class.formSub_edit]="formSubmitted"
-            >
-                <option value="shop"> Магазин
-                </option>
-                <option value="wedding"> Свадебное офромление
-                </option>
-            </select>
-        </div>
+    <div class="form-group" *ngIf="!editing">
+      <label>Родительская категория: {{product.parentCategory}}</label>
+      <div>Выберите родительскую категорию:</div>
+      <select class="form-control"
+              [formControlName]="'parentCategory'"
+              [class.formSub_edit]="formSubmitted"
 
-        <div class="form-group">
-            <label>Категория: {{newCat || product.category}}</label>
-            <div>Выберите существующую категорию или создайте новую:</div>
-            <select
-                    class="form-control"
-                    [formControlName]="'category'"
-                    [class.formSub_edit]="formSubmitted">
-                <option value=""></option>
-                <option [value]="c" *ngFor="let c of categories">{{c}}</option>
-            </select>
-            <div class="checkbox_edit_new">
-                <mat-checkbox (change)="newCatCheck()">Новая категория</mat-checkbox>
-            </div>
-            <div>
-                <label>создайте категорию:</label>
-                <input
-                        (change)="changeProductCategory()"
-                        formControlName="newCategory"
-                        class="form-control"
-                />
-            </div>
-        </div>
-        <div class="form-group">
-            <label>Подкатегория:
-                {{newSubCat || product.subcategory}}</label>
-            <div>Если нужно выберите существующую подкатегорию или создайте новую:</div>
-            <select
-                    class="form-control"
-                    [formControlName]="'subcategory'">
-                <option value=""></option>
-                <option [value]='s' *ngFor="let s of subCategories">{{s}}</option>
-                <option value=''>--без подкатегории--</option>
-            </select>
-            <div class="checkbox_edit_new">
-                <mat-checkbox (change)="newSubCatCheck()">Новая покатегория
-                </mat-checkbox>
-            </div>
-            <div>
-                <label>создайте подкатегорию:</label>
-                <input
-                        class="form-control"
-                        formControlName="newSubcategory"
-                        (change)="changeProductSubCategory()"
-                />
-            </div>
-        </div>
-        <div class="form-group">
-            <label>Описание:</label>
-            <textarea class="form-control" formControlName="description"
-                      [class.formSub_edit]="formSubmitted"
-            >
+      >
+        <option value="shop"> Магазин
+        </option>
+        <option value="wedding"> Свадебное офромление
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Категория: {{newCat || product.category}}</label>
+      <div>Выберите существующую категорию или создайте новую:</div>
+      <select
+        class="form-control"
+        [formControlName]="'category'"
+        [class.formSub_edit]="formSubmitted">
+        (input)="product.category = $event.target.value"
+        <option value=""></option>
+        <option [value]="c" *ngFor="let c of categories">{{c}}</option>
+      </select>
+      <div class="checkbox_edit_new">
+        <mat-checkbox (change)="newCatCheck()">Новая категория</mat-checkbox>
+      </div>
+      <div>
+        <label>создайте категорию:</label>
+        <input
+          (input)="changeProductCategory()"
+          formControlName="newCategory"
+          class="form-control"
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Подкатегория:
+        {{newSubCat || product.subcategory}}</label>
+      <div>Если нужно выберите существующую подкатегорию или создайте новую:</div>
+      <select
+        class="form-control"
+        [formControlName]="'subcategory'">
+        <option value=""></option>
+        <option [value]='s' *ngFor="let s of subCategories">{{s}}</option>
+        <option value=''>--без подкатегории--</option>
+      </select>
+      <div class="checkbox_edit_new">
+        <mat-checkbox (input)="newSubCatCheck()">Новая подкатегория
+        </mat-checkbox>
+      </div>
+      <div>
+        <label>создайте подкатегорию:</label>
+        <input
+          class="form-control"
+          formControlName="newSubcategory"
+          (input)="changeProductSubCategory()"
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Описание:</label>
+      <textarea class="form-control" formControlName="description"
+                [class.formSub_edit]="formSubmitted"
+      >
 </textarea>
-        </div>
+    </div>
 
-        <!--<div *ngIf="form.get('img').valid || imagePreviewCollection.length < 0;">-->
-        <!--<div class="image-preview" *ngFor="let image of imagePreviewCollection, index as i">-->
-        <!--<img [src]="image" [alt]="form.value.name">-->
-        <!--<i class="fa fa-remove visual_img__remove"-->
-        <!--style="font-size:24px;color:red"-->
-        <!--(click)="removeImg(i)"></i>-->
-        <!--</div>-->
-        <!--</div>-->
-        <div class="form-group">
-            <label class="label_img_add">{{editing ? "Выберите новое изображение" : "Добавьте изображение"}}:</label>
-            <button mat-stroked-button type="button" (click)="filePicker.click()">Выберите изображение</button>
-            <input type="file" #filePicker (change)="onImagePicked($event)">
-            <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && form.get('img').valid">
-                <img [src]="imagePreview" [alt]="product.name">
-                <i class="fa fa-remove visual_img__remove"
-                   style="font-size:24px;color:red"
-                   (click)="removeImg()"></i>
-            </div>
-        </div>
-        <div class="form-group">
-            <label>Диаметр:</label>
-            <input class="form-control" formControlName="diameter"/>
-        </div>
-        <div class="form-group">
-            <label>Цена:</label>
-            <input class="form-control" formControlName="price"
-                   [class.formSub_edit]="formSubmitted"
-            />
-        </div>
-        <button class="auth__button_edit  admin_sub_ex" type="submit"
-                [disabled]="formSubmitted && form.invalid"
-                [class.blocked]="formSubmitted && form.invalid"
-        >
-            {{editing ? "Сохранить" : "Создать"}}
-        </button>
-        <button class="auth__button_edit  admin_sub_ex" type="reset" routerLink="/admin/main/products">
-            Отмена
-        </button>
-    </form>
+    <!--<div *ngIf="form.get('img').valid || imagePreviewCollection.length < 0;">-->
+    <!--<div class="image-preview" *ngFor="let image of imagePreviewCollection, index as i">-->
+    <!--<img [src]="image" [alt]="form.value.name">-->
+    <!--<i class="fa fa-remove visual_img__remove"-->
+    <!--style="font-size:24px;color:red"-->
+    <!--(click)="removeImg(i)"></i>-->
+    <!--</div>-->
+    <!--</div>-->
+    <div class="form-group">
+      <label class="label_img_add">{{editing ? "Выберите новое изображение" : "Добавьте изображение"}}:</label>
+      <button mat-stroked-button type="button" (click)="filePicker.click()">Выберите изображение</button>
+      <input type="file" #filePicker (change)="onImagePicked($event)">
+      <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && form.get('img').valid">
+        <img [src]="imagePreview" [alt]="product.name">
+        <i class="fa fa-remove visual_img__remove"
+           style="font-size:24px;color:red"
+           (click)="removeImg()"></i>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Диаметр:</label>
+      <input class="form-control" formControlName="diameter"/>
+    </div>
+    <div class="form-group">
+      <label>Цена:</label>
+      <input class="form-control" formControlName="price"
+             [class.formSub_edit]="formSubmitted"
+      />
+    </div>
+    <button class="auth__button_edit  admin_sub_ex" type="submit"
+            [disabled]="formSubmitted && form.invalid"
+            [class.blocked]="formSubmitted && form.invalid"
+    >
+      {{editing ? "Сохранить" : "Создать"}}
+    </button>
+    <button class="auth__button_edit  admin_sub_ex" type="reset" routerLink="/admin/main/products">
+      Отмена
+    </button>
+  </form>
 </div>

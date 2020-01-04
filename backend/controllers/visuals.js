@@ -25,7 +25,6 @@ exports.createVisual = (req, res, next) => {
     const url = req.protocol + "://" + req.get("host");
     let filePath = [];
     for (let i = 0; i < req.files.length; i++) {
-        console.log('v controlere:' + req.files[i].filename);
         filePath.push(url + "/images/" + req.files[i].filename)
     }
     const visual = new Visual({

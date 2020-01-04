@@ -1,7 +1,7 @@
 <button class="add_item_btn" mat-raised-button [routerLink]="categoryIsProduct ?  ['/admin/main/products/create'] : ['/admin/main/visuals/create']">
     Добавить новый товар
 </button>
-<table class="">
+<table class="admin__product_table">
     <thead>
     <tr>
         <th>ID</th><th>Название</th><th>Род. Категория</th><th>Категория</th><th *ngIf="categoryIsProduct">Подкатегория</th><th>Фото</th><th *ngIf="categoryIsProduct"  >Диамтр</th><th>Описание</th><th>Цена</th>
@@ -21,7 +21,7 @@
         <td>{{p.description}}</td>
         <td>{{p.price}}</td>
         <td>
-            <button 
+            <button
                     mat-raised-button color="primary"
                     [routerLink]="categoryIsProduct ? ['/admin/main/products/edit', p._id, {parentCategory: p.parentCategory}] : ['/admin/main/visuals/edit', p._id, {parentCategory: p.parentCategory}]">
                 Редактировать

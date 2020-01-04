@@ -21,7 +21,7 @@ import {SignComponent} from './login.component';
 
 
 const routing = RouterModule.forChild([
-    {path: 'auth', component: AuthComponent},
+    {path: 'auth', component: AuthComponent, canActivate: [AuthGuard]},
     /*need to delete*/ {path: 'reg', component: SignComponent},
     {
         path: 'main', component: AdminComponent, canActivate: [AuthGuard],

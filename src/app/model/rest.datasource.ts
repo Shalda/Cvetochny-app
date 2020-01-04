@@ -12,7 +12,7 @@ export class RestDataSource {
     dbUrl: string = environment.apiUrl;
 
     constructor(private _http: HttpClient, private _router: Router) {
-        this.dbUrl = 'http://localhost:3000/api/';
+
     }
 
     getVisuals(): Observable<{ message: string, visuals: Visual[] }> {

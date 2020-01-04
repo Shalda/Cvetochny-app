@@ -52,12 +52,12 @@
                         <div>
                             <input type="text"
                                    id="name-contact"
-                                   placeholder=" "
+                                   placeholder="Имя"
                                    name="username"
                                    [(ngModel)]="username"
                                    #name="ngModel"
                                    required>
-                            <label for="name-contact">Имя <span>*</span></label>
+                            <span class="star_req_form"> *</span>
                             <ul class="form_error_message" *ngIf="name.touched && name.invalid || loading && name.invalid">
                                 <li *ngIf="name.errors.required">
                                     Введите имя
@@ -92,17 +92,7 @@
                         </div>
                     </form>
                     <div class="consultation_close-btn" (click)="modalSwitcher()">&times;</div>
-                </div><!-- /subscribe_window -->
-                <!--<div class="consultation_popWindow thank_you_window">-->
-                <!--&lt;!&ndash; //благодарственное окно после успешной отправки формы &ndash;&gt;-->
-                <!--<p class="thank_you_title">Thank you for subscribing!</p>-->
-                <!--<p class="thank_you_body">We've sent some useful tips to your email. Go ahead and check them-->
-                <!--now!</p>-->
-                <!--<div class="consultation_close-btn">&times;</div>-->
-                <!--</div>&lt;!&ndash; /thank_you_window &ndash;&gt;-->
-
-                <!-- /popup-overlay -->
-
+                </div>
             </div>
 
         </div>

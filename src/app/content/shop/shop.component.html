@@ -2,14 +2,13 @@
     <div class="sidebars_wrapper">
         <div class="sidebar-left">
             <div class="sidebar-left-wrapper">
-                <a><h2 (click)="selectedCategory = undefined" [routerLink]="['/category', parentCategory]">{{title}}</h2>
+                <a><h2 [routerLink]="['/category', parentCategory]">{{title}}</h2>
                 </a>
                 <div class="sidebar-left_list">
                     <ul>
                         <li class="mainMenu_elem" *ngFor=" let category of categories">
                             <a class="navLink"
                                routerLinkActive="active-link"
-                               (click)="selectedCategory = category"
                                [routerLink]="['/category', parentCategory, category]"
                             >
                                 {{category}}

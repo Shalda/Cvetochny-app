@@ -28,7 +28,6 @@ export class VisualEditorComponent implements OnInit {
 
     ngOnInit() {
         this.editing = this.activeRoute.snapshot.params['mode'] == 'edit';
-        // this.category = activeRoute.snapshot.params['category'];
         this.product = new Visual();
         if (this.editing) {
             Object.assign(this.product, this.repository.getVisual(this.activeRoute.snapshot.params['id']));
@@ -77,7 +76,7 @@ export class VisualEditorComponent implements OnInit {
         imagesForm.removeAt(i);
     }
 
-    save(form: NgForm) {
+    save() {
         this.formSubmitted = true;
         if (this.form.invalid) {
             return;
