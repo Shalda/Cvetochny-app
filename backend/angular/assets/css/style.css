@@ -2466,9 +2466,6 @@ section .callbackForm {
     max-height: 65vh;
 }
 
-.subMenu_elem a {
-    display: block;
-}
 
 .product-card__img img {
     -o-object-fit: cover;
@@ -3786,4 +3783,7 @@ input[name="tel"] {
 }
 .hidden{
     display: none;
+}
+.subMenu_elem a {
+    display: block;
 }
