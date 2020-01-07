@@ -2,7 +2,6 @@
 
 $(document).ready(function () {
     mobileAdaptive();                       // some mobile optomization
-    spikmi();                               // callback from spikmi service
     deliverySelect()
 });
 function mobileAdaptive() {
@@ -15,15 +14,6 @@ function mobileAdaptive() {
     }
 }
 
-function spikmi() {
-    if (window.matchMedia('(max-width: 768px)').matches) {
-        let spikmiElem = document.createElement('script');
-        spikmiElem.setAttribute('type', 'text/javascript');
-        spikmiElem.setAttribute('src', 'https://spikmi.com/Widget?Id=603');
-        let parentBody = document.body;
-        parentBody.appendChild(spikmiElem);
-    }
-}
 function deliverySelect() {
     var deliveryAddressElem = $(".delivery-address");
     var friendDeliveryElem = $(".friend-delivery");
