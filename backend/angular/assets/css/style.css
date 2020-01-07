@@ -3784,6 +3784,6 @@ input[name="tel"] {
 .hidden{
     display: none;
 }
-.sidebar-left_list  a {
+.mainMenu_elem .subMenu_elem  a {
     display: block;
 }
