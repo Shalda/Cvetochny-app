@@ -27,6 +27,7 @@ exports.createUser = (req, res, next) => {
 
 exports.userLogin = (req, res, next) => {
     let fetchedUser;
+    console.log('start login');
     User.findOne({ username: req.body.username })
         .then(user => {
             if (!user) {
@@ -34,6 +35,7 @@ exports.userLogin = (req, res, next) => {
                     message: "Ошибка авторизации",
                 });
             }
+            console.log('user found');
             fetchedUser = user;
             return bcrypt.compare(req.body.password, user.password);
         })
@@ -43,9 +45,10 @@ exports.userLogin = (req, res, next) => {
                     message: "Ошибка авторизации",
                 });
             }
+            console.log('pass accepted');
             const token = jwt.sign(
                 { username: fetchedUser.username, userId: fetchedUser._id },
-                process.env.JWT_KEY,
+                "The_film_was_a_moderate_box_office_success_and_is_considered_a_cult_film",
                 { expiresIn: "1h" }
             );
             res.status(200).json({
@@ -55,6 +58,7 @@ exports.userLogin = (req, res, next) => {
             });
         })
         .catch(err => {
+            console.log(err);
             return res.status(401).json({
                 message: "Invalid authentication credentials!",
             });
