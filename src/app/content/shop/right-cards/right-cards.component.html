@@ -10,19 +10,21 @@
     </div>
 </div>
 <div class="catalog-wrapper">
-   <div class="catalog-item"
+    <div class="catalog-item"
          [routerLink]="['/category', parentCategory, 'id',  product._id]"
          *ngFor=" let product of getProducts() | orderBy:orderSelector">
         <!--<a class="catalog-item__img">-->
-            <!--<img [appImgLink]="product.img" [appImageCategory]="parentCategory" [alt]="product.name">-->
+        <!--<img [appImgLink]="product.img" [appImageCategory]="parentCategory" [alt]="product.name">-->
         <!--</a>-->
         <a class="catalog-item__img">
             <img [src]="product.img" [alt]="product.name">
         </a>
-        <div href="product-card.html" class="catalog-item__name">{{product.name}}</div>
-        <div class="catalog-item__prices">{{product.price}} грн
-        </div>
-        <div class="catalog-item__btn"><a [routerLink]="['/category', parentCategory, 'id',  product._id]">Подробнее</a>
+        <div class="catalog-item__name">{{product.name}}</div>
+        <div class="catalog-item__wrapper-price">
+            <div class="catalog-item__prices">{{product.price}} грн
+            </div>
+            <div class="catalog-item__btn"><a
+                    [routerLink]="['/category', parentCategory, 'id',  product._id]">Далее...</a></div>
         </div>
     </div>
 </div>

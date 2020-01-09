@@ -18,12 +18,15 @@
         <div class="visual__right">
             <div class="product-card__name " id="productName">{{visual.name}}</div>
             <div class="product-card__description">
-                <span class="product-card__small-text"> Описание</span>
+                <span class="product-card__small-text">Описание:
+&nbsp;</span>
                 <span id="productDesc">{{visual.description}}</span>
             </div>
             <div class="product-card__prices">
-                <span class="product-card__small-text">Цена</span>
-                <span id="productPrice">{{visual.price}}грн</span>
+                <span class="product-card__small-text">Цена:
+&nbsp;</span>
+                <span id="productPrice">{{visual.price}}
+                    &nbsp;грн</span>
             </div>
             <div class="orderText">
                 <span>Для заказа услуги свяжитесь с нами по одному из указанных телефонов или же воспользуйтесь</span>
@@ -32,11 +35,8 @@
                 </a>
                 <div class="consultation consultation-wrapper">
                     <div class="consultation_popup-overlay" (click)="modalSwitcher()" [class.modal_open]="class"></div>
-                    <!-- //оверлей - отображение формы на затемненном фоне -->
-
                     <div class="consultation_popWindow consultation_subscribe_window" [class.modal_open]="class">
-                        <!-- //основное окно формы Подписки -->
-                        <p class="consultation_subcsribe-text">Оставьте ваш комментарий к заказу и мы свяжемся с Вами в
+                        <p class="consultation_subcsribe-text">Оставьте ваши данные и мы свяжемся с вами в
                             ближайшее время</p>
                         <form novalidate #form="ngForm" (ngSubmit)="sendEmail(form)" class="consultation_subscribe-form">
                             <div>

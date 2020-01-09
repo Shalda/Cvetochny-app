@@ -26,16 +26,21 @@
     <div class="product-card__right">
         <div class="product-card__name" id="productName">{{product.name}}</div>
         <div class="product-card__description">
-            <span class="product-card__small-text"> Описание</span>
+            <span class="product-card__small-text">Описание:
+&nbsp;</span>
             <span id="productDesc">{{product.description}}</span>
         </div>
         <div class="product-card__size" *ngIf="product.diameter">
-            <span class="product-card__small-text">Диаметр</span>
-            <span id="productSize">{{product.diameter}} см</span>
+            <span class="product-card__small-text">Диаметр:
+&nbsp;</span>
+            <span id="productSize">{{product.diameter}}
+                &nbsp;см</span>
         </div>
         <div class="product-card__prices">
-            <span class="product-card__small-text">Цена</span>
-            <span id="productPrice">{{product.price}} грн</span>
+            <span class="product-card__small-text">Цена:
+&nbsp;</span>
+            <span id="productPrice">{{product.price}}
+                &nbsp;грн</span>
         </div>
         <div class="orderText">
             <span>Для приобретения товара свяжитесь с нами по одному из указанных телефонов или же воспользуйтесь</span>
