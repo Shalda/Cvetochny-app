@@ -175,6 +175,10 @@ body a {
     text-decoration: none
 }
 
+.back-link_fa {
+    display: none;
+}
+
 #nav-icon1 {
     width: 25px;
     height: 20px;
@@ -286,7 +290,7 @@ body a {
     -webkit-justify-content: space-around;
     -ms-flex-pack: distribute;
     justify-content: space-around;
-    min-height: 35vh
+    min-height: 40vh
 }
 
 #nav-menu .nav_menu_wrap .nav_menu_left a {
@@ -1896,27 +1900,9 @@ body a {
     cursor: pointer
 }
 
-.previous-round {
-    display: none;
-    text-decoration: none;
-    background-color: #fff;
-    color: #4d4d4d;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    height: 50px;
-    width: 50px;
-    font-size: 50px;
-    line-height: 41px;
-    text-align: center
-}
-
-.previous-round:hover {
-    background-color: #ddd;
-    color: #000
-}
 
 @media only screen and (max-device-width: 768px) {
-    .previous-round {
+    .back-link_fa {
         display: inline-block
     }
 
@@ -2077,7 +2063,7 @@ header {
 }
 
 .sidebar-left_list a {
-    display: block;
+    display: inline-block;
     color: #fff;
     font-family: "Avenir Demi", Arial, Helvetica, sans-serif;
     font-size: 18px;
@@ -2365,9 +2351,13 @@ header {
         margin-right: 0;
         margin-left: 0;
         position: relative;
-        height: 420px;
+        height: 430px;
+        max-height: 80vh;
         padding: 16px;
-        box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.034), 0px 4px 4px rgba(0, 0, 0, 0.048);
+        box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.08), 0 0 4px rgba(0, 0, 0, 0.048);
+    }
+    .catalog-item__img {
+        max-height: 65vh;
     }
 
 
@@ -2477,8 +2467,9 @@ section .callbackForm {
     overflow: hidden;
     cursor: pointer;
     background-color: #fff;
-    max-height: 55vh;
+    max-height: 65vh;
 }
+
 
 .product-card__img img {
     -o-object-fit: cover;
@@ -3555,6 +3546,9 @@ agm-map {
 .sidebar-left-wrapper {
     max-width: 21vw;
 }
+.mobile_menu{
+    display: none !important;
+}
 
 #nav-menu .nav_menu_wrap .menu_right_text {
     text-align: center;
@@ -3567,6 +3561,12 @@ agm-map {
 }
 
 @media only screen and (max-device-width: 768px) {
+    .fullDesktop_menu{
+        display: none!important;
+    }
+    .mobile_menu{
+        display: flex!important;
+    }
     #navMenuLeft {
         height: calc(100vh - 170px);
     }
@@ -3777,4 +3777,30 @@ input[name="tel"] {
 
 .back-link {
     color: inherit;
+}
+
+.nav_menu_left_butt_toggle {
+    cursor: pointer;
+    vertical-align: middle;
+    margin-left: 25px;
+    -moz-transition: all 0.2s linear;
+    -webkit-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+}
+
+
+.nav_menu_left_butt_toggle.down {
+    -moz-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+.hidden{
+    display: none;
+}
+.mainMenu_elem .subMenu_elem  a {
+    transition: all 3s 1s;
+    display: block;
+}
+.fullDesktop_menu{
+
 }

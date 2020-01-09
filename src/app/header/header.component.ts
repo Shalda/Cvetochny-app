@@ -11,13 +11,13 @@ import {fromEvent} from 'rxjs';
 export class HeaderComponent implements OnInit {
     public menuStatus = false;
     public menuCategory: string;
-    public linkEnabled = false;
+    // public linkEnabled = false;
 
     constructor(private _repository: ProductRepository) {
-        fromEvent(window, 'resize').
-        subscribe((e: any) => {
-                    this.linkEnabled = e.target.innerWidth < 768;
-        });
+        // fromEvent(window, 'resize').subscribe((e: any) => {
+        //     this.linkEnabled = e.target.innerWidth <= 768;
+        //     // this.linkEnabled = e.target.innerHeight <= 768;
+        // });
     }
 
     public getCategory(cat): string[] {
@@ -25,10 +25,9 @@ export class HeaderComponent implements OnInit {
     }
 
     public menuBigScreen(cl?: string): void {
-        if (window.matchMedia('(min-width: 769px)').matches) {
-            if (cl) {
-                this.menuCategory = cl;
-            }
+        if (cl) {
+            this.menuCategory = cl;
+            this.menuToggle();
             return;
         } else {
             this.menuToggle();
@@ -36,17 +35,13 @@ export class HeaderComponent implements OnInit {
     }
 
     public menuToggle(): void {
-        if (this.menuStatus) {
-            this.menuStatus = false;
-        } else {
-            this.menuStatus = true;
-        }
+        this.menuStatus = !this.menuStatus;
     }
 
     ngOnInit() {
-        if (window.matchMedia('(max-width: 769px)').matches) {
-            this.linkEnabled = true;
-        }
+        // if (window.matchMedia('(max-width: 768px)').matches) {
+        //     this.linkEnabled = true;
+        // }
     }
 
 }

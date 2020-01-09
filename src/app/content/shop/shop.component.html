@@ -13,10 +13,16 @@
                             >
                                 {{category}}
                             </a>
-                            <ul *ngIf="getSubcategories(category) as subcategories">
+                            <i     *ngIf="getSubcategories(category)"
+                                   appToggleSubmenu
+                                   class="fa fa-chevron-right nav_menu_left_butt_toggle fa-2x"
+                                   style="font-size: 0.7em" (click)="rotateSwitcher(category)"
+                            >
+                            </i>
+                            <ul [class.hidden]="rightMenuCategoryCheck != rightMenuCategoryCheck" *ngIf="getSubcategories(category) && category === rightMenuCategoryCheck">
                                 <li class="subMenu_elem">
                                     <a class="navLink"
-                                       *ngFor="let subc of subcategories"
+                                       *ngFor="let subc of getSubcategories(category)"
                                        routerLinkActive="active-link"
                                        [routerLink]="['/category', parentCategory, category, subc]"
                                     >{{subc}}</a>

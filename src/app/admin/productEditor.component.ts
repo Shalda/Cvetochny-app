@@ -42,21 +42,21 @@ export class ProductEditorComponent implements OnInit, OnDestroy {
       'name': new FormControl(this.product.name || null, {validators: [Validators.required]}),
       'parentCategory': new FormControl(this.product.parentCategory || null, {validators: [Validators.required]}),
       'category': new FormControl(this.product.category || null, {validators: [Validators.required]}),
-      'newCategory': new FormControl({value: null, disabled: true}, {validators: [Validators.required]}),
+      'newCategory': new FormControl({value: '', disabled: true}, {validators: [Validators.required]}),
       'subcategory': new FormControl(this.product.subcategory || ''),
       'newSubcategory': new FormControl({value: '', disabled: true}),
       'description': new FormControl(this.product.description || null, {validators: [Validators.required]}),
       'img': new FormControl(this.product.img || null, {
         validators: [Validators.required], asyncValidators: [mimeType]
       }),
-      'diameter': new FormControl(this.product.diameter || null, {validators: [Validators.pattern('[0-9\\.]+$')]}),
+      'diameter': new FormControl(this.product.diameter || '', {validators: [Validators.pattern('[0-9\\.]+$')]}),
       'price': new FormControl(this.product.price || null, {validators: [Validators.pattern('[0-9\\.]+$'), Validators.required]}),
 
     });
     this.form.get('parentCategory').valueChanges
       .subscribe(changedPCat => {
         this.product.parentCategory = changedPCat;
-        this.product.subcategory = null;
+        this.product.subcategory = '';
         this.form.patchValue({subcategory: null});
         this.product.category = null;
       });

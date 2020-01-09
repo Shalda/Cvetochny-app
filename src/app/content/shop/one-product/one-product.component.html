@@ -5,7 +5,8 @@
 <div class="overlay" [class.modal_open]="popUp" (click)="popUpSwitcher()">
 </div>
 <div class="back-link_wrapper">
-    <a class="previous-round" onclick="history.back(); return false;">&#8249;</a>
+    <i class="fa fa-chevron-circle-left fa-3x back-link_fa" onclick="history.back(); return false;"></i>
+<!--    <a class="previous-round" onclick="history.back(); return false;">&#8249;</a>-->
     <a class="back-link" onclick="history.back(); return false;">
         назад
     </a>
@@ -28,7 +29,7 @@
             <span class="product-card__small-text"> Описание</span>
             <span id="productDesc">{{product.description}}</span>
         </div>
-        <div class="product-card__size">
+        <div class="product-card__size" *ngIf="product.diameter">
             <span class="product-card__small-text">Диаметр</span>
             <span id="productSize">{{product.diameter}} см</span>
         </div>

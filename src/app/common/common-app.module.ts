@@ -1,11 +1,10 @@
 import {NgModule} from '@angular/core';
-import {ImageAdminDirective} from './directives/image-admin.directive';
-import {ImgLinkDirective} from './directives/img-link.directive';
+import {ToggleSubmenuDirective} from './directives/toogle-submenu.directive';
 
 @NgModule({
 
-    declarations: [ImageAdminDirective, ImgLinkDirective],
-    exports:  [ImageAdminDirective, ImgLinkDirective]
+    declarations: [ToggleSubmenuDirective],
+    exports: [ToggleSubmenuDirective]
 })
 export class CommonAppModule {
 }

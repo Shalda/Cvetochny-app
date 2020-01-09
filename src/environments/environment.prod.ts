@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://cvetochny-env.cmeaxehwfg.us-east-2.elasticbeanstalk.com/api/'
+  apiUrl: 'http://142.93.225.61/api/'
 };

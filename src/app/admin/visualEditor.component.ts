@@ -3,8 +3,7 @@ import {Visual} from '../model/product.model';
 import {ProductRepository} from '../model/product.repository';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormArray, FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
-import {mimeType} from './mime-type.validator';
-import {projectionDef} from '@angular/core/src/render3/instructions';
+
 
 @Component({
     templateUrl: 'visualEditor.component.html',
@@ -58,13 +57,11 @@ export class VisualEditorComponent implements OnInit {
             imagesForm.removeAt(0);
         }
         for (let i = 0; i < fileList.length; i++) {
-            {
-                const reader = new FileReader();
-                reader.readAsDataURL(fileList[i]);
-                reader.onload = () => {
-                    this.imagePreviewCollection.push(reader.result as string);
-                };
-            }
+            const reader = new FileReader();
+            reader.readAsDataURL(fileList[i]);
+            reader.onload = () => {
+                this.imagePreviewCollection.push(reader.result as string);
+            };
             imagesForm.push(this.fb.control(fileList[i]));
             this.form.get('img').updateValueAndValidity();
         }

@@ -11,6 +11,9 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class ShopComponent implements OnInit {
     public parentCategory: string;
     public title;
+    public rotate = false;
+    public rightMenuCategoryCheck: string;
+
     constructor(private _repository: ProductRepository, private _activeRoute: ActivatedRoute, private _router: Router) {
         _router.events
             .subscribe(e => {
@@ -43,6 +46,14 @@ export class ShopComponent implements OnInit {
             });
     }
 
+    public rotateSwitcher(category: string): void {
+        if (this.rightMenuCategoryCheck == category) {
+            this.rightMenuCategoryCheck = null;
+        } else {
+            this.rightMenuCategoryCheck = category;}
+        this.rotate = !this.rotate;
+    }
+
     get categories(): string[] {
         if (!this.parentCategory) {
             return;
@@ -57,7 +68,11 @@ export class ShopComponent implements OnInit {
         if (!category) {
             return;
         }
-        return this._repository.getSubCategories(category);
+        if (this._repository.getSubCategories(category).length !== 0) {
+            return this._repository.getSubCategories(category);
+        } else {
+            return;
+        }
     }
 
     ngOnInit() {

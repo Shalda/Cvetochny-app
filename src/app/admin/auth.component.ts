@@ -31,6 +31,7 @@ export class AuthComponent implements OnInit, OnDestroy {
                     }
                 },
                 error => {
+                    console.log(error);
                     this.errorMessage = 'Ошибка аутентификации, данные неверны!';
                 }
                 );
