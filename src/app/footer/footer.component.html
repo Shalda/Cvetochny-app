@@ -20,10 +20,7 @@
             </a>
             <div class="consultation consultation-wrapper">
                 <div class="consultation_popup-overlay" (click)="modalSwitcher()" [class.modal_open]="class"></div>
-                <!-- //оверлей - отображение формы на затемненном фоне -->
-
                 <div class="consultation_popWindow consultation_subscribe_window" [class.modal_open]="class">
-                    <!-- //основное окно формы Подписки -->
                     <p class="consultation_subcsribe-text">Оставьте ваш комментарий и мы свяжемся с Вами в
                         ближайшее время</p>
                     <form #form="ngForm" (ngSubmit)="sendEmail(form)" class="consultation_subscribe-form"
@@ -36,7 +33,7 @@
                                    [(ngModel)]="username"
                                    #name="ngModel"
                                    required>
-                          <span class="star_req_form"> *</span>
+                            <span class="star_req_form"> *</span>
                             <ul class="form_error_message"
                                 *ngIf="name.touched && name.invalid || loading && name.invalid">
                                 <li *ngIf="name.errors.required">
@@ -83,8 +80,9 @@
                       class="field"
                       name="message"
                       rows="4"
-                      maxlength="200"></textarea>
-                            <label class="messageLabel" for="message">Текст сообщения:</label>
+                      maxlength="200"
+                      placeholder="Текст сообщения"
+              ></textarea>
 
                         </div>
                         <div class="consultation_aligncenter">

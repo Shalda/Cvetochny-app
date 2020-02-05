@@ -11,10 +11,10 @@ export class ProductRepository {
 
     constructor(private dataSource: RestDataSource) {
         dataSource.getProducts().subscribe(data => {
-            this.products = data.products;
+            this.products = data.products.reverse();
         });
         dataSource.getVisuals().subscribe(data => {
-            this.visuals = data.visuals;
+            this.visuals = data.visuals.reverse();
         });
     }
 
@@ -22,8 +22,16 @@ export class ProductRepository {
         if (!parentCategory) {
             return this.products;
         }
-        return this.products
-            .filter(p => parentCategory === p.parentCategory)
+        const productsArray = this.products.filter(p => parentCategory === p.parentCategory);
+        let num = 1;
+        for (let i = 0; i < 5; i++) {
+            if (productsArray[i]) {
+                productsArray[i].newProd = ++num;
+            } else {
+                break;
+            }
+        }
+        return productsArray
             .filter(p => category === null || category === p.category)
             .filter(p => subcategory === null || subcategory === p.subcategory);
     }
@@ -142,6 +150,7 @@ export class ProductRepository {
                 }
             );
     }
+
     deleteVisual(id) {
         this.dataSource.deleteVisual(id).subscribe(p => {
             this.visuals.splice(this.visuals.findIndex(v => v._id == id), 1);
@@ -149,7 +158,7 @@ export class ProductRepository {
     }
 
     addProduct(name: string, parentCategory: string, category: string,
-               subcategory: string, description: string, diameter: string, price: string, image: any) {
+               subcategory: string, description: string, diameter: string, price: string, image: any, date: any) {
         this.productsUpdated.next(false);
         const productData = new FormData();
         productData.append('name', name);
@@ -160,6 +169,7 @@ export class ProductRepository {
         productData.append('diameter', diameter);
         productData.append('price', price);
         productData.append('img', image, name);
+        productData.append('create_ts', date);
         this.dataSource.saveProduct(productData)
             .subscribe(p => {
                     this.products.push(p.product);
@@ -169,7 +179,7 @@ export class ProductRepository {
     }
 
     updateProduct(id: string, name: string, parentCategory: string, category: string,
-                  subcategory: string, description: string, diameter: string, price: string, image: File | string) {
+                  subcategory: string, description: string, diameter: string, price: string, image: File | string, date) {
         this.productsUpdated.next(false);
         let productData: Product | FormData;
         if (typeof image === 'object') {
@@ -183,6 +193,7 @@ export class ProductRepository {
             productData.append('diameter', diameter);
             productData.append('price', price);
             productData.append('img', image, name);
+            productData.append('create_ts', date);
 
         } else {
             productData = {

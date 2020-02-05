@@ -2,7 +2,6 @@ const app = require ("./app.js");
 const debug = require("debug")("node-angular");
 const http = require("http");
 
-
 const normalizePort = val => {
     var port = parseInt(val, 10);
 
@@ -52,5 +51,6 @@ server.on('error', onError);
 server.on('listening', onListening);
 server.listen(port, () => {
     console.log(`Server running on port: ${port}/`);
-})
+});
+
 

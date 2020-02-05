@@ -1,0 +1,75 @@
+<div class="sidebar-right">
+    <div class="back-link_wrapper" onclick="history.back(); return false;">
+        <a class="back-link">
+            назад
+        </a>
+        <svg class="arrow-svg" width="60" height="8" viewBox="0 0 60 8" fill="black"
+             xmlns="http://www.w3.org/2000/svg">
+            <path opacity="0.75"
+                  d="M0.646446 3.64644C0.451183 3.8417 0.451183 4.15829 0.646446 4.35355L3.82843 7.53553C4.02369 7.73079 4.34027 7.73079 4.53553 7.53553C4.7308 7.34027 4.7308 7.02368 4.53553 6.82842L1.70711 3.99999L4.53553 1.17157C4.7308 0.976306 4.7308 0.659723 4.53553 0.464461C4.34027 0.269199 4.02369 0.269199 3.82843 0.464461L0.646446 3.64644ZM60 3.5L1 3.49999L1 4.49999L60 4.5L60 3.5Z"
+                  fill="white"/>
+        </svg>
+    </div>
+    <div class="cart__wrapper">
+        <div class="cart-info">
+            <div id="cart-table">
+                <div class="table-cart-titles table-cart-fullSize">
+                    <span class=" cart-img-title"></span>
+                    <span class=" cart-title-title">Наименование</span>
+                    <span class=" cart-price-title">Цена</span>
+                    <span class=" cart-count-title">Количество</span>
+                    <span class=" cart-price-title">Стоимость</span>
+                </div>
+                <div *ngIf="cart.itemCount == 0" class="empty_cart">корзина пуста :(</div>
+              <div class="cart-elems_wrapper" *ngFor="let line of cart.lines">
+                <div class="cart-elems" *ngIf="line.quantity > 0">
+                  <div class="cart-elem cart-product-img cart-img-title">
+                    <img class="cart-img" [src]="line.product.img" [alt]="line.product.name"
+                         [routerLink]="['/category',line.product.parentCategory,'id',line.product._id]"
+                    ></div>
+                  <div class="cart-elem cart-product-title cart-title-title">
+                    <span class="product-desc-mobile"></span>
+                    <span>{{line.product.name}}</span>
+                  </div>
+                  <div class="cart-elem cart-price cart-price-title">
+                    <span class="product-desc-mobile">Цена:</span>
+                    <span>{{line.product.price}} грн</span>
+                  </div>
+                  <div class="cart-elem cart-count-nav cart-count-title">
+                    <span class="product-desc-mobile">Кол-во:</span>
+                    <span class="count__decrease"
+                          (click)="cart.decrementQuantity(line.product)"
+                    >&nbsp;-&nbsp;</span>
+                      <span class="count__decrease_m"
+                            (click)="cart.decrementQuantity(line.product)"
+                      ><i class="fas fa-minus"></i>&nbsp;&nbsp;</span>
+                    <span class="count__sum">{{line.quantity}}</span>
+                    <span class="count__increase"
+                          (click)="cart.incrementQuantity(line.product)"
+                    >&nbsp;+&nbsp;</span>
+                      <span class="count__increase_m"
+                            (click)="cart.incrementQuantity(line.product)"
+                      >&nbsp;&nbsp;<i class="fas fa-plus"></i></span>
+
+                  </div>
+                  <div class="cart-elem price-num cart-price-title">
+                    <span class="product-desc-mobile">Ст-ть:</span>
+                    <span>{{line.lineTotal}} грн</span>
+                  </div>
+                  <div class="cart-remove">
+                    <i (click)="cart.removeLine(line.product._id)"></i>
+                  </div>
+                </div>
+              </div>
+                <div class="cart-total-price">
+                    <span class="totalCelText">Итого: </span>
+                    <span class="totalCel">{{cart.cartPrice}} грн</span>
+                </div>
+            </div>
+            <div class="cart-buttons_wrapper">
+                <button type="submit" class="cart-button" (click)="navToShop()">Продолжить покупки</button>
+                <button type="submit" class="cart-button" [class.blocked]="cart.itemCount == 0"   routerLink="/checkout">Оформить заказ</button>
+            </div>
+        </div>
+    </div>
+</div>

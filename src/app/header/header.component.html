@@ -8,14 +8,18 @@
                 <a class="navLink" [routerLink]="['category', 'shop']" routerLinkActive="active-link">Магазин</a>
                 <a class="navLink" [routerLink]="['category', 'wedding']" routerLinkActive="active-link">Свадебное
                     оформление</a>
-                <a class="navLink" [routerLink]="['category', 'oformlenie']"
+                <a class="navLink" [routerLink]="['category', 'oformlenie', 'Фотозоны'] || ['category', 'oformlenie']"
                    routerLinkActive="active-link">Оформление</a>
                 <a class="navLink" [routerLink]="['category', 'contact']" routerLinkActive="active-link">Контакты</a>
             </div>
             <div class="navbar_elem navbar_phone">
                 <a class="navbar-phone navLink" href="tel:+380956979520">095&#8209;697&#8209;95&#8209;20</a>
             </div>
-            <div class="navbar_elem navbar_button">
+            <div class="navbar_elem navbar_cart">
+                <app-cart-summary></app-cart-summary>
+            </div>
+            <div class="header-menu_popup-overlay" (click)="menuToggle()" [class.modal_open]="menuStatus"></div>
+            <div class="navbar_elem navbar_button crossMenu">
                 <div id="nav-icon1" (click)="menuToggle()" [class.open]="menuStatus">
                     <span></span>
                     <span></span>
@@ -25,12 +29,7 @@
                     <div class="nav_menu_wrap fullDesktop_menu">
                         <div id="navMenuLeft" class="nav_menu_left">
                             <a class="shop"
-                               (click)="menuBigScreen('shop')">магазин</a>
-                            <a class="weddingLinkMobile"
-                               (click)="menuBigScreen('wedding')">свадебное оформление
-                            </a>
-                            <a class="visualLinkMobile"
-                               (click)="menuToggle()">оформление
+                               (click)="menuBigScreen('shop')">магазин
                             </a>
                             <a class="about"
                                (click)="menuBigScreen('about-us')">о нас
@@ -44,12 +43,14 @@
 
                         </div>
                         <div class="nav_menu_right" [ngSwitch]="menuCategory">
-                                <div *ngSwitchDefault class="menu_right_text open">
-                                    <a *ngFor="let category of getCategory('shop')" class="navLink" [routerLink]="['category', 'shop', category]"
-                                       (click)="menuToggle()">{{category}}</a>
-                                </div>
+                            <div *ngSwitchDefault class="menu_right_text open">
+                                <a *ngFor="let category of getCategory('shop')" class="navLink"
+                                   [routerLink]="['category', 'shop', category]"
+                                   (click)="menuToggle()">{{category}}</a>
+                            </div>
                             <div *ngSwitchCase="'wedding'" class="menu_right_text open">
-                                <a *ngFor="let category of getCategory('wedding')" class="navLink" [routerLink]="['category', 'wedding', category]"
+                                <a *ngFor="let category of getCategory('wedding')" class="navLink"
+                                   [routerLink]="['category', 'wedding', category]"
                                    (click)="menuToggle()">{{category}}</a>
                             </div>
                             <div *ngSwitchCase="'about-us'" class="menu_right_text open">
@@ -76,52 +77,23 @@
                     <div class="nav_menu_wrap mobile_menu">
                         <div class="nav_menu_left">
                             <a [routerLink]="['category', 'shop']" class="shop"
-                               (click)="menuBigScreen('shop')">магазин</a>
+                               (click)="menuToggle()">магазин</a>
                             <a [routerLink]="['category', 'wedding']" class="weddingLinkMobile"
-                               (click)="menuBigScreen('wedding')">свадебное оформление
+                               (click)="menuToggle()">свадебное оформление
                             </a>
-                            <a [routerLink]="['category', 'oformlenie']" class="visualLinkMobile"
+                            <a [routerLink]="['category', 'oformlenie', 'Фотозоны'] || ['category', 'oformlenie']"
+                               class="visualLinkMobile"
                                (click)="menuToggle()">оформление
                             </a>
                             <a [routerLink]="['about-us']" class="about"
-                               (click)="menuBigScreen('about-us')">о нас
+                               (click)="menuToggle()">о нас
                             </a>
                             <a [routerLink]="['cooperation']" class="cooperation"
-                               (click)="menuBigScreen('cooperation')">сотрудничество
+                               (click)="menuToggle()">сотрудничество
                             </a>
                             <a [routerLink]="['delivery']" class="delivery"
-                               (click)="menuBigScreen('delivery')">доставка и оплата
+                               (click)="menuToggle()">доставка и оплата
                             </a>
-
-                        </div>
-                        <div class="nav_menu_right" [ngSwitch]="menuCategory">
-                            <div *ngSwitchDefault id="shop" class="menu_right_text open">
-                                <a *ngFor="let category of getCategory('shop')" class="navLink" [routerLink]="['category', 'shop', category]"
-                                   (click)="menuToggle()">{{category}}</a>
-                            </div>
-                            <div *ngSwitchCase="'wedding'" id="wedding" class="menu_right_text open">
-                                <a *ngFor="let category of getCategory('wedding')" class="navLink" [routerLink]="['category', 'wedding', category]"
-                                   (click)="menuToggle()">{{category}}</a>
-                            </div>
-                            <div *ngSwitchCase="'about-us'" id="about open" class="menu_right_text open">
-                                <h3>Цветочный</h3>
-                                <span>Прекрасный магазин в удобном месте. Всегда свежие цветы, оригинальные букеты.</span>
-                                <span>Огромный выбор декора, свечей и комнатных растеней.</span>
-                            </div>
-                            <div *ngSwitchCase="'cooperation'" id="cooperation open" class="menu_right_text open">
-                                <h3>Предложения сотрудничества </h3>
-                                <span>096-609-12-55 </span>
-                                <span>lazutikovnikita@gmail.com</span>
-                                <h3>Корпоративные и оптовые заказы </h3>
-                                <span>096-609-12-55</span>
-                                <span>corporative@gmail.com</span>
-                            </div>
-                            <div *ngSwitchCase="'delivery'" id="delivery open" class="menu_right_text open">
-                                <h3>Доставка курьреом</h3>
-                                <span>Харькову - 50 гривен</span>
-                                <span>за город - 50 гривен</span>
-                                <span>Бесплатная доставка <strong>от 1 000 гривен</strong></span>
-                            </div>
                         </div>
                     </div>
                 </div>

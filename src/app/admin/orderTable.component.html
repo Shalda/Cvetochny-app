@@ -1,0 +1,49 @@
+<div>
+    <label class="form-check-label">
+        <input type="checkbox" class="form-check-input" [(ngModel)]="includeShipped"/>
+        Показывать выполенные
+    </label>
+</div>
+<div class="admin_order_wrapper" *ngFor="let order of getOrders()">
+    <div class="admin_order_common_info">
+        <h3>Номер заказа: {{order._id}}</h3>
+        <h3 class="admin_order_common_info_status_process" *ngIf="!order.shipped">Заказ не выполнен</h3>
+        <h3 class="admin_order_common_info_status_done" *ngIf="order.shipped">Заказ выполнен</h3>
+        <p>Количество товара: <span>{{order.itemCount}} шт.</span></p>
+        <p>Сумма заказа: <span>{{order.cartPrice}} грн.</span></p>
+    </div>
+    <div class="admin_order_client">
+        <h3>Информация о покупателе:</h3>
+        <p>Имя: <span>{{order.clientName}}</span></p>
+        <p>Телефон: <span>{{order.clientPhone}}</span></p>
+        <p>Способ доставки: <span>{{order.deliveryWay}}</span></p>
+        <p>Способ оплаты: <span>{{order.paymentWay}}</span></p>
+        <div *ngIf="order.deliveryWay == 'доставка курьером'">
+            <p>адресс: <span>{{order.addressDelivery}}</span></p>
+            <p>дата доставки: <span>{{order.dateDelivery}}</span></p>
+            <p>время: <span>{{order.timeDelivery}}</span></p>
+            <p>получатель: <span>{{order.receiveSolo}}</span></p>
+        </div>
+        <div *ngIf="order.receiveSolo !== 'лично'">
+            <p>Имя получателя: <span>{{order.friendName}}</span></p>
+            <p *ngIf="order.friendPhone">Телефон получателя: <span>{{order.friendPhone}}</span></p>
+        </div>
+        <div class="admin_order_nav">
+            <button *ngIf="!order.shipped" class="cart-button" (click)="markShipped(order)">Заказ выполнен
+            </button>
+            <button *ngIf="order.shipped" class="cart-button" (click)="markShipped(order)">Отменить статус выполнен
+            </button>
+            <button class="cart-button" (click)="delete(order._id)">Удалить</button>
+        </div>
+    </div>
+    <div class="admin_order_items">
+        <h3>Информация о заказе:</h3>
+        <div class="admin_order_item" *ngFor="let item of order.cart, let i=index ">
+            <div>№ {{i + 1}}</div>
+            <p>ID товара: <span>{{item.productId}}</span></p>
+            <p>Наименование: <span>{{item.productName}}</span></p>
+            <p>Цена за ед.: <span>{{item.productPrice}} грн.</span></p>
+            <p>Количество товара: <span>{{item.productQuantity}}</span></p>
+        </div>
+    </div>
+</div>

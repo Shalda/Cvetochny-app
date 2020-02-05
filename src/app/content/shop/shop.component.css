@@ -1,0 +1,11 @@
+/*.subMenu_elem {*/
+/*    height: 0;*/
+/*    opacity: 0;*/
+/*    transition: height 1s, opacity 1s;*/
+
+/*}*/
+/*.navLink .active-link, .subMenu_elem{*/
+/*    height: inherit;*/
+/*    opacity: 1;*/
+
+/*}*/

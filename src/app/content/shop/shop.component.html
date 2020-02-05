@@ -4,23 +4,26 @@
             <div class="sidebar-left-wrapper">
                 <a><h2 [routerLink]="['/category', parentCategory]">{{title}}</h2>
                 </a>
-                <div class="sidebar-left_list">
+                <div *ngIf="categories as categoryArr" class="sidebar-left_list">
                     <ul>
-                        <li class="mainMenu_elem" *ngFor=" let category of categories">
+                        <li class="mainMenu_elem" *ngFor=" let category of categoryArr">
                             <a class="navLink"
                                routerLinkActive="active-link"
                                [routerLink]="['/category', parentCategory, category]"
+                               (click)="rotateSwitcher(category);"
                             >
                                 {{category}}
                             </a>
                             <i     *ngIf="getSubcategories(category)"
-                                   appToggleSubmenu
+
+                                   [class.down]="category === rightMenuCategoryCheck"
                                    class="fa fa-chevron-right nav_menu_left_butt_toggle fa-2x"
                                    style="font-size: 0.7em" (click)="rotateSwitcher(category)"
                             >
                             </i>
-                            <ul [class.hidden]="rightMenuCategoryCheck != rightMenuCategoryCheck" *ngIf="getSubcategories(category) && category === rightMenuCategoryCheck">
-                                <li class="subMenu_elem">
+                            <ul [@openClose]="category === rightMenuCategoryCheck ? 'open' : 'closed'" >
+                                <li   class="subMenu_elem"
+                                    >
                                     <a class="navLink"
                                        *ngFor="let subc of getSubcategories(category)"
                                        routerLinkActive="active-link"

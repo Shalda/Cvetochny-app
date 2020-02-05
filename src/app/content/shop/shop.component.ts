@@ -2,16 +2,38 @@ import {Component, OnInit, Output} from '@angular/core';
 import {ProductRepository} from '../../model/product.repository';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
     selector: 'app-shop',
     templateUrl: './shop.component.html',
-    styleUrls: ['./shop.component.css']
+    styleUrls: ['./shop.component.css'],
+    animations: [
+        trigger('openClose', [
+            state('open', style({
+                height: '*',
+                opacity: 1,
+                left: '*',
+                display: 'block'
+            })),
+            state('closed', style({
+                height: '0px',
+                minHeight: '0',
+                opacity: 0,
+                display: 'none'
+            })),
+            transition('open => closed', [
+                animate('0.2s')
+            ]),
+            transition('closed => open', [
+                animate('0.2s')
+            ]),
+        ]),
+    ],
 })
 export class ShopComponent implements OnInit {
     public parentCategory: string;
     public title;
-    public rotate = false;
     public rightMenuCategoryCheck: string;
 
     constructor(private _repository: ProductRepository, private _activeRoute: ActivatedRoute, private _router: Router) {
@@ -23,6 +45,10 @@ export class ShopComponent implements OnInit {
                     this._activeRoute.snapshot.url[1].path == 'contact'
                 ) {
                     this.parentCategory = 'contact';
+                } else if (
+                    this._activeRoute.snapshot.url[1].path == 'cart'
+                ) {
+                    this.parentCategory = 'cart';
                 } else {
                     this.parentCategory = this._activeRoute.snapshot.params['parentcategory'] || undefined;
                 }
@@ -40,6 +66,9 @@ export class ShopComponent implements OnInit {
                     case 'contact':
                         this.title = 'КОНТАКТЫ';
                         break;
+                    case 'cart':
+                        this.title = 'КОРЗИНА';
+                        break;
                     default:
                         this.title = 'НЕТ СОВПАДЕНИЙ';
                 }
@@ -50,8 +79,8 @@ export class ShopComponent implements OnInit {
         if (this.rightMenuCategoryCheck == category) {
             this.rightMenuCategoryCheck = null;
         } else {
-            this.rightMenuCategoryCheck = category;}
-        this.rotate = !this.rotate;
+            this.rightMenuCategoryCheck = category;
+        }
     }
 
     get categories(): string[] {

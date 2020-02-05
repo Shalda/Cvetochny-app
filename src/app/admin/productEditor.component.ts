@@ -162,7 +162,8 @@ export class ProductEditorComponent implements OnInit, OnDestroy {
           this.form.value.description,
           this.form.value.diameter,
           this.form.value.price,
-          this.form.value.img
+          this.form.value.img,
+          new Date().toLocaleString()
         );
       } else {
         this.repository.updateProduct(
@@ -174,7 +175,8 @@ export class ProductEditorComponent implements OnInit, OnDestroy {
           this.form.value.description,
           this.form.value.diameter,
           this.form.value.price,
-          this.form.value.img
+          this.form.value.img,
+          new Date().toLocaleString()
         );
       }
       this.formSubmitted = false;

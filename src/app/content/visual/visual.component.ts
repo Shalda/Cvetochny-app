@@ -7,6 +7,7 @@ import {from, Observable, of} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {NgForm} from '@angular/forms';
 import {SendEmailService} from '../../model/send-email.service';
+import {RestDataSource} from '../../model/rest.datasource';
 
 @Component({
     selector: 'app-view',
@@ -21,7 +22,10 @@ export class VisualComponent {
     slides: GalleryItem[];
     public class: boolean = false;
 
-    constructor(private _sendService: SendEmailService, private _repository: ProductRepository, private _activeRoute: ActivatedRoute) {
+    constructor(private _sendService: SendEmailService,
+                private _repository: ProductRepository,
+                private _activeRoute: ActivatedRoute,
+                private _restData: RestDataSource) {
         _activeRoute.pathFromRoot.forEach(route => route.params.subscribe(params => {
             if (params['category']) {
                 this.selectedCategory = params['category'];
@@ -40,12 +44,16 @@ export class VisualComponent {
     public buttonText = 'Отправить';
     public username: string;
     public phonenumber: number;
+    public sendSms () {
+        this._restData.sendSMS('на консультацию');
+    }
     sendEmail(form: NgForm) {
         this.loading = true;
         if (form.valid) {
+            this.sendSms();
             this.loading = true;
             this.buttonText = 'Отправка...';
-            this._sendService.sendEmail(this.username, this.phonenumber, this.visual._id, this.visual.name).subscribe(
+            this._sendService.sendEmail('visual', this.username, this.phonenumber, this.visual._id, this.visual.name).subscribe(
                 data => {
                     const res: any = data;
                     console.log(

@@ -11,13 +11,7 @@ import {fromEvent} from 'rxjs';
 export class HeaderComponent implements OnInit {
     public menuStatus = false;
     public menuCategory: string;
-    // public linkEnabled = false;
-
     constructor(private _repository: ProductRepository) {
-        // fromEvent(window, 'resize').subscribe((e: any) => {
-        //     this.linkEnabled = e.target.innerWidth <= 768;
-        //     // this.linkEnabled = e.target.innerHeight <= 768;
-        // });
     }
 
     public getCategory(cat): string[] {
@@ -27,7 +21,6 @@ export class HeaderComponent implements OnInit {
     public menuBigScreen(cl?: string): void {
         if (cl) {
             this.menuCategory = cl;
-            this.menuToggle();
             return;
         } else {
             this.menuToggle();
@@ -39,9 +32,6 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit() {
-        // if (window.matchMedia('(max-width: 768px)').matches) {
-        //     this.linkEnabled = true;
-        // }
     }
 
 }

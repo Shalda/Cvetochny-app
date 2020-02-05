@@ -1,11 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Product} from '../../../model/product.model';
 import {ProductRepository} from '../../../model/product.repository';
 import {RestDataSource} from '../../../model/rest.datasource';
 import {Subscription} from 'rxjs';
-import { NgForm} from '@angular/forms';
+import {NgForm} from '@angular/forms';
 import {SendEmailService} from '../../../model/send-email.service';
+import {Cart} from '../../../model/cart.model';
 
 @Component({
     selector: 'app-one-product',
@@ -24,14 +25,36 @@ export class OneProductComponent implements OnInit, OnDestroy {
     public buttonText = 'Отправить';
     public username: string;
     public phonenumber: number;
+    public routerEventSub: Subscription;
 
     constructor(
-        private _route: ActivatedRoute,
+        private _activeRoute: ActivatedRoute,
         private _restData: RestDataSource,
         private _sendService: SendEmailService,
+        private _router: Router,
+        public cart: Cart
     ) {
+        this.routerEventSub =
+            this._router.events.subscribe(() => {
+                    if (this.productId != this._activeRoute.snapshot.params['index']) {
+                        this.productId = this._activeRoute.snapshot.params['index'];
+                        console.log(this.productId);
+                        this.isLoading = true;
+                        this.productSub = this._restData.getProduct(this.productId).subscribe(postProduct => {
+                            if (this.product != postProduct.product) {
+                                console.log(postProduct.product);
+                                this.product = postProduct.product;
+                            }
+                            this.isLoading = false;
+                        });
+                    }
+                }
+            );
     }
 
+    addProductToCart(product: Product) {
+        this.cart.addLine(product);
+    }
 
     public modalSwitcher(): void {
         this.class = !this.class;
@@ -41,12 +64,18 @@ export class OneProductComponent implements OnInit, OnDestroy {
         this.popUp = !this.popUp;
     }
 
+    public sendSMS() {
+        console.log('sending sms');
+        this._restData.sendSMS('в один клик');
+    }
+
     sendEmail(form: NgForm) {
         this.loading = true;
         if (form.valid) {
+            this.sendSMS();
             this.loading = true;
             this.buttonText = 'Отправка...';
-            this._sendService.sendEmail(this.username, this.phonenumber, this.productId, this.product.name).subscribe(
+            this._sendService.sendEmail('click', this.username, this.phonenumber, this.productId, this.product.name).subscribe(
                 data => {
                     const res: any = data;
                     console.log(
@@ -67,16 +96,12 @@ export class OneProductComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.isLoading = true;
-        this.productId = this._route.snapshot.params['index'];
-        this.productSub = this._restData.getProduct(this.productId).subscribe(postProduct => {
-            this.isLoading = false;
-            this.product = postProduct.product;
-        });
+
     }
 
     ngOnDestroy() {
         this.productSub.unsubscribe();
+        this.routerEventSub.unsubscribe();
     }
 }
 

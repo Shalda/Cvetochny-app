@@ -6,10 +6,7 @@
 </div>
 <div class="back-link_wrapper">
     <i class="fa fa-chevron-circle-left fa-3x back-link_fa" onclick="history.back(); return false;"></i>
-<!--    <a class="previous-round" onclick="history.back(); return false;">&#8249;</a>-->
-    <a class="back-link" onclick="history.back(); return false;">
-        назад
-    </a>
+    <a class="back-link" onclick="history.back(); return false;">назад</a>
     <svg onclick="history.back(); return false;" class="arrow-svg" width="60" height="8" viewBox="0 0 60 8" fill="black"
          xmlns="http://www.w3.org/2000/svg">
         <path opacity="0.75"
@@ -42,11 +39,14 @@
             <span id="productPrice">{{product.price}}
                 &nbsp;грн</span>
         </div>
-        <div class="orderText">
-            <span>Для приобретения товара свяжитесь с нами по одному из указанных телефонов или же воспользуйтесь</span>
-            <a class="navLink callbackForm" id="consultationPopup"
-               href="javascript:void(0);"><span (click)="modalSwitcher()"> формой обратной связи</span>
-            </a>
+        <div class="orderText-shop">
+            <div class="card-buttons_wrapper">
+                <button type="submit" class="cart-button" (click)="addProductToCart(product)">Добавить в корзину
+                </button>
+                <button type="submit" class="cart-button" (click)="modalSwitcher()">Купить в один клик</button>
+            </div>
+            <span>*</span>
+            <span>Примечание: уважаемый посетитель, учитывая сезонность растений, использованных в букетах, внешний вид и компоновка товара может несколько отличаться от фотографий на сайте.</span>
             <div class="consultation consultation-wrapper">
                 <div class="consultation_popup-overlay" (click)="modalSwitcher()" [class.modal_open]="class"></div>
                 <!-- //оверлей - отображение формы на затемненном фоне -->
@@ -64,7 +64,8 @@
                                    #name="ngModel"
                                    required>
                             <span class="star_req_form"> *</span>
-                            <ul class="form_error_message" *ngIf="name.touched && name.invalid || loading && name.invalid">
+                            <ul class="form_error_message"
+                                *ngIf="name.touched && name.invalid || loading && name.invalid">
                                 <li *ngIf="name.errors.required">
                                     Введите имя
                                 </li>
@@ -72,18 +73,19 @@
                         </div>
                         <div>
                             <input [(ngModel)]="phonenumber"
-                                    #phone="ngModel"
-                                    type='tel'
-                                    prefix="+38"
-                                    mask="(000) 000 00 00"
-                                    [showMaskTyped]="true"
-                                    id="tel-contact"
-                                    name="tel"
-                                    required
-                                    minlength="10"
-                        >
-                           <span class="star_req_form"> *</span>
-                            <ul class="form_error_message" *ngIf="phone.touched && phone.invalid || loading && phone.invalid">
+                                   #phone="ngModel"
+                                   type='tel'
+                                   prefix="+38"
+                                   mask="(000) 000 00 00"
+                                   [showMaskTyped]="true"
+                                   id="tel-contact"
+                                   name="tel"
+                                   required
+                                   minlength="10"
+                            >
+                            <span class="star_req_form"> *</span>
+                            <ul class="form_error_message"
+                                *ngIf="phone.touched && phone.invalid || loading && phone.invalid">
                                 <li *ngIf="phone.errors.required || phone.errors.minlength">
                                     Укажите телефон
                                 </li>
@@ -100,7 +102,6 @@
                     <div class="consultation_close-btn" (click)="modalSwitcher()">&times;</div>
                 </div>
             </div>
-
         </div>
         <!--<div class="product-card__btn btn-shop-only"><button type="submit" class="product-button-buy">Купить</button></div></div>-->
     </div>

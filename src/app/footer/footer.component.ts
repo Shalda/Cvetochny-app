@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {SendEmailService} from '../model/send-email.service';
+import {RestDataSource} from '../model/rest.datasource';
 
 @Component({
     selector: 'app-footer',
@@ -15,19 +16,23 @@ export class FooterComponent implements OnInit {
     public email: string;
     public message: string;
     public phonenumber: number;
-    constructor( private _sendService: SendEmailService) {
+    constructor( private _sendService: SendEmailService, private _restData: RestDataSource) {
     }
 
     public modalSwitcher(): void {
         this.class = !this.class;
     }
+    public sendSMS() {
+        this._restData.sendSMS('на консультацию');
+    }
 
     sendEmail(form: NgForm) {
+        this.sendSMS();
         this.loading = true;
         if (form.valid) {
             this.loading = true;
             this.buttonText = 'Отправка...';
-            this._sendService.sendEmail(this.username, this.phonenumber, null, null, this.email, this.message).subscribe(
+            this._sendService.sendEmail('' , this.username, this.phonenumber, null, null, this.email, this.message).subscribe(
                 data => {
                     const res: any = data;
                     console.log(

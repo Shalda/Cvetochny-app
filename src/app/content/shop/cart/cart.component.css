@@ -1,0 +1,8 @@
+.cart-img{
+    cursor: pointer;
+}
+.blocked {
+    cursor: no-drop;
+    background-color: whitesmoke;
+    color: #b9b5b5;
+}

@@ -8,10 +8,10 @@ import {google} from '@agm/core/services/google-maps-types';
 })
 export class ContactComponent implements OnInit {
     markerUrl = './/assets/images/glmarker.png';
-    text: string = 'Магазин Цветочный';
-    lat: number = 50.014619;
-    lng: number = 36.243711;
-    zoom: number = 17;
+    text = 'Магазин Цветочный';
+    lat = 50.015054;
+    lng = 36.243619;
+    zoom = 17;
     icon = {
         url: './/assets/images/glmarker.png',
         scaledSize: {
@@ -27,14 +27,20 @@ export class ContactComponent implements OnInit {
     // });
     styles = [
         {
-            'elementType': 'geometry',
             'stylers': [
                 {
-                    'color': '#f5f5f5'
+                    'visibility': 'on'
+                },
+                {
+                    'saturation': -100
+                },
+                {
+                    'gamma': 0.54
                 }
             ]
         },
         {
+            'featureType': 'road',
             'elementType': 'labels.icon',
             'stylers': [
                 {
@@ -43,69 +49,34 @@ export class ContactComponent implements OnInit {
             ]
         },
         {
-            'elementType': 'labels.text.fill',
+            'featureType': 'water',
             'stylers': [
                 {
-                    'color': '#616161'
-                }
-            ]
-        },
-        {
-            'elementType': 'labels.text.stroke',
-            'stylers': [
-                {
-                    'color': '#f5f5f5'
-                }
-            ]
-        },
-        {
-            'featureType': 'administrative.land_parcel',
-            'elementType': 'labels.text.fill',
-            'stylers': [
-                {
-                    'color': '#bdbdbd'
+                    'color': '#4d4946'
                 }
             ]
         },
         {
             'featureType': 'poi',
-            'elementType': 'geometry',
+            'elementType': 'labels.icon',
             'stylers': [
                 {
-                    'color': '#eeeeee'
+                    'visibility': 'off'
                 }
             ]
         },
         {
             'featureType': 'poi',
-            'elementType': 'labels.text.fill',
+            'elementType': 'labels.text',
             'stylers': [
                 {
-                    'color': '#757575'
-                }
-            ]
-        },
-        {
-            'featureType': 'poi.park',
-            'elementType': 'geometry',
-            'stylers': [
-                {
-                    'color': '#e5e5e5'
-                }
-            ]
-        },
-        {
-            'featureType': 'poi.park',
-            'elementType': 'labels.text.fill',
-            'stylers': [
-                {
-                    'color': '#9e9e9e'
+                    'visibility': 'simplified'
                 }
             ]
         },
         {
             'featureType': 'road',
-            'elementType': 'geometry',
+            'elementType': 'geometry.fill',
             'stylers': [
                 {
                     'color': '#ffffff'
@@ -113,38 +84,20 @@ export class ContactComponent implements OnInit {
             ]
         },
         {
-            'featureType': 'road.arterial',
-            'elementType': 'labels.text.fill',
-            'stylers': [
-                {
-                    'color': '#757575'
-                }
-            ]
-        },
-        {
-            'featureType': 'road.highway',
-            'elementType': 'geometry',
-            'stylers': [
-                {
-                    'color': '#dadada'
-                }
-            ]
-        },
-        {
-            'featureType': 'road.highway',
-            'elementType': 'labels.text.fill',
-            'stylers': [
-                {
-                    'color': '#616161'
-                }
-            ]
-        },
-        {
             'featureType': 'road.local',
+            'elementType': 'labels.text',
+            'stylers': [
+                {
+                    'visibility': 'simplified'
+                }
+            ]
+        },
+        {
+            'featureType': 'water',
             'elementType': 'labels.text.fill',
             'stylers': [
                 {
-                    'color': '#9e9e9e'
+                    'color': '#ffffff'
                 }
             ]
         },
@@ -153,34 +106,25 @@ export class ContactComponent implements OnInit {
             'elementType': 'geometry',
             'stylers': [
                 {
-                    'color': '#e5e5e5'
+                    'gamma': 0.48
                 }
             ]
         },
         {
             'featureType': 'transit.station',
-            'elementType': 'geometry',
+            'elementType': 'labels.icon',
             'stylers': [
                 {
-                    'color': '#eeeeee'
+                    'visibility': 'off'
                 }
             ]
         },
         {
-            'featureType': 'water',
-            'elementType': 'geometry',
+            'featureType': 'road',
+            'elementType': 'geometry.stroke',
             'stylers': [
                 {
-                    'color': '#c9c9c9'
-                }
-            ]
-        },
-        {
-            'featureType': 'water',
-            'elementType': 'labels.text.fill',
-            'stylers': [
-                {
-                    'color': '#9e9e9e'
+                    'gamma': 7.18
                 }
             ]
         }

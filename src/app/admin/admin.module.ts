@@ -17,6 +17,7 @@ import {
     MatSelectModule
 } from '@angular/material';
 import {SignComponent} from './login.component';
+import { OrderTableComponent } from './orderTable.component';
 
 
 
@@ -29,6 +30,7 @@ const routing = RouterModule.forChild([
             {path: 'products/:mode/:id', component: ProductEditorComponent},
             {path: 'products/:mode', component: ProductEditorComponent},
             {path: 'products', component: ProductTableComponent},
+            {path: 'orders', component: OrderTableComponent},
             {path: 'visuals/:mode/:id', component: VisualEditorComponent},
             {path: 'visuals/:mode', component: VisualEditorComponent},
             {path: 'visuals', component: ProductTableComponent},
@@ -60,7 +62,8 @@ const routing = RouterModule.forChild([
         ProductTableComponent,
         ProductEditorComponent,
         VisualEditorComponent,
-        SignComponent]
+        SignComponent,
+        OrderTableComponent]
 })
 export class AdminModule {
 }

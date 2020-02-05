@@ -1,11 +1,14 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
+
 import {Product, Visual} from './product.model';
 import {AuthData} from './auth-data';
 import {Router} from '@angular/router';
 import {ClientData} from './client-data.model';
 import {environment} from '../../environments/environment';
+import {Order} from './order.model';
+import {from, Observable} from 'rxjs';
+
 
 @Injectable()
 export class RestDataSource {
@@ -33,8 +36,8 @@ export class RestDataSource {
     }
 
 
-    sendEmail(userData: ClientData) {
-        return this._http.post(this.dbUrl + 'sendmail', userData);
+    sendEmail(userData: ClientData, linkUrl: string) {
+        return this._http.post(this.dbUrl + 'sendmail/' + linkUrl, userData);
     }
 
     createUser(email: string, user: string, pass: string) {
@@ -76,18 +79,35 @@ export class RestDataSource {
         return this._http.delete<{ message: string, visual: Visual }>(`${this.dbUrl}visuals/${id}`);
     }
 
-    // getOrders(): Observable<Order[]> {
-    //     return this.http.get<Order[]>(this.baseUrl + 'orders', this.getOptions());
-    // }
+    saveOrder(order: Order): Observable<{ message: string, order: Order }> {
+        return this._http.post<{ message: string, order: Order }>(this.dbUrl + 'orders', order);
+    }
 
-    // deleteOrder(id: number): Observable<Order> {
-    //     return this.http.delete<Order>(`${this.baseUrl}orders/${id}`,
-    //         this.getOptions());
-    // }
-    //
-    // updateOrder(order: Order): Observable<Order> {
-    //     return this.http.put<Order>(`${this.baseUrl}orders/${order.id}`,
-    //         this.getOptions());
-    // }
+    getOrders(): Observable<{ message: string, orders: Order[] }> {
+        return this._http.get<{ message: string, orders: Order[] }>(this.dbUrl + 'orders');
+    }
+
+    deleteOrder(id: string): Observable<{ message: string, order: Order }> {
+        return this._http.delete<{ message: string, order: Order }>(`${this.dbUrl}orders/${id}`);
+    }
+
+    updateOrder(order: Order): Observable<{ message: string, order: Order }> {
+        return this._http.put<{ message: string, order: Order }>(`${this.dbUrl}orders/${order._id}`, order);
+    }
+
+    sendSMS(opt: string) {
+        console.log(`sending in route`);
+        const arg = {text : opt};
+        // this._http.post(this.dbUrl + 'sms', arg).subscribe(
+        //     () => {
+        //         console.log(
+        //             `sms has been sent`
+        //         );
+        //     },
+        //     err => {
+        //         console.log(err);
+        //     }
+        // );
+    }
 
 }

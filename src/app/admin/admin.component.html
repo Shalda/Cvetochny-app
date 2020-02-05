@@ -1,25 +1,31 @@
 <section class="admin__section"><p>
-        <div class="admin__title">
-            <a class="navbar-brand">админ панель: {{title}}</a>
-        </div>
+    <div class="admin__title">
+        <a class="navbar-brand">админ панель: {{title}}</a>
+    </div>
     <div class="admin__wrapper">
         <div class="admin__nav">
-                <button mat-raised-button
-                        class="admin__nav_shopLink"
-                        routerLink="/admin/main/products"
-                        routerLinkActive="mat-accent" (click)="titleChange('Магазин')">
-                    Магазин
-                </button>
-                <button mat-raised-button
-                        class="admin__nav_visualLink"
-                        routerLink="/admin/main/visuals"
-                        routerLinkActive="mat-accent" (click)="titleChange('оформление')">
-                    Оформление
-                </button>
-                <button mat-raised-button color="warn"
-                        class="admin__nav_exitLink" (click)="logout()">
-                    Выход
-                </button>
+            <button mat-raised-button
+                    class="admin__nav_shopLink"
+                    routerLink="/admin/main/products"
+                    routerLinkActive="mat-accent" (click)="titleChange('Магазин')">
+                Магазин
+            </button>
+            <button mat-raised-button
+                    class="admin__nav_visualLink"
+                    routerLink="/admin/main/visuals"
+                    routerLinkActive="mat-accent" (click)="titleChange('оформление')">
+                Оформление
+            </button>
+            <button mat-raised-button
+                    class="admin__nav_visualLink"
+                    routerLink="/admin/main/orders"
+                    routerLinkActive="mat-accent" (click)="titleChange('Заказы')">
+                Заказы
+            </button>
+            <button mat-raised-button color="warn"
+                    class="admin__nav_exitLink" (click)="logout()">
+                Выход
+            </button>
         </div>
         <div class="admin__content">
             <router-outlet></router-outlet>

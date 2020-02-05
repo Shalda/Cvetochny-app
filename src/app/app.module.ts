@@ -24,10 +24,6 @@ import {AuthInterceptor} from './admin/auth-interseptor';
 import {AuthService} from './model/auth.service';
 import {FormsModule} from '@angular/forms';
 
-
-
-
-
 @NgModule({
     declarations: [
         AppComponent,
@@ -46,7 +42,7 @@ import {FormsModule} from '@angular/forms';
         ModelModule,
         HttpClientModule,
         FormsModule,
-        RouterModule.forRoot(routes),
+        RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'}),
         ShopModule,
         GalleryModule.withConfig({
             loadingMode: 'indeterminate',
@@ -67,6 +63,6 @@ export class AppModule implements OnInit {
     }
 
     ngOnInit() {
-                this._auth.autoAuthUser();
+        this._auth.autoAuthUser();
     }
 }

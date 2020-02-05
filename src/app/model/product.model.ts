@@ -8,10 +8,13 @@ export class Product {
         public diameter?: string,
         public img?: string,
         public description?: string,
-        public price?: string,
-        public create_ts?: string) {
+        public price?: any,
+        public create_ts?: string,
+        public newProd?: number
+    ) {
     }
 }
+
 export class Visual {
     constructor(
         public _id?: string,
@@ -20,7 +23,7 @@ export class Visual {
         public category?: string,
         public img?: string[],
         public description?: string,
-        public price?: string,
+        public price?: any,
         public create_ts?: string) {
     }
 }

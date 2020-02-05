@@ -9,12 +9,14 @@ import {VisualModelResolver} from './model/visual.resolver';
 import {AboutComponent} from './content/about/about.component';
 import {CooperationComponent} from './content/cooperation/cooperation.component';
 import {DeliveryComponent} from './content/delivery/delivery.component';
+import {CartComponent} from './content/shop/cart/cart.component';
+import {CheckoutComponent} from './content/shop/checkout/checkout.component';
 
 export const routes: Route[] = [
     {
         path: '',
         pathMatch: 'full',
-        component: MainComponent
+        component: MainComponent,
     },
     {
         path: 'admin',
@@ -37,6 +39,18 @@ export const routes: Route[] = [
 
         ]
     },
+    {
+        path: 'category/cart',
+        component: ShopComponent,
+        children: [
+            {path: '', component: CartComponent}
+        ]
+    },
+    {
+        path: 'checkout',
+        component: CheckoutComponent
+    },
+
     {
         path: 'category/:parentcategory',
         component: ShopComponent,

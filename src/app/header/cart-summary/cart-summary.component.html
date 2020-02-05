@@ -1,0 +1,20 @@
+<a [routerLink]='cart.itemCount > 0 ? "category/cart" : null'>
+    <span *ngIf="cart.itemCount > 0" class="cart_currency">{{cart.itemCount}}</span>
+    <i class="fas fa-shopping-basket"></i>
+</a>
+<ul class="submenu_cart">
+    <li class="submenu_cart-item" *ngFor="let product of cart.lines"
+        >
+        <a (click)="cart.decrementQuantity(product.product)" class="delete_cart-item"></a>
+        <div [routerLink]="['/category',product.product.parentCategory,'id',product.product._id]">
+            <span class="submenu_cart-item_name">"{{product.product.name}}"</span>
+            <span>&nbsp;кол.: {{product.quantity}}</span>
+            <span>&nbsp;цена за ед.: {{product.product.price}} грн.</span>
+        </div>
+    </li>
+    <li class="submenu_cart-item_total">
+        <p>&nbsp;всего товара: <span>{{cart.itemCount}} шт.</span></p>
+        <p>&nbsp;на сумму: <span>{{cart.cartPrice}} грн.</span></p>
+    </li>
+    <li class="cart_btn_enter" *ngIf="cart.itemCount > 0" routerLink="category/cart"><a>перейти в корзину</a></li>
+</ul>

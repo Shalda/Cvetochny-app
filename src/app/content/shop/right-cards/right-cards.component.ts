@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Product} from '../../../model/product.model';
 import {ActivatedRoute} from '@angular/router';
 import {ProductRepository} from '../../../model/product.repository';
+import {Cart} from '../../../model/cart.model';
 
 @Component({
     selector: 'app-right-cards',
@@ -13,7 +14,7 @@ export class RightCardsComponent implements OnInit {
     public selectedCategory: string;
     public orderSelector: string;
 
-    constructor(private _repository: ProductRepository, private _activeRoute: ActivatedRoute) {
+    constructor(private _repository: ProductRepository, private _activeRoute: ActivatedRoute, private cart: Cart) {
         _activeRoute.pathFromRoot.forEach(route => route.params.subscribe(params => {
             if (params['parentcategory']) {
                 this.parentCategory = params['parentcategory'];
@@ -33,6 +34,9 @@ export class RightCardsComponent implements OnInit {
                 }
             }
         }
+    }
+    addProductToCart(product: Product) {
+        this.cart.addLine(product);
     }
 
     getProducts(): Product[] {
