@@ -11,6 +11,7 @@ import {RestDataSource} from '../model/rest.datasource';
 export class FooterComponent implements OnInit {
     public class = false;
     public loading = false;
+    public messageSent = false;
     public buttonText = 'Отправить';
     public username: string;
     public email: string;
@@ -20,6 +21,8 @@ export class FooterComponent implements OnInit {
     }
 
     public modalSwitcher(): void {
+        this.buttonText = 'Отправить';
+        this.messageSent = false;
         this.class = !this.class;
     }
     public sendSMS() {
@@ -45,6 +48,7 @@ export class FooterComponent implements OnInit {
                     this.buttonText = 'Произошла ошибка при отправке, попробуйте позже';
                 }, () => {
                     this.loading = false;
+                    this.messageSent = true;
                     this.buttonText = 'Отправлено';
                     form.reset();
                 }

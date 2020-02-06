@@ -18,6 +18,8 @@ import {
 } from '@angular/material';
 import {SignComponent} from './login.component';
 import { OrderTableComponent } from './orderTable.component';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {AuthInterceptor} from './auth-interseptor';
 
 
 

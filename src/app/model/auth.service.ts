@@ -18,7 +18,7 @@ export class AuthService {
     }
 
     getToken() {
-        return this.auth_token;
+        return this.auth_token || localStorage.getItem('token');
     }
 
     getIsAuth() {

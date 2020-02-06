@@ -2,7 +2,7 @@
     <div class="sidebars_wrapper">
         <div class="sidebar-left">
             <div class="sidebar-left-wrapper">
-                <a><h2 [routerLink]="['/category', parentCategory]">{{title}}</h2>
+                <a><h2 [routerLink]="['/category', parentCategory]" class="shop_title navLink">{{title}}</h2>
                 </a>
                 <div *ngIf="categories as categoryArr" class="sidebar-left_list">
                     <ul>

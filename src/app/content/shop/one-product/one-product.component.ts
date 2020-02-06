@@ -22,6 +22,7 @@ export class OneProductComponent implements OnInit, OnDestroy {
     public popUp = false;
     private productSub: Subscription;
     public loading = false;
+    public messageSent = false;
     public buttonText = 'Отправить';
     public username: string;
     public phonenumber: number;
@@ -38,11 +39,9 @@ export class OneProductComponent implements OnInit, OnDestroy {
             this._router.events.subscribe(() => {
                     if (this.productId != this._activeRoute.snapshot.params['index']) {
                         this.productId = this._activeRoute.snapshot.params['index'];
-                        console.log(this.productId);
                         this.isLoading = true;
                         this.productSub = this._restData.getProduct(this.productId).subscribe(postProduct => {
                             if (this.product != postProduct.product) {
-                                console.log(postProduct.product);
                                 this.product = postProduct.product;
                             }
                             this.isLoading = false;
@@ -57,6 +56,8 @@ export class OneProductComponent implements OnInit, OnDestroy {
     }
 
     public modalSwitcher(): void {
+        this.buttonText = 'Отправить';
+        this.messageSent = false;
         this.class = !this.class;
     }
 
@@ -88,6 +89,7 @@ export class OneProductComponent implements OnInit, OnDestroy {
                     this.buttonText = 'Произошла ошибка при отправке, попробуйте позже';
                 }, () => {
                     this.loading = false;
+                    this.messageSent = true;
                     this.buttonText = 'Отправлено';
                     form.reset();
                 }

@@ -20,7 +20,8 @@ export class VisualComponent {
     public visual: Visual;
     public images$: Observable<GalleryItem[]>;
     slides: GalleryItem[];
-    public class: boolean = false;
+    public messageSent = false;
+    public class = false;
 
     constructor(private _sendService: SendEmailService,
                 private _repository: ProductRepository,
@@ -67,6 +68,7 @@ export class VisualComponent {
                 }, () => {
                     this.loading = false;
                     this.buttonText = 'Отправлено';
+                    this.messageSent = true;
                     form.reset();
                 }
             );
@@ -74,6 +76,8 @@ export class VisualComponent {
     }
 
     public modalSwitcher(): void {
+        this.buttonText = 'Отправить';
+        this.messageSent = false;
         this.class = !this.class;
     }
 
