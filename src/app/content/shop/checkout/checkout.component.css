@@ -1,12 +1,12 @@
 mat-datepicker-toggle {
-    color: rgb(255, 255, 255) !important;
+    /*color: rgb(255, 255, 255) !important;*/
 }
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active  {
-    -webkit-box-shadow: 0 0 0 30px #4d4d4d inset !important;
-    -webkit-text-fill-color: #ffffff;
+    -webkit-box-shadow: 0 0 0 30px #ffffff inset !important;
+    /*-webkit-text-fill-color: #ffffff;*/
 }
 #orderForm .form_error_message li{
     color: #ff4081;

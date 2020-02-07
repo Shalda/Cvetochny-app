@@ -772,18 +772,18 @@ input[type="submit"],
 
 
 header {
+  box-sizing: border-box;
   background-color: #fff;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
   width: 100vw;
-  height: 85px
+  height: 85px;
+  border-bottom: 1px solid #c5c5c5;
 }
 
 .navbar_wrapper {
-  box-sizing: border-box;
-  border-bottom: 1px solid rgba(0,0,0,.2);
   padding: 0 25px;
   color: #4d4d4d;
   margin: auto;
@@ -1246,7 +1246,9 @@ section .callbackForm {
 .order-product-form-box, .order-product-info-box {
   margin-top: 45px;
   padding: 15px 0;
-  border: 1px solid #fff;
+  /*border: 1px solid #fff;*/
+  /*light theme*/
+  border: 1px solid #c5c5c5;
   border-left: transparent;
   border-right: transparent;
   display: -webkit-box;
@@ -1373,13 +1375,17 @@ section .callbackForm {
 #orderForm input, select {
   padding: 20px 0 5px 0;
   display: block;
-  background-color: #4d4d4d;
-  color: #fff;
+  /*background-color: #4d4d4d;*/
+  /*color: #fff; */
+  /*light theme*/
+
   font-family: Avenir, Arial, Helvetica, sans-serif;
   font-size: 16px;
   border: none;
   outline: transparent;
-  border-bottom: 1px solid #fff;
+  /*border-bottom: 1px solid #fff;*/
+  /*light theme*/
+  border-bottom: 1px solid #c5c5c5;
   width: 17vw
 }
 
@@ -1458,20 +1464,25 @@ section .callbackForm {
   font-size: 14px;
   font-family: "Avenir Demi", Arial, Helvetica, sans-serif;
   padding: 12px 45px;
-  border: 1px solid #fff;
+  /*border: 1px solid #fff;*/
+  /*color: #fff; */
+  /*light theme*/
+  border: 1px solid #c5c5c5;
   overflow: hidden;
   background-color: transparent;
   cursor: pointer;
   -webkit-transition: .2s ease-in-out;
   -o-transition: .2s ease-in-out;
   transition: .2s ease-in-out;
-  color: #fff;
   margin-bottom: 25px
 }
 
 .order-btn:hover {
-  background-color: #fff;
-  color: #4d4d4d
+  /*background-color: #fff;*/
+  /*color: #4d4d4d */
+  /*light theme*/
+  background-color: #4d4d4d;
+  color: #ffffff;
 }
 
 .order-total-price span {
@@ -1581,7 +1592,8 @@ section .callbackForm {
   height: 85px;
   font-family: "Avenir Demi", Arial, Helvetica, sans-serif;
   color: #4d4d4d;
-  font-size: 14px
+  font-size: 14px;
+  border-top: 1px solid #c5c5c5;
 }
 
 #footer .footer {
@@ -1601,7 +1613,6 @@ section .callbackForm {
   -ms-flex-pack: justify;
   justify-content: space-between;
   max-width: 1740px;
-  border-top: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 #footer .footer a {
@@ -1752,12 +1763,6 @@ agm-map {
   color: #ffffff;
   background-color: #ffffff;
   margin: 15px 15px 15px 0;
-}
-
-.blocked {
-  cursor: no-drop;
-  background-color: whitesmoke;
-  color: #b9b5b5;
 }
 
 .ng-invalid.formSub_edit {
@@ -2129,7 +2134,9 @@ input[name="tel"] {
 
 .cart-elems {
   margin: 2.5px 0;
-  background-color: rgba(0, 0, 0, .05);
+  /*background-color: rgba(0, 0, 0, .05);*/
+  /*light theme*/
+  background-color: rgba(0, 0, 0, .03);
   position: relative
 }
 
@@ -2413,6 +2420,11 @@ input[name="tel"] {
   cursor: pointer;
 }
 
+.blocked {
+  cursor: no-drop;
+  background-color: whitesmoke !important;
+  color: #b9b5b5 !important;
+}
 
 @media only screen and (min-device-width: 769px) {
   .back-link_wrapper:hover {
