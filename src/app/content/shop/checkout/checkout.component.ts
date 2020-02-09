@@ -6,8 +6,6 @@ import {SendEmailService} from '../../../model/send-email.service';
 import {OrderRepository} from '../../../model/order.repository';
 import {Order} from '../../../model/order.model';
 import {NgForm} from '@angular/forms';
-import {element} from 'protractor';
-import {el} from '@angular/platform-browser/testing/src/browser_util';
 import {RestDataSource} from '../../../model/rest.datasource';
 
 
