@@ -1,6 +1,6 @@
 import {Component, OnInit, Output} from '@angular/core';
 import {ProductRepository} from '../../model/product.repository';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
@@ -103,8 +103,33 @@ export class ShopComponent implements OnInit {
             return;
         }
     }
-
     ngOnInit() {
+        const scrollRoutes: string[] = ['/category/shop', '/category/wedding', '/about-us', '/cart', '/oformlenie/Фотозоны' ];
+        this._router.events.subscribe((evt) => {
+            if (evt instanceof NavigationEnd) {
+                const url = this._router.url;
+                console.log(this._router.url);
+                const regexp = /\/[a-zа-я0-9]*\/(shop|wedding)\/(?!id)[a-zа-я0-9\/]*/gi;
+                const scrollAdd = regexp.test(url);
+                console.log(scrollAdd);
+                if (!scrollAdd) {
+
+                    window.scroll({
+                        top: 0,
+                        left: 0,
+                    });
+                }
+            }
+        });
+
+        function likeUrl(arr, url) {
+            const anySymbol = /[\p{Alpha}\p{M}\p{Nd}\p{Pc}\p{Join_C}]/gu;
+            const regexp = /\/[a-fа-я0-9]*\/\/[a-fа-я0-9]*\/\^id/gi;
+            //search = new RegExp(search.toString().replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&'), 'i');
+            return arr.find(function(el) {
+                return regexp.test(el);
+            });
+        }
     }
 
 }

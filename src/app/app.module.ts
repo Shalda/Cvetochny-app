@@ -42,7 +42,7 @@ import {FormsModule} from '@angular/forms';
         ModelModule,
         HttpClientModule,
         FormsModule,
-        RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'}),
+        RouterModule.forRoot(routes),
         ShopModule,
         GalleryModule.withConfig({
             loadingMode: 'indeterminate',
