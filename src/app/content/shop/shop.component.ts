@@ -104,7 +104,6 @@ export class ShopComponent implements OnInit {
         }
     }
     ngOnInit() {
-        const scrollRoutes: string[] = ['/category/shop', '/category/wedding', '/about-us', '/cart', '/oformlenie/Фотозоны' ];
         this._router.events.subscribe((evt) => {
             if (evt instanceof NavigationEnd) {
                 const url = this._router.url;
@@ -113,7 +112,6 @@ export class ShopComponent implements OnInit {
                 const scrollAdd = regexp.test(url);
                 console.log(scrollAdd);
                 if (!scrollAdd) {
-
                     window.scroll({
                         top: 0,
                         left: 0,
@@ -121,15 +119,6 @@ export class ShopComponent implements OnInit {
                 }
             }
         });
-
-        function likeUrl(arr, url) {
-            const anySymbol = /[\p{Alpha}\p{M}\p{Nd}\p{Pc}\p{Join_C}]/gu;
-            const regexp = /\/[a-fа-я0-9]*\/\/[a-fа-я0-9]*\/\^id/gi;
-            //search = new RegExp(search.toString().replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&'), 'i');
-            return arr.find(function(el) {
-                return regexp.test(el);
-            });
-        }
     }
 
 }
