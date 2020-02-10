@@ -15,8 +15,8 @@ export class AppComponent implements OnInit {
 
     }
     ngOnInit(): void {
-        if (sessionStorage['cart'] && this._cart.itemCount <= 0) {
-            this._cart.setFromStorage(JSON.parse(sessionStorage.getItem('cart')));
+        if (localStorage['cart'] && this._cart.itemCount <= 0) {
+            this._cart.setFromStorage(JSON.parse(localStorage.getItem('cart')));
         }
     }
 

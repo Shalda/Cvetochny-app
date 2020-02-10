@@ -1,12 +1,14 @@
 import {Injectable} from '@angular/core';
 import {Product} from './product.model';
+import {of} from 'rxjs';
 
 @Injectable()
 
-export class Cart  {
+export class Cart {
     public lines: CartLine[] = [];
     public itemCount = 0;
     public cartPrice = 0;
+
     constructor() {
     }
 
@@ -18,6 +20,15 @@ export class Cart  {
             this.lines.push(new CartLine(product, quantity));
         }
         this.recalculate();
+    }
+
+    public productQuantity(id: string) {
+        const line = this.lines.find(line => line.product._id == id);
+        if (!line) {
+            return 0;
+        } else {
+            return line.quantity;
+        }
     }
 
     public updateQuantity(product: Product, quantity: number) {
@@ -60,7 +71,7 @@ export class Cart  {
         this.lines = [];
         this.itemCount = 0;
         this.cartPrice = 0;
-        sessionStorage.removeItem('cart');
+        localStorage.removeItem('cart');
     }
 
     private recalculate() {
@@ -76,12 +87,13 @@ export class Cart  {
             cartPrice: this.cartPrice,
         };
         if (this.itemCount <= 0) {
-            sessionStorage.removeItem('cart');
+            localStorage.removeItem('cart');
         } else {
-            sessionStorage.setItem('cart', JSON.stringify(cartCopy));
+            localStorage.setItem('cart', JSON.stringify(cartCopy));
         }
 
     }
+
     public setFromStorage(cart) {
         this.itemCount = cart.itemCount;
         this.cartPrice = cart.cartPrice;
@@ -98,5 +110,6 @@ export class CartLine {
         return this.quantity * this.product.price;
     }
 }
+
 
 

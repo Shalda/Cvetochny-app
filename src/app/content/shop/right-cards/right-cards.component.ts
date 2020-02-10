@@ -14,6 +14,7 @@ export class RightCardsComponent implements OnInit {
     public selectedCategory: string;
     public orderSelector: string;
 
+
     constructor(private _repository: ProductRepository, private _activeRoute: ActivatedRoute, private cart: Cart) {
         _activeRoute.pathFromRoot.forEach(route => route.params.subscribe(params => {
             if (params['parentcategory']) {
@@ -35,10 +36,10 @@ export class RightCardsComponent implements OnInit {
             }
         }
     }
+
     addProductToCart(product: Product) {
         this.cart.addLine(product);
     }
-
     getProducts(): Product[] {
         if (this.selectedCategory === undefined) {
             return this._repository.getProducts(this.parentCategory);

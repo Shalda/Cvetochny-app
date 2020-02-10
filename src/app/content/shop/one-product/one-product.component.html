@@ -44,6 +44,11 @@
                 <button type="submit" class="cart-button" (click)="addProductToCart(product)">Добавить в корзину
                 </button>
                 <button type="submit" class="cart-button" (click)="modalSwitcher()">Купить в один клик</button>
+                <div class="product-card__quantity">
+                    <p *ngIf="productLine && productLine.quantity > 0" class="product-card__quantity">товара в
+                        корзине: {{productLine.quantity}}
+                    </p>
+                </div>
             </div>
             <span>*</span>
             <span>Примечание: уважаемый посетитель, учитывая сезонность растений, использованных в букетах, внешний вид и компоновка товара может несколько отличаться от фотографий на сайте.</span>
@@ -95,7 +100,8 @@
                             <button [disabled]="form.invalid && loading"
                                     type="submit"
                                     class="consultation_btn">
-                                <i *ngIf="messageSent" class="fa fa-check" aria-hidden="true" style="color: #89e100"></i> {{buttonText}}
+                                <i *ngIf="messageSent" class="fa fa-check" aria-hidden="true"
+                                   style="color: #89e100"></i> {{buttonText}}
                             </button>
                         </div>
                     </form>

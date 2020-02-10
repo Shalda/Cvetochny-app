@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Product} from '../../../model/product.model';
-import {ProductRepository} from '../../../model/product.repository';
 import {RestDataSource} from '../../../model/rest.datasource';
 import {Subscription} from 'rxjs';
 import {NgForm} from '@angular/forms';
@@ -17,6 +16,7 @@ export class OneProductComponent implements OnInit, OnDestroy {
     public isLoading: boolean;
     public product: Product;
     private productId;
+    public productQuantity;
     public parentCategory;
     public class = false;
     public popUp = false;
@@ -27,6 +27,7 @@ export class OneProductComponent implements OnInit, OnDestroy {
     public username: string;
     public phonenumber: number;
     public routerEventSub: Subscription;
+    public productLine;
 
     constructor(
         private _activeRoute: ActivatedRoute,
@@ -53,6 +54,7 @@ export class OneProductComponent implements OnInit, OnDestroy {
 
     addProductToCart(product: Product) {
         this.cart.addLine(product);
+        this.productLine = this.cart.lines.find(line => line.product._id == this.productId);
     }
 
     public modalSwitcher(): void {
@@ -68,6 +70,10 @@ export class OneProductComponent implements OnInit, OnDestroy {
     public sendSMS() {
         console.log('sending sms');
         this._restData.sendSMS('в один клик');
+    }
+
+    public setProductQuantity() {
+        this.productQuantity = this.cart.productQuantity(this.productId);
     }
 
     sendEmail(form: NgForm) {
@@ -98,7 +104,8 @@ export class OneProductComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-
+        this.setProductQuantity();
+        this.productLine = this.cart.lines.find(line => line.product._id == this.productId);
     }
 
     ngOnDestroy() {
