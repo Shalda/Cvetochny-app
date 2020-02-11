@@ -23,8 +23,9 @@
         <div class="catalog-item__wrapper-price">
             <div class="catalog-item__prices">{{product.price}} грн
             </div>
-            <div class="catalog-item__btn"><a class="toCardBtn" (click)="addProductToCart(product)"
-            ><span class="toCart" [class.hidden]="cart.productQuantity(product._id)">
+            <div class="catalog-item__btn">
+                <a class="toCardBtn"
+            ><span class="toCart" (click)="addProductToCart(product)" [class.hidden]="cart.productQuantity(product._id)">
                 <span>в</span>
                 <span>&nbsp;</span>
                 <span>к</span>
@@ -35,8 +36,27 @@
                 <span>н</span>
                 <span>у</span>
             </span>
-                <span class="toCartHidden" *ngIf="cart.productQuantity(product._id)">товар в корзине</span>
-                </a></div>
+                <p class="toCartHidden" (click)="cart.decrementQuantity(product)" *ngIf="cart.productQuantity(product._id)">
+                    <span>у</span>
+                    <span>б</span>
+                    <span>р</span>
+                    <span>а</span>
+                    <span>т</span>
+                    <span>ь</span>
+                    <span>&nbsp;</span>
+                    <span>и</span>
+                    <span>з</span>
+                    <span>&nbsp;</span>
+                    <span>к</span>
+                    <span>о</span>
+                    <span>р</span>
+                    <span>з</span>
+                    <span>и</span>
+                    <span>н</span>
+                    <span>ы</span>
+                   </p>
+                </a>
+            </div>
         </div>
     </div>
 </div>
