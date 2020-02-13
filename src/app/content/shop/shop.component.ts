@@ -1,7 +1,6 @@
-import {Component, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProductRepository} from '../../model/product.repository';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
@@ -107,10 +106,8 @@ export class ShopComponent implements OnInit {
         this._router.events.subscribe((evt) => {
             if (evt instanceof NavigationEnd) {
                 const url = this._router.url;
-                console.log(this._router.url);
                 const regexp = /\/[a-zа-я0-9]*\/(shop|wedding)\/(?!id)[a-zа-я0-9\/]*/gi;
                 const scrollAdd = regexp.test(url);
-                console.log(scrollAdd);
                 if (!scrollAdd) {
                     window.scroll({
                         top: 0,

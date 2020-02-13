@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Product} from '../model/product.model';
 import {ProductRepository} from '../model/product.repository';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {mimeType} from './mime-type.validator';
 import {Subscription} from 'rxjs';
 

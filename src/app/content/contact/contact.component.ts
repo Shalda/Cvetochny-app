@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {google} from '@agm/core/services/google-maps-types';
 
 @Component({
     selector: 'app-contact',

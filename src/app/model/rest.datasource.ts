@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 
 import {Product, Visual} from './product.model';
 import {AuthData} from './auth-data';
@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
 import {ClientData} from './client-data.model';
 import {environment} from '../../environments/environment';
 import {Order} from './order.model';
-import {from, Observable} from 'rxjs';
+import {Observable} from 'rxjs';
 
 
 @Injectable()

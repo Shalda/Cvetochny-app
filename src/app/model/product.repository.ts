@@ -101,7 +101,6 @@ export class ProductRepository {
     updateVisual(id: string, name: string, parentCategory: string, category: string,
                  description: string, price: string, images: any) {
         let visualData: Visual | FormData;
-        console.log(images);
         if (images[0].name) {
             visualData = new FormData();
             visualData.append('_id', id);
@@ -114,7 +113,6 @@ export class ProductRepository {
                 visualData.append('img', image, name);
             }
         } else {
-            console.log('сработал на string');
             visualData = {
                 _id: id,
                 name: name,
@@ -125,9 +123,7 @@ export class ProductRepository {
                 img: images
             };
         }
-        console.log(visualData);
         this.dataSource.updateVisual(visualData, id).subscribe(visRes => {
-            console.log(visRes.message);
             this.visuals.splice(this.visuals.findIndex(v => v._id == id), 1, visRes.visual);
         });
     }

@@ -14,7 +14,6 @@ export class OrderRepository {
         this.dataSource.getOrders()
             .subscribe(orders => {
                     this.orders = orders.orders;
-                    console.log(orders.orders);
             });
     }
 

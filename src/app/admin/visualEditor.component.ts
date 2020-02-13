@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Visual} from '../model/product.model';
 import {ProductRepository} from '../model/product.repository';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FormArray, FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -87,7 +87,6 @@ export class VisualEditorComponent implements OnInit {
                     this.form.value.price,
                     this.form.controls['img'].value
                 );
-                console.log(this.form.controls['img'].value);
             } else {
                 this.repository.updateVisual(
                     this.product._id,

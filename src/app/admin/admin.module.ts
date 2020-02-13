@@ -10,17 +10,16 @@ import {ProductTableComponent} from './productTable.component';
 import {CommonAppModule} from '../common/common-app.module';
 import {VisualEditorComponent} from './visualEditor.component';
 import {
-    MatButtonModule, MatCheckboxModule,
+    MatButtonModule,
+    MatCheckboxModule,
     MatFormFieldModule,
     MatIconModule,
-    MatInputModule, MatRadioModule,
+    MatInputModule,
+    MatRadioModule,
     MatSelectModule
 } from '@angular/material';
 import {SignComponent} from './login.component';
-import { OrderTableComponent } from './orderTable.component';
-import {HTTP_INTERCEPTORS} from '@angular/common/http';
-import {AuthInterceptor} from './auth-interseptor';
-
+import {OrderTableComponent} from './orderTable.component';
 
 
 const routing = RouterModule.forChild([

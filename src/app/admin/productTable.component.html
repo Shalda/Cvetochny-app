@@ -15,8 +15,11 @@
         <td>{{p.parentCategory}}</td>
         <td>{{p.category}}</td>
         <td *ngIf="categoryIsProduct">{{p.subcategory || ' '}}</td>
-        <td *ngIf="categoryIsProduct">{{p.img}}</td>
-        <td *ngIf="!categoryIsProduct"><span class="admin__img_visual" *ngFor="let i of p.img">{{i}};</span></td>
+        <td *ngIf="categoryIsProduct" ><span class="admin-img"><img [src]="p.img" alt="adminImg"></span></td>
+        <td *ngIf="!categoryIsProduct"><span class="admin__img_visual admin-img" *ngFor="let i of p.img">
+
+                        <img [src]="i" alt="adminImg">
+            </span></td>
         <td *ngIf="categoryIsProduct">{{p.diameter || ' '}}</td>
         <td>{{p.description}}</td>
         <td>{{p.price}}</td>

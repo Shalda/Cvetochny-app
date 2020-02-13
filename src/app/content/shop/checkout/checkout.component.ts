@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Cart} from '../../../model/cart.model';
 import {Router} from '@angular/router';
 import {DateAdapter} from '@angular/material/core';
@@ -76,7 +76,6 @@ export class CheckoutComponent implements OnInit {
         this.order.paymentWay = 'наличными';
         this.order.receiveSolo = 'лично';
         this.order.timeDelivery = '12:00';
-        console.log(this.order);
         this.cart.lines.forEach(prod => {
             this.order.cart.push(
                 {

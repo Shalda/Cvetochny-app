@@ -1,9 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {falseIfMissing} from 'protractor/built/util';
 import {ProductRepository} from '../model/product.repository';
-import {fromEvent, Subscription} from 'rxjs';
-import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
-import {filter} from 'rxjs/operators';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
     selector: 'app-header',

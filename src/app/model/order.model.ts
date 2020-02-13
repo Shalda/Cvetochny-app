@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {Cart, CartLine} from './cart.model';
 
 @Injectable()
 export class Order {

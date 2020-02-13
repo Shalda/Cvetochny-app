@@ -1,8 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {fAll} from '../assets/js/main';
 import {HttpClient} from '@angular/common/http';
-import {Product} from './model/product.model';
-import {Observable} from 'rxjs';
 import {Cart} from './model/cart.model';
 
 @Component({

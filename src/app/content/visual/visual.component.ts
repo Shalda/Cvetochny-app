@@ -1,10 +1,9 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component} from '@angular/core';
 import {ProductRepository} from '../../model/product.repository';
 import {ActivatedRoute} from '@angular/router';
 import {Visual} from '../../model/product.model';
 import {GalleryItem, ImageItem} from '@ngx-gallery/core';
-import {from, Observable, of} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {Observable, of} from 'rxjs';
 import {NgForm} from '@angular/forms';
 import {SendEmailService} from '../../model/send-email.service';
 import {RestDataSource} from '../../model/rest.datasource';

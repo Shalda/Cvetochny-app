@@ -15,7 +15,7 @@ import {CheckoutComponent} from './checkout/checkout.component';
 import {CartComponent} from './cart/cart.component';
 import {CartSummaryComponent} from '../../header/cart-summary/cart-summary.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import { MatFormFieldModule} from '@angular/material/form-field';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatNativeDateModule} from '@angular/material/core';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
