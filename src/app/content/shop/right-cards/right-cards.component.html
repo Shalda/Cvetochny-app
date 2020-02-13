@@ -26,34 +26,10 @@
             <div class="catalog-item__btn">
                 <a class="toCardBtn"
             ><span class="toCart" (click)="addProductToCart(product)" [class.hidden]="cart.productQuantity(product._id)">
-                <span>в</span>
-                <span>&nbsp;</span>
-                <span>к</span>
-                <span>о</span>
-                <span>р</span>
-                <span>з</span>
-                <span>и</span>
-                <span>н</span>
-                <span>у</span>
+               в корзину
             </span>
                 <p class="toCartHidden" (click)="cart.decrementQuantity(product)" *ngIf="cart.productQuantity(product._id)">
-                    <span>у</span>
-                    <span>б</span>
-                    <span>р</span>
-                    <span>а</span>
-                    <span>т</span>
-                    <span>ь</span>
-                    <span>&nbsp;</span>
-                    <span>и</span>
-                    <span>з</span>
-                    <span>&nbsp;</span>
-                    <span>к</span>
-                    <span>о</span>
-                    <span>р</span>
-                    <span>з</span>
-                    <span>и</span>
-                    <span>н</span>
-                    <span>ы</span>
+                   убрать из корзины
                    </p>
                 </a>
             </div>

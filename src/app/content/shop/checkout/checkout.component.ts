@@ -75,6 +75,7 @@ export class CheckoutComponent implements OnInit {
         this.order.deliveryWay = 'самостоятельно из магазина';
         this.order.paymentWay = 'наличными';
         this.order.receiveSolo = 'лично';
+        this.order.timeDelivery = '12:00';
         console.log(this.order);
         this.cart.lines.forEach(prod => {
             this.order.cart.push(

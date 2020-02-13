@@ -21,46 +21,50 @@
                     <span class=" cart-price-title">Стоимость</span>
                 </div>
                 <div *ngIf="cart.itemCount == 0" class="empty_cart">корзина пуста :(</div>
-              <div class="cart-elems_wrapper" *ngFor="let line of cart.lines">
-                <div class="cart-elems" *ngIf="line.quantity > 0">
-                  <div class="cart-elem cart-product-img cart-img-title">
-                    <img class="cart-img" [src]="line.product.img" [alt]="line.product.name"
-                         [routerLink]="['/category',line.product.parentCategory,'id',line.product._id]"
-                    ></div>
-                  <div class="cart-elem cart-product-title cart-title-title">
-                    <span class="product-desc-mobile"></span>
-                    <span>{{line.product.name}}</span>
-                  </div>
-                  <div class="cart-elem cart-price cart-price-title">
-                    <span class="product-desc-mobile">Цена:</span>
-                    <span>{{line.product.price}} грн</span>
-                  </div>
-                  <div class="cart-elem cart-count-nav cart-count-title">
-                    <span class="product-desc-mobile">Кол-во:</span>
-                    <span class="count__decrease"
-                          (click)="cart.decrementQuantity(line.product)"
-                    >&nbsp;-&nbsp;</span>
-                      <span class="count__decrease_m"
-                            (click)="cart.decrementQuantity(line.product)"
-                      ><i class="fas fa-minus"></i>&nbsp;&nbsp;</span>
-                    <span class="count__sum">{{line.quantity}}</span>
-                    <span class="count__increase"
-                          (click)="cart.incrementQuantity(line.product)"
-                    >&nbsp;+&nbsp;</span>
-                      <span class="count__increase_m"
-                            (click)="cart.incrementQuantity(line.product)"
-                      >&nbsp;&nbsp;<i class="fas fa-plus"></i></span>
+                <div class="cart-elems_wrapper" *ngFor="let line of cart.lines">
+                    <div class="cart-elems" *ngIf="line.quantity > 0">
+                        <div class="cart-elem cart-product-img cart-img-title">
+                            <img class="cart-img" [src]="line.product.img" [alt]="line.product.name"
+                                 [routerLink]="['/category',line.product.parentCategory,'id',line.product._id]"
+                            ></div>
+                        <div class="cart-elem cart-product-title cart-title-title">
+                            <span class="product-desc-mobile"></span>
+                            <span>{{line.product.name}}</span>
+                        </div>
+                        <div class="cart-elem cart-price cart-price-title">
+                            <span class="product-desc-mobile">Цена:</span>
+                            <span>{{line.product.price}} грн</span>
+                        </div>
+                        <div class="cart-elem cart-count-nav cart-count-title">
+                            <span class="product-desc-mobile">Кол-во:</span>
 
-                  </div>
-                  <div class="cart-elem price-num cart-price-title">
-                    <span class="product-desc-mobile">Ст-ть:</span>
-                    <span>{{line.lineTotal}} грн</span>
-                  </div>
-                  <div class="cart-remove">
-                    <i (click)="cart.removeLine(line.product._id)"></i>
-                  </div>
+                            <div class="incr_derc_wrapper">
+                                <span class="count__decrease"
+                                      (click)="cart.decrementQuantity(line.product)"
+                                >&nbsp;-&nbsp;</span>
+                                <span class="count__decrease_m"
+                                (click)="cart.decrementQuantity(line.product)">
+                                    <i class="fas fa-minus"></i>&nbsp;&nbsp;</span>
+                                <span class="count__sum">{{line.quantity}}</span>
+                                <span class="count__increase"
+                                (click)="cart.incrementQuantity(line.product)"
+                                >&nbsp;+&nbsp;
+                                </span>
+                                <span class="count__increase_m"
+                                (click)="cart.incrementQuantity(line.product)"
+                                >&nbsp;&nbsp;<i class="fas fa-plus"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="cart-elem price-num cart-price-title">
+                            <span class="product-desc-mobile">Ст-ть:</span>
+                            <span>{{line.quantity * line.product.price}} грн</span>
+                        </div>
+                        <div class="cart-remove">
+                            <i (click)="cart.removeLine(line.product._id)"></i>
+                        </div>
+                    </div>
                 </div>
-              </div>
                 <div class="cart-total-price">
                     <span class="totalCelText">Итого: </span>
                     <span class="totalCel">{{cart.cartPrice}} грн</span>
@@ -68,7 +72,9 @@
             </div>
             <div class="cart-buttons_wrapper">
                 <button type="submit" class="cart-button" (click)="navToShop()">Продолжить покупки</button>
-                <button type="submit" class="cart-button" [class.blocked]="cart.itemCount == 0"   routerLink="/checkout">Оформить заказ</button>
+                <button type="submit" class="cart-button orange_btn" [class.blocked]="cart.itemCount == 0" routerLink="/checkout">
+                    Оформить заказ
+                </button>
             </div>
         </div>
     </div>

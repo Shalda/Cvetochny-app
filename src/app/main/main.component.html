@@ -1,9 +1,7 @@
 <section class="main_page_section" >
-<!--  <img src="../assets/images/main/main.jpg" alt="">-->
-  <div id="video">
-    <!--<video id="videoHero" autoplay muted loop
-    poster="public/images/svadba1.jpg">-->
-    <!--<source src="public/images/DaisyFlower.mp4" type="video/mp4">-->
-    <!--</video>-->
-  </div>
+  <div id="video" *responsive="{sizes:{min:992}}">
+    <video id="videoHero"[muted]="'muted'" autoplay loop>
+    <source src="./assets/images/main/main.mp4" type="video/mp4">
+</video>
+</div>
 </section>

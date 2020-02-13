@@ -1,0 +1,8 @@
+#videoHero, #video {
+    display: none
+}
+@media only screen and (min-device-width: 992px) {
+    #videoHero, #video {
+        display: block;
+    }
+}

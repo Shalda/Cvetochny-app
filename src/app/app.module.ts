@@ -23,6 +23,7 @@ import {CommonAppModule} from './common/common-app.module';
 import {AuthInterceptor} from './admin/auth-interseptor';
 import {AuthService} from './model/auth.service';
 import {FormsModule} from '@angular/forms';
+import {ResponsiveModule} from 'ngx-responsive';
 
 @NgModule({
     declarations: [
@@ -54,6 +55,7 @@ import {FormsModule} from '@angular/forms';
             apiKey: 'AIzaSyA5xKkA8Df4hBmqTbhNzTgbVPkWE7Y2b4o'
         }),
         CommonAppModule,
+        ResponsiveModule.forRoot()
     ],
     providers: [ProductRepository, RestDataSource, [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}]],
     bootstrap: [AppComponent]

@@ -17,7 +17,6 @@ export class CartComponent implements OnInit {
     }
 
     ngOnInit() {
-
         if (this.cart.itemCount === 0) {
             this.navToShop();
         }

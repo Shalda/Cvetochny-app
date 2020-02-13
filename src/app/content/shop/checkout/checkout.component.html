@@ -1,5 +1,5 @@
 <section class="checkout_section">
-    <div class="back-link_wrapper" *ngIf="!orderSent">
+    <div class="back-link_wrapper back-link_checkout" *ngIf="!orderSent">
         <i class="fa fa-chevron-circle-left fa-3x back-link_fa" onclick="history.back(); return false;"></i>
         <a class="back-link" onclick="history.back(); return false;">назад в корзину</a>
         <svg onclick="history.back(); return false;" class="arrow-svg" width="60" height="8" viewBox="0 0 60 8"
@@ -32,7 +32,7 @@
                         <span class="order-count-num">&nbsp;{{line.quantity}}&nbsp;</span>
                     </div>
                     <div class="order-elem order-price-num ">
-                        <span>{{line.lineTotal}} грн</span>
+                        <span>{{line.quantity * line.product.price}} грн</span>
                     </div>
                 </div>
             </div>
@@ -119,18 +119,18 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="order_field">
+                        <div class="order_field datePickField">
                             <label for="datePick"> Дата доставки: <em>*</em>
                             </label>
                             <input id="datePick" matInput [matDatepicker]="picker"
                                    type="text"
-                                   placeholder="нажмите на иконку снизу"
+                                   placeholder="нажмите на иконку справа"
                                    name="datePick"
                                    [(ngModel)]="order.dateDelivery"
                                    #date="ngModel"
                                    required
                             >
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker-toggle matSuffix [for]="picker" class="datePickerBtn"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                             <ul class="form_error_message"
                                 *ngIf="date.touched && date.invalid || loading && date.invalid">
@@ -139,7 +139,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="order_field">
+                        <div class="order_field order_time">
                             <label for="time">Время доставки: <em>*</em></label>
                             <input type="text"
                                    id="time"
@@ -150,6 +150,7 @@
                                    data-timepicker="true"
                                    mask="Hh:m0"
                                    required
+
                             >
                             <ul class="form_error_message"
                                 *ngIf="timeD.touched && timeD.invalid || loading && timeD.invalid">
@@ -209,7 +210,7 @@
                         </div>
                     </div>
                     <div class="order-btn-wrapper">
-                        <button type="submit" class="order-btn" [class.blocked]="form.invalid">Заказать</button>
+                        <button type="submit" class="order-btn orange_btn" [class.blocked]="form.invalid">Заказать</button>
                     </div>
                 </form>
             </div>
