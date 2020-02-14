@@ -1,8 +1,50 @@
 #videoHero, #video {
     display: none
 }
+
+
+button {
+    display: none;
+    align-self: center;
+    background: transparent;
+    padding: 1rem 1rem;
+    margin: 0 1rem;
+    transition: all .5s ease;
+    color: #ffffff;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    outline: none;
+    box-shadow: 20px 38px 34px -26px hsla(100, 100%, 100%, 0.2);
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    cursor: pointer;
+    border: solid 2px #ffffff;
+}
+/*
+Above is shorthand for:
+border-top-left-radius: 255px 15px;
+border-top-right-radius: 15px 225px;
+border-bottom-right-radius: 225px 15px;
+border-bottom-left-radius:15px 255px;
+*/
+button:hover {
+     box-shadow:2px 8px 4px -6px hsla(0,0%,0%,.3);
+ }
+
 @media only screen and (min-device-width: 992px) {
     #videoHero, #video {
         display: block;
     }
 }
+
+@media only screen and (max-device-width: 991px) {
+    .main_page_section{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    button {
+        display: block;
+    }
+}
+
+
