@@ -3,6 +3,7 @@ import {Product} from '../../../model/product.model';
 import {ActivatedRoute} from '@angular/router';
 import {ProductRepository} from '../../../model/product.repository';
 import {Cart} from '../../../model/cart.model';
+import {PageEvent} from '@angular/material/paginator';
 
 @Component({
     selector: 'app-right-cards',
@@ -13,7 +14,11 @@ export class RightCardsComponent implements OnInit {
     public parentCategory: string = undefined;
     public selectedCategory: string;
     public orderSelector: string;
-
+    pageSelected = 0;
+    length: number;
+    pageSize = 15;
+    pageSizeOptions: number[] = [5, 15, 25, 50];
+    pageEvent: PageEvent;
 
     constructor(private _repository: ProductRepository, private _activeRoute: ActivatedRoute, private cart: Cart) {
         _activeRoute.pathFromRoot.forEach(route => route.params.subscribe(params => {
@@ -22,6 +27,7 @@ export class RightCardsComponent implements OnInit {
             }
             this.selectedCategory = params['subcategory'] || params['category'] || undefined;
             this.orderSelector = '';
+
         }));
     }
 
@@ -37,10 +43,22 @@ export class RightCardsComponent implements OnInit {
         }
     }
 
+    paginatorEvent(event: PageEvent) {
+        console.log(event);
+        this.pageSize = event.pageSize;
+        this.pageSelected = event.pageIndex;
+        this.pageEvent = event;
+    }
+
     addProductToCart(product: Product) {
         this.cart.addLine(product);
     }
-    getProducts(): Product[] {
+    get products(): Product[] {
+        this.length = this.getAllproducts().length;
+        const pageIndex = this.pageSelected * this.pageSize;
+        return  this.getAllproducts().slice(pageIndex, pageIndex + this.pageSize);
+    }
+    getAllproducts(): Product[] {
         if (this.selectedCategory === undefined) {
             return this._repository.getProducts(this.parentCategory);
         } else {

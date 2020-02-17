@@ -1,62 +1,61 @@
-<div [class.bg-warning]="editing"
-     [class.text-dark]="editing">
-    <h5>{{editing ? "Редактировать: " + product.name : "Добавить Товар"}}</h5>
-</div>
-<form [formGroup]="form" novalidate (ngSubmit)="save()" enctype="multipart/form-data">
-    <div class="form-group">
-        <label>Название: </label>
-        <input class="form-control" formControlName="name"
-               [class.formSub_edit]="formSubmitted"
-        />
+<div class="admin_editor_container">
+    <div [class.bg-warning]="editing"
+         [class.text-dark]="editing">
+        <h5>{{editing ? "Редактировать: " + product.name : "Добавить Товар"}}</h5>
     </div>
-    <div class="form-group" *ngIf="!editing">
-        <label>создайте категорию:</label>
-        <input class="form-control" formControlName="category"
-               [class.formSub_edit]="formSubmitted"
-        />
-    </div>
-    <div class="form-group">
-        <label>Описание:</label>
-        <textarea class="form-control" formControlName="description"
-                  [class.formSub_edit]="formSubmitted"
-        >
+    <form [formGroup]="form" novalidate (ngSubmit)="save()" enctype="multipart/form-data">
+        <div class="form-group">
+            <label>Название: </label>
+            <input class="form-control" formControlName="name"
+                   [class.formSub_edit]="formSubmitted"
+            />
+        </div>
+        <div class="form-group" *ngIf="!editing">
+            <label>создайте категорию:</label>
+            <input class="form-control" formControlName="category"
+                   [class.formSub_edit]="formSubmitted"
+            />
+        </div>
+        <div class="form-group">
+            <label>Описание:</label>
+            <textarea class="form-control" formControlName="description"
+                      [class.formSub_edit]="formSubmitted"
+            >
 </textarea>
-    </div>
-    <div class="form-group">
-        <label class="label_img_add">{{editing ? "Выберите новые изображения" : "Добавьте изображения"}}:</label>
-        <button mat-stroked-button type="button" (click)="filePicker.click()">Выберите изображение</button>
-        <input type="file" #filePicker (change)="onImagePicked($event)" multiple>
-        <div *ngIf="imagePreviewCollection.length > 0;">
-        <div class="image-preview" *ngFor="let image of imagePreviewCollection, index as i">
-        <img [src]="image" [alt]="form.value.name">
-        <i class="fa fa-remove visual_img__remove"
-        style="font-size:24px;color:red"
-        (click)="removeImg(i)"></i>
         </div>
+        <div class="form-group">
+            <label class="label_img_add">{{editing ? "Выберите новые изображения" : "Добавьте изображения"}}:</label>
+            <button mat-stroked-button type="button" (click)="filePicker.click()">Выберите изображение</button>
+            <input type="file" #filePicker (change)="onImagePicked($event)" multiple>
+            <div *ngIf="imagePreviewCollection.length > 0;">
+                <div class="image-preview" *ngFor="let image of imagePreviewCollection, index as i">
+                    <img [src]="image" [alt]="form.value.name">
+                    <i class="fa fa-remove visual_img__remove"
+                       style="font-size:24px;color:red"
+                       (click)="removeImg(i)"></i>
+                </div>
+            </div>
+
+
         </div>
-
-
-
-
-
-    </div>
-    <div class="form-group">
-        <label>Цена:</label>
-        <input class="form-control" formControlName="price"
-               [class.formSub_edit]="formSubmitted"
-        />
-    </div>
-    <button
-            class="auth__button_edit" type="submit"
-            [disabled]="formSubmitted && form.invalid"
-            [class.blocked]="formSubmitted && form.invalid"
-    >
-        {{editing ? "Сохранить" : "Создать"}}
-    </button>
-    <button
-            class="auth__button_edit"
-            type="reset" routerLink="/admin/main/visuals"
-    >
-        Отмена
-    </button>
-</form>
+        <div class="form-group">
+            <label>Цена:</label>
+            <input class="form-control" formControlName="price"
+                   [class.formSub_edit]="formSubmitted"
+            />
+        </div>
+        <button
+                class="auth__button_edit" type="submit"
+                [disabled]="formSubmitted && form.invalid"
+                [class.blocked]="formSubmitted && form.invalid"
+        >
+            {{editing ? "Сохранить" : "Создать"}}
+        </button>
+        <button
+                class="auth__button_edit"
+                type="reset" routerLink="/admin/main/visuals"
+        >
+            Отмена
+        </button>
+    </form>
+</div>

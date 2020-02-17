@@ -1,0 +1,33 @@
+.mat-paginator-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: 81px;
+    padding: 0 8px;
+    flex-wrap: wrap-reverse;
+    width: 100%;
+}
+::ng-deep .mat-paginator-page-size-select{
+    min-width: 4vw !important;
+}
+::ng-deep .mat-paginator-page-size-select{
+
+}
+
+::ng-deep mat-form-field {
+    padding: 3px 6px;
+    text-decoration: none;
+}
+::ng-deep .mat-form-field.mat-focused.mat-primary *{
+    /*color: green!important;*/
+}
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper{
+    padding-bottom: 10px;
+}
+::ng-deep mat-form-field {
+    padding: 3px 6px;
+    margin: 16px 0;
+    color: #4d4d4d;
+    box-shadow: none;
+    background-color: #ffffff;
+}

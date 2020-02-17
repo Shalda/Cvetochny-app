@@ -11,7 +11,7 @@
 </div>
 <div class="catalog-wrapper">
     <div class="catalog-item"
-         *ngFor=" let product of getProducts() | orderBy:orderSelector; let i = index"
+         *ngFor=" let product of products | orderBy:orderSelector; let i = index"
     >
         <a class="catalog-item__img"
            [routerLink]="['/category', parentCategory, 'id',  product._id]"
@@ -25,14 +25,23 @@
             </div>
             <div class="catalog-item__btn">
                 <a class="toCardBtn"
-            ><span class="toCart" (click)="addProductToCart(product)" [class.hidden]="cart.productQuantity(product._id)">
+                ><span class="toCart" (click)="addProductToCart(product)"
+                       [class.hidden]="cart.productQuantity(product._id)">
                в корзину
             </span>
-                <p class="toCartHidden" (click)="cart.decrementQuantity(product)" *ngIf="cart.productQuantity(product._id)">
-                   убрать из корзины
-                   </p>
+                    <p class="toCartHidden" (click)="cart.decrementQuantity(product)"
+                       *ngIf="cart.productQuantity(product._id)">
+                        убрать из корзины
+                    </p>
                 </a>
             </div>
         </div>
     </div>
+</div>
+<div class="mat-paginator-container" *ngIf="length > 14">
+    <mat-paginator [length]="length"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)=" paginatorEvent($event)">
+    </mat-paginator>
 </div>

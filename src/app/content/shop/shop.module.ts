@@ -17,6 +17,8 @@ import {CartSummaryComponent} from '../../header/cart-summary/cart-summary.compo
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatNativeDateModule} from '@angular/material/core';
+import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator';
+import {MatPaginatorIntlRu} from './right-cards/matPaginatorIntlRuClass';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
@@ -29,12 +31,14 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
         MatDatepickerModule,
         MatFormFieldModule,
         MatNativeDateModule,
+        MatPaginatorModule,
         NgxMaskModule.forRoot(options)
     ],
     declarations: [
         ShopComponent, OneProductComponent, OrderByPipe, RightCardsComponent, CheckoutComponent, CartComponent,
         CartSummaryComponent
     ],
+    providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlRu}],
     exports: [NgxMaskModule, CartComponent, CartSummaryComponent]
 })
 export class ShopModule {
