@@ -3439,6 +3439,15 @@ input[name="tel"] {
 }
 
 @media only screen and (max-width: 480px) {
+    .receiver-box div{
+        width: 95vw;
+        padding-bottom: 6px;
+    }
+
+    .order-price-num span {
+        white-space: nowrap;
+    }
+
     .consultation_subscribe_window {
         top: 5%;
         margin-top: 0
