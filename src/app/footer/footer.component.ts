@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {SendEmailService} from '../model/send-email.service';
 import {RestDataSource} from '../model/rest.datasource';
-
+import {GoogleTagManagerService} from 'angular-google-tag-manager';
+declare let gtag: Function;
 @Component({
     selector: 'app-footer',
     templateUrl: './footer.component.html',
@@ -33,6 +34,7 @@ export class FooterComponent implements OnInit {
         this.sendSMS();
         this.loading = true;
         if (form.valid) {
+            gtag('event', 'sendemail', { 'event_category': 'konsult', 'event_action': 'send', });
             this.loading = true;
             this.buttonText = 'Отправка...';
             this._sendService.sendEmail('' , this.username, this.phonenumber, null, null, this.email, this.message).subscribe(

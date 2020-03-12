@@ -7,7 +7,7 @@ import {Observable, of} from 'rxjs';
 import {NgForm} from '@angular/forms';
 import {SendEmailService} from '../../model/send-email.service';
 import {RestDataSource} from '../../model/rest.datasource';
-
+declare let gtag: Function;
 @Component({
     selector: 'app-view',
     templateUrl: './visual.component.html',
@@ -50,6 +50,7 @@ export class VisualComponent {
     sendEmail(form: NgForm) {
         this.loading = true;
         if (form.valid) {
+            gtag('event', 'sendemail', { 'event_category': 'konsult', 'event_action': 'send', });
             this.sendSms();
             this.loading = true;
             this.buttonText = 'Отправка...';

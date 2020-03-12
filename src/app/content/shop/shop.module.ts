@@ -19,26 +19,31 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator';
 import {MatPaginatorIntlRu} from './right-cards/matPaginatorIntlRuClass';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {ToCartModalService} from '../../common/services/toCartModal.service';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
 @NgModule({
     imports: [BrowserModule,
-        ModelModule, HttpClientModule,
-        RouterModule, CommonAppModule,
+        ModelModule,
+        HttpClientModule,
+        RouterModule,
+        CommonAppModule,
         MatProgressSpinnerModule,
         FormsModule,
         MatDatepickerModule,
         MatFormFieldModule,
         MatNativeDateModule,
         MatPaginatorModule,
+        InfiniteScrollModule,
         NgxMaskModule.forRoot(options)
     ],
     declarations: [
         ShopComponent, OneProductComponent, OrderByPipe, RightCardsComponent, CheckoutComponent, CartComponent,
         CartSummaryComponent
     ],
-    providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlRu}],
+    providers: [{provide: MatPaginatorIntl, useClass: MatPaginatorIntlRu}, ToCartModalService],
     exports: [NgxMaskModule, CartComponent, CartSummaryComponent]
 })
 export class ShopModule {

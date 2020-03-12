@@ -23,14 +23,14 @@ export class ProductRepository {
             return this.products;
         }
         const productsArray = this.products.filter(p => parentCategory === p.parentCategory);
-        let num = 1;
-        for (let i = 0; i < 5; i++) {
-            if (productsArray[i]) {
-                productsArray[i].newProd = ++num;
-            } else {
-                break;
-            }
-        }
+        // let num = 1;
+        // for (let i = 0; i < 5; i++) {
+        //     if (productsArray[i]) {
+        //         productsArray[i].newProd = ++num;
+        //     } else {
+        //         break;
+        //     }
+        // }
         return productsArray
             .filter(p => category === null || category === p.category)
             .filter(p => subcategory === null || subcategory === p.subcategory);
@@ -57,7 +57,7 @@ export class ProductRepository {
     }
 
     private _uniqueCategory(arr: string[]): string[] {
-        return arr.filter((c, index, array) => array.indexOf(c) === index).sort();
+        return arr.filter((c, index, array) => array.indexOf(c) === index);
     }
 
     getParentCategories(): string[] {
@@ -68,13 +68,13 @@ export class ProductRepository {
 
     getCategories(parentCategory: string): string[] {
         const category: string[] = this.products.filter(p => parentCategory === p.parentCategory).map(p => p.category);
-        return this._uniqueCategory(category);
+        return this._uniqueCategory(category).reverse();
 
     }
 
     getCategoriesOfVisuals(): string[] {
         const category: string[] = this.visuals.map(p => p.category);
-        return this._uniqueCategory(category);
+        return this._uniqueCategory(category).reverse();
 
     }
 
@@ -154,7 +154,7 @@ export class ProductRepository {
     }
 
     addProduct(name: string, parentCategory: string, category: string,
-               subcategory: string, description: string, diameter: string, price: string, image: any, date: any) {
+               subcategory: string, description: string, note: string, diameter: string, price: string, image: any, date: any) {
         this.productsUpdated.next(false);
         const productData = new FormData();
         productData.append('name', name);
@@ -162,6 +162,7 @@ export class ProductRepository {
         productData.append('category', category);
         productData.append('subcategory', subcategory);
         productData.append('description', description);
+        productData.append('note', note);
         productData.append('diameter', diameter);
         productData.append('price', price);
         productData.append('img', image, name);
@@ -175,8 +176,9 @@ export class ProductRepository {
     }
 
     updateProduct(id: string, name: string, parentCategory: string, category: string,
-                  subcategory: string, description: string, diameter: string, price: string, image: File | string, date) {
+                  subcategory: string, description: string, note: string, diameter: string, price: string, image: File | string, date) {
         this.productsUpdated.next(false);
+        console.log(note);
         let productData: Product | FormData;
         if (typeof image === 'object') {
             productData = new FormData();
@@ -186,6 +188,7 @@ export class ProductRepository {
             productData.append('category', category);
             productData.append('subcategory', subcategory);
             productData.append('description', description);
+            productData.append('note', note);
             productData.append('diameter', diameter);
             productData.append('price', price);
             productData.append('img', image, name);
@@ -199,6 +202,7 @@ export class ProductRepository {
                 category: category,
                 subcategory: subcategory,
                 description: description,
+                note: note,
                 diameter: diameter,
                 price: price,
                 img: image

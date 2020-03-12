@@ -9,10 +9,19 @@
          (click)="orderSelector = 'novelty'">сначала новинки
     </div>
 </div>
-<div class="catalog-wrapper">
+<div class="catalog-wrapper"
+     infiniteScroll
+     [infiniteScrollDistance]="2"
+     [infiniteScrollThrottle]="300"
+     (scrolled)="onScroll()"
+     >
+
     <div class="catalog-item"
          *ngFor=" let product of products; let i = index"
     >
+        <app-cart-modal id="{{product._id}}">
+            <span>{{product.name}}</span>
+        </app-cart-modal>
         <a class="catalog-item__img"
            [routerLink]="['/category', parentCategory, 'id',  product._id]"
         >
@@ -38,10 +47,4 @@
         </div>
     </div>
 </div>
-<div class="mat-paginator-container" *ngIf="length > pageSize">
-    <mat-paginator [length]="length"
-                   [pageSize]="pageSize"
-                   [pageSizeOptions]="pageSizeOptions"
-                   (page)=" paginatorEvent($event)">
-    </mat-paginator>
-</div>
+

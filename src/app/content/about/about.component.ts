@@ -7,8 +7,8 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AboutComponent implements OnInit {
     text = 'Магазин Цветочный';
-    lat = 50.015054;
-    lng = 36.243619;
+    lat = 50.0151007;
+    lng = 36.2438004;
     zoom = 17;
     icon = {
         url: './/assets/images/glmarker.png',

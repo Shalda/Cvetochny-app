@@ -37,14 +37,15 @@
                 </div>
             </div>
             <div class="order-total-price">
-                <span>Итого: </span><span>{{cart.cartPrice}} грн</span>
+                <span>Итого: </span><span>{{cart.cartPrice}} грн</span><span *ngIf="delivery">&nbsp;+ доставка</span>
             </div>
         </div>
         <div class="order-center-line"></div>
         <div class="order-costumer-form-wrapper">
             <div class="order-tittle">Ваши данные</div>
             <div class="order-product-form-box">
-                <form id="orderForm" autocomplete="off" #form="ngForm" (ngSubmit)="submitOrder(form)">
+                <form id="orderForm" autocomplete="off" #form="ngForm"
+                      (ngSubmit)="submitOrder(form)">
                     <div role="group">
                         <div class="order_field"><label for="name">Ваше Имя: <em>*</em></label>
                             <input type="text"

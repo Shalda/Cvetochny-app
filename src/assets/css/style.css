@@ -354,12 +354,13 @@ input[type="submit"],
 
 #nav-menu .nav_menu_wrap .menu_right_text h3 {
     line-height: 1.2;
-    font-weight: 900;
+    font-family: "Avenir Demi", Arial, Helvetica, sans-serif;
     padding: 10px 0
 }
 
 #nav-menu .nav_menu_wrap .menu_right_text a {
-    font-family: "Avenir Demi", Arial, Helvetica, sans-serif
+    font-family: "Avenir Demi", Arial, Helvetica, sans-serif;
+
 }
 
 #nav-menu .nav_menu_wrap .menu_right_text span, h3 {
@@ -487,8 +488,8 @@ input[type="submit"],
 .consultation_popWindow {
     z-index: 1004;
     display: none;
-    background-color: #4d4d4d;
-    color: #fff;
+    background-color: #ffffff;
+    color: #4d4d4d;
     width: 90%;
     max-width: 500px;
     padding: 40px 30px;
@@ -514,10 +515,11 @@ input[type="submit"],
 }
 
 .consultation_subscribe_window .consultation_subcsribe-text {
+    font-family: "Avenir Demi", Arial, Helvetica, sans-serif;
     font-size: 14px;
     text-align: center;
     text-transform: uppercase;
-    color: #fff;
+    color: #4d4d4d;
     margin: 0 0 40px;
     position: relative;
     padding: 0 50px;
@@ -541,18 +543,16 @@ input[type="submit"],
 }
 
 .consultation_subscribe-form input, textarea {
-    border: 1px solid #3d3d3d;
+    border: 1px solid #4d4d4d;
     width: 100%;
     font-family: Lato, sans-serif;
     font-size: 16px;
-    line-height: 32px;
+    line-height: 25px;
     padding: 5px 20px;
     margin-bottom: 10px;
     outline: 0;
-    background: #4d4d4d;
-    color: #fff;
-    -webkit-border-radius: 4px;
-    border-radius: 4px
+    background: #ffffff;
+    color: #4d4d4d;
 }
 
 .consultation_btn {
@@ -573,12 +573,13 @@ input[type="submit"],
     transition: .4s
 }
 
-.consultation_btn:focus, .consultation_btn:hover {
-    background-color: #ffba00;
-    color: #fff;
+.consultation_btn:focus {
+    border-color: #1d800d;
+    background-color: #1d800d;
     text-decoration: none
 }
 
+/*
 .consultation_subscribe-form .consultation_btn {
     font-size: 24px;
     line-height: 54px;
@@ -590,10 +591,25 @@ input[type="submit"],
     outline: 0;
     -webkit-border-radius: 4px;
     border-radius: 4px
+}*/
+
+.consultation_subscribe-form .consultation_btn {
+    /*font-size: 20px;*/
+    /*line-height: 20px;*/
+    /*border: 1px solid #4d4d4d;*/
+    width: 100%;
+    /*padding: 10px;*/
+    /*font-weight: 700;*/
+    /*text-align: center;*/
+    /*outline: 0;*/
+    /*-webkit-border-radius: 4px;*/
+    /*border-radius: 4px;*/
+    /*color: #4d4d4d;*/
+    /*cursor: pointer;*/
 }
 
 .consultation_subscribe-form .consultation_btn:hover {
-    background-color: #e6a700
+    /*background-color: #e6a700*/
 }
 
 .consultation_subscribe-form .consultation_btn i {
@@ -1232,7 +1248,7 @@ section .callbackForm {
 }
 
 .order-product-form-box, .order-product-info-box {
-    margin-top: 45px;
+    margin-top: 20px;
     padding: 15px 0;
     /*border: 1px solid #fff;*/
     /*light theme*/
@@ -1347,7 +1363,8 @@ section .callbackForm {
 }
 
 .order-product-form-box {
-    border-bottom: transparent
+    border-bottom: transparent;
+    padding-top: 0;
 }
 
 .order-costumer-form-wrapper {
@@ -1511,6 +1528,10 @@ section .callbackForm {
     color: #4d4d4d;
 }
 
+.contact-info_box a.contact-info_box_instagram {
+    color: #ff4500;
+}
+
 .textMobileMenuSection {
     display: -webkit-box;
     display: -webkit-flex;
@@ -1655,9 +1676,8 @@ a {
     cursor: pointer;
 }
 
-section {
+section, .season_banner {
     min-height: calc(100vh - 170px);
-
 }
 
 .sidebar-left-wrapper a h2 {
@@ -1838,6 +1858,7 @@ input[type="file"] {
 }
 
 .form_error_message {
+    color: #e91e63;
     padding: 0 0 10px;
 }
 
@@ -2000,10 +2021,6 @@ input[name="tel"] {
 
 .submenu_cart-item span {
     display: block;
-}
-
-.submenu_cart span, p {
-    padding: 3px 3px;
 }
 
 .submenu_cart li {
@@ -2240,7 +2257,9 @@ input[name="tel"] {
 .cart-img-title {
     -webkit-flex-basis: 15%;
     -ms-flex-preferred-size: 15%;
-    flex-basis: 15%
+    flex-basis: 15%;
+    min-width: 130px;
+    margin-right: 6px;
 }
 
 .cart-title-title {
@@ -2355,7 +2374,7 @@ input[name="tel"] {
     flex-wrap: wrap;
 
     border: 1px solid white;
-     margin: 6px 0;
+    margin: 6px 0;
 
 }
 
@@ -2467,21 +2486,157 @@ input[name="tel"] {
 .order_time {
     padding-top: 25px;
 }
-.admin-img{
+
+.admin-img {
     margin: 0 auto;
     display: block;
     width: 42px;
     height: 51px;
 }
-.admin-img img{
+
+.admin-img img {
     max-width: 42px;
     height: 100%;
     object-fit: cover;
 }
 
+.note_title {
+    font-family: 'Avenir Bold', Arial, Helvetica, sans-serif;
+}
+
+.note_wrapper {
+    font-size: 13px;
+}
+
+/*season banner*/
+.season_banner {
+    height: calc(100vh - 170px);
+    background: url(../images/banners/8march.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: #ffffff;
+    font-family: "Avenir Demi", Arial, Helvetica, sans-serif;
+    font-size: 5rem;
+    position: relative;
+}
+
+.season_banner_text {
+    position: absolute;
+    left: 10vw;
+    top: 25vh;
+}
+
+.banner_price {
+    color: #fad701;
+}
+
+.cart-button.banner_btn {
+    /*display: inline-block;*/
+    /*cursor: pointer;*/
+    /*margin-top: 40px;*/
+    /*padding: 20px;*/
+    font-size: 1.2rem;
+    margin: 0;
+    border-color: #1d800d;
+    background-color: #1d800d;
+    color: #fff;
+    transition: 0.25s ease-in-out;
+}
+
+.cart-button.banner_btn:hover {
+    color: #1d800d;
+    border-color: #ffffff;
+    background-color: #ffffff;
+}
+
+#nav-menu .nav_menu_wrap .menu_right_text a.cooperation_link {
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
+}
+
 .admin_editor_container input, .admin_editor_container select {
     background-color: #4d4d4d;
     color: white;
+}
+
+
+/* modal */
+app-cart-modal {
+    /* modals are hidden by default */
+    display: none;
+}
+
+.to-cart-modal {
+    /* modal container fixed across whole screen */
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    /* z-index must be higher than .jw-modal-background */
+    z-index: 1001;
+}
+
+.to-cart-modal-body {
+    padding: 40px 60px 60px;
+    background: #fff;
+    width: 650px;
+    /* margin exposes part of the modal background */
+    margin: auto;
+}
+
+.to-cart-modal-buttons-box {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.to-cart-modal-buttons-box button {
+    flex-basis: 50%;
+    white-space: nowrap;
+}
+
+.to-cart-modal-text {
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin: 20px 0 40px;
+}
+
+.to-cart-modal-background {
+    /* modal background fixed across whole screen */
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    /* semi-transparent black  */
+    background-color: #000;
+    opacity: 0.75;
+
+    /* z-index must be below .jw-modal and above everything else  */
+    z-index: 1000;
+}
+
+
+body.to-cart-modal-open {
+    /* body overflow is hidden to hide main scrollbar when modal window is open */
+    overflow: hidden;
+}
+
+@media only screen and (min-device-width: 2500px) {
+    .product-card__img {
+        max-height: 900px;
+    }
+}
+
+@media only screen and (min-device-width: 1200px) {
+    .product-card__right {
+        max-width: 40vw;
+    }
+
 }
 
 @media only screen and (min-device-width: 769px) {
@@ -2511,7 +2666,7 @@ input[name="tel"] {
 }
 
 @media only screen and (min-device-width: 768px) {
-    section {
+    section, .season_banner {
         overflow: hidden;
     }
 
@@ -2643,6 +2798,10 @@ input[name="tel"] {
 }
 
 @media only screen and (max-device-width: 1240px) {
+    .cart_product_name {
+        padding-left: 6px;
+    }
+
     .table-cart-titles {
         font-size: 14px;
     }
@@ -2731,9 +2890,10 @@ input[name="tel"] {
 
 @media only screen and (max-device-width: 992px) {
 
-    .main_page_section{
+    .main_page_section {
         background-image: url(../images/main/main.jpg);
-}
+    }
+
     .admin_order_wrapper {
         flex-direction: column;
     }
@@ -2767,12 +2927,16 @@ input[name="tel"] {
         font-size: 16px;
     }
 
-    .footer_social a {
+    .footer_social a, .footer_social a:hover {
         position: relative;
         color: transparent !important;
         height: 30px;
         width: 30px;
         margin-right: 20px
+    }
+
+    .footer_social a:hover {
+        color: transparent !important;
     }
 
     .footer_social a:before {
@@ -2821,8 +2985,19 @@ input[name="tel"] {
     }
 }
 
-
 @media only screen and (max-device-width: 768px) {
+    .season_banner {
+        font-size: 4rem;;
+    }
+
+    .cart-button.banner_btn {
+        font-size: 1rem;
+    }
+
+    .table-cart-titles span {
+        text-align: left;
+    }
+
     .one_product__wrapper {
         padding: 0 16px;
     }
@@ -2921,9 +3096,8 @@ input[name="tel"] {
 
     .popup {
         width: 100%;
-        height: 100vh;
         font-size: 15px;
-        padding: 40px 0 0 0
+        padding: 0;
     }
 
     .popup img {
@@ -3022,7 +3196,8 @@ input[name="tel"] {
     }
 
     .product-card__description {
-        padding-bottom: 20px
+        padding-bottom: 20px;
+        line-height: 20px;
     }
 
     .product-card__btn {
@@ -3138,6 +3313,12 @@ input[name="tel"] {
 }
 
 @media only screen and (max-device-width: 650px) {
+    .season_banner {
+        height: calc(100vh - 170px);
+        background: url(../images/banners/8marhmob.jpg) no-repeat bottom;
+        background-size: cover;
+    }
+
     .admin__wrapper {
         display: block !important;
     }
@@ -3175,6 +3356,24 @@ input[name="tel"] {
 }
 
 @media only screen and (max-device-width: 590px) {
+
+    .to-cart-modal-buttons-box {
+        flex-direction: column;
+    }
+
+    .to-cart-modal-buttons-box button {
+        padding: 10px !important;
+        font-size: 16px !important;
+    }
+
+    .to-cart-modal-buttons-box button:last-child {
+        margin: 20px 0;
+    }
+
+    .to-cart-modal-body {
+        padding: 20px 20px 20px;
+    }
+
     .cart-count-title {
         margin-left: 0;
     }
@@ -3280,7 +3479,7 @@ input[name="tel"] {
         -ms-flex-item-align: start;
         align-self: flex-start;
         font-family: 'Avenir Light', Arial, Helvetica, sans-serif;
-        font-size: 14px!important;
+        font-size: 14px !important;
     }
 
     .count__decrease_m, .count__increase_m {
@@ -3289,6 +3488,15 @@ input[name="tel"] {
 }
 
 @media only screen and (max-device-width: 578px) {
+    .season_banner {
+        font-size: 3rem;;
+    }
+
+    .cart-button.banner_btn {
+        margin-top: 10px;
+        font-size: 1.5rem;
+    }
+
     .order-elem {
         font-size: 14px
     }
@@ -3414,32 +3622,21 @@ input[name="tel"] {
     }
 }
 
-@media only screen and (max-device-height: 500px) {
-    #navMenuLeft {
-        height: calc(100vh - 130px);
-    }
-
-    header, .navbar_wrapper {
-        height: 60px;
-    }
-
-    section {
-        min-height: calc(100vh - 145px);
-        margin-top: 60px;
-    }
-
-    #nav-menu {
-        top: 60px;
-    }
-
-    .checkout_section {
-        margin-top: 50px;
-    }
-
-}
-
 @media only screen and (max-width: 480px) {
-    .receiver-box div{
+    .season_banner_text {
+        top: 25vh
+    }
+
+    .season_banner {
+        font-size: 3rem;;
+    }
+
+    .cart-button.banner_btn {
+        margin-top: 10px;
+        font-size: 1.5rem;
+    }
+
+    .receiver-box div {
         width: 95vw;
         padding-bottom: 6px;
     }
@@ -3482,6 +3679,7 @@ input[name="tel"] {
         /*max-width: 320px;*/
         margin: 0 auto
     }
+
     .sidebar-left {
         padding-left: 10px;
     }
@@ -3489,53 +3687,49 @@ input[name="tel"] {
     .filter-catalog {
         margin-left: 10px;
     }
+
     .catalog-item {
         padding: 10px;
 
     }
-    .one_product__wrapper{
+
+    .one_product__wrapper {
         padding: 0 10px;
     }
 
 }
 
-@media only screen and (max-device-height: 450px) {
-
-
-
-    .visualLinkMobile, .weddingLinkMobile {
-        display: block
+@media only screen and (max-device-width: 440px) {
+    .season_banner {
+        font-size: 2.5rem;
     }
 
-    #nav-menu .nav_menu_wrap .nav_menu_left a {
-        font-size: 20px;
-        padding: 5px 0;
-    }
-
-    #nav-menu .nav_menu_wrap .menu_right_text a {
-        padding: 5px;
-    }
-
-    .catalog-item__prices {
-
-        white-space: nowrap;
-        margin-right: 4px;
-    }
-
-    .catalog-item__btn {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    .cart-button.banner_btn {
+        margin-top: 20px;
+        font-size: 1.2rem;
     }
 }
 
-@media only screen and (max-device-height: 400px) {
-    #nav-menu .nav_menu_wrap .nav_menu_left {
-        justify-content: flex-start;
+@media only screen and (max-device-width: 380px) {
+    .season_banner .season_banner_text {
+        top: 8vh;
+        left: 3vw;
     }
+
+
 }
 
 @media only screen and (max-device-width: 374px) {
+
+    .season_banner .season_banner_text {
+        top: 2vh;
+    }
+
+    .cart-button.banner_btn {
+        font-size: 1.2rem;
+        margin-top: 15px;
+    }
+
     .card-buttons_wrapper button {
         margin-right: 0;
         padding: 6px;
@@ -3580,4 +3774,86 @@ input[name="tel"] {
         flex-direction: column-reverse;
     }
 }
+
+@media only screen and (max-height: 768px) {
+    .season_banner_text {
+        top: 10vh
+    }
+
+}
+
+@media only screen and (max-height: 500px) {
+    #navMenuLeft {
+        height: calc(100vh - 130px);
+    }
+
+    header, .navbar_wrapper {
+        height: 60px;
+    }
+
+    .season_banner {
+        min-height: calc(100vh - 145px);
+
+    }
+
+    section {
+        min-height: calc(100vh - 145px);
+        margin-top: 60px;
+    }
+
+    #nav-menu {
+        top: 60px;
+    }
+
+    .checkout_section {
+        margin-top: 50px;
+    }
+
+}
+
+@media only screen and (max-height: 450px) {
+
+    .visualLinkMobile, .weddingLinkMobile {
+        display: block
+    }
+
+    #nav-menu .nav_menu_wrap .nav_menu_left a {
+        font-size: 20px;
+        padding: 5px 0;
+    }
+
+    #nav-menu .nav_menu_wrap .menu_right_text a {
+        padding: 5px;
+    }
+
+    .catalog-item__prices {
+
+        white-space: nowrap;
+        margin-right: 4px;
+    }
+
+    .catalog-item__btn {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media only all and (max-height: 400px) {
+    #nav-menu .nav_menu_wrap .nav_menu_left {
+        justify-content: flex-start;
+    }
+
+    .season_banner .season_banner_text {
+        top: 10vh;
+        font-size: 1.5rem !important;
+    }
+
+    .season_banner .cart-button.banner_btn {
+        margin-top: 15px;
+        font-size: 1rem;
+    }
+
+}
+
 

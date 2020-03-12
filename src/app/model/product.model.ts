@@ -8,6 +8,7 @@ export class Product {
         public diameter?: string,
         public img?: string,
         public description?: string,
+        public note?: string,
         public price?: any,
         public create_ts?: string,
         public newProd?: number

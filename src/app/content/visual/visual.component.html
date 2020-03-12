@@ -35,8 +35,7 @@
                 <div class="consultation consultation-wrapper">
                     <div class="consultation_popup-overlay" (click)="modalSwitcher()" [class.modal_open]="class"></div>
                     <div class="consultation_popWindow consultation_subscribe_window" [class.modal_open]="class">
-                        <p class="consultation_subcsribe-text">Оставьте ваши данные и мы свяжемся с вами в
-                            ближайшее время</p>
+                        <p class="consultation_subcsribe-text">Форма обратной связи</p>
                         <form novalidate #form="ngForm" (ngSubmit)="sendEmail(form)" class="consultation_subscribe-form">
                             <div>
                                 <input type="text"
@@ -75,29 +74,15 @@
                             <div class="consultation_aligncenter">
                                 <button [disabled]="form.invalid && loading"
                                         type="submit"
-                                        class="consultation_btn">
+                                        class="consultation_btn orange_btn">
                                     <i *ngIf="messageSent" class="fa fa-check" aria-hidden="true" style="color: #89e100"></i> {{buttonText}}
                                 </button>
                             </div>
                         </form>
                         <div class="consultation_close-btn" (click)="modalSwitcher()">&times;</div>
-                    </div><!-- /subscribe_window -->
-                    <!--<div class="consultation_popWindow thank_you_window">-->
-                    <!--&lt;!&ndash; //благодарственное окно после успешной отправки формы &ndash;&gt;-->
-                    <!--<p class="thank_you_title">Thank you for subscribing!</p>-->
-                    <!--<p class="thank_you_body">We've sent some useful tips to your email. Go ahead and check them-->
-                    <!--now!</p>-->
-                    <!--<div class="consultation_close-btn">&times;</div>-->
-                    <!--</div>&lt;!&ndash; /thank_you_window &ndash;&gt;-->
-
-                    <!-- /popup-overlay -->
-
+                    </div>
                 </div>
             </div>
-
-            <!--<div class="product-card__btn">-->
-            <!--<button type="submit" class="product-button-buy">Заказать</button>-->
-            <!--</div>-->
         </div>
     </div>
 

@@ -22,8 +22,12 @@ mat-radio-button{
     color: #ffffff;
     margin-right: 16px;
 }
-input:disabled, select:disabled {
+input:disabled, select:disabled, textarea:disabled {
     background-color: #9c9c9c;
+}
+textarea{
+    height: 120px;
+    font-size: 16px;
 }
 .admin_sub_ex{
     background-color: #4d4d4d;

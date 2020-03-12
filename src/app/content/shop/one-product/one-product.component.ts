@@ -6,6 +6,9 @@ import {Subscription} from 'rxjs';
 import {NgForm} from '@angular/forms';
 import {SendEmailService} from '../../../model/send-email.service';
 import {Cart} from '../../../model/cart.model';
+import {ToCartModalService} from '../../../common/services/toCartModal.service';
+
+declare let gtag: Function;
 
 @Component({
     selector: 'app-one-product',
@@ -34,7 +37,8 @@ export class OneProductComponent implements OnInit, OnDestroy {
         private _restData: RestDataSource,
         private _sendService: SendEmailService,
         private _router: Router,
-        public cart: Cart
+        public cart: Cart,
+        private _modalService: ToCartModalService
     ) {
         this.routerEventSub =
             this._router.events.subscribe(() => {
@@ -52,9 +56,17 @@ export class OneProductComponent implements OnInit, OnDestroy {
             );
     }
 
+    openModal(id: string) {
+        this._modalService.open(id);
+    }
+
     addProductToCart(product: Product) {
+        if (!this.cart.productQuantity(product._id)) {
+            gtag('event', 'sendemail', {'event_category': 'cart', 'event_action': 'send',});
+        }
         this.cart.addLine(product);
         this.productLine = this.cart.lines.find(line => line.product._id == this.productId);
+        this.openModal(product._id);
     }
 
     public modalSwitcher(): void {
@@ -79,6 +91,7 @@ export class OneProductComponent implements OnInit, OnDestroy {
     sendEmail(form: NgForm) {
         this.loading = true;
         if (form.valid) {
+            gtag('event', 'sendemail', {'event_category': 'kupit', 'event_action': 'send',});
             this.sendSMS();
             this.loading = true;
             this.buttonText = 'Отправка...';

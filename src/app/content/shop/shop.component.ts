@@ -106,6 +106,7 @@ export class ShopComponent implements OnInit {
         this._router.events.subscribe((evt) => {
             if (evt instanceof NavigationEnd) {
                 const url = this._router.url;
+                console.log(url);
                 const regexp = /\/[a-zа-я0-9]*\/(shop|wedding)\/(?!id)[a-zа-я0-9\/]*/gi;
                 const scrollAdd = regexp.test(url);
                 if (!scrollAdd) {

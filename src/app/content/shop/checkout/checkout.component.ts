@@ -7,7 +7,7 @@ import {OrderRepository} from '../../../model/order.repository';
 import {Order} from '../../../model/order.model';
 import {NgForm} from '@angular/forms';
 import {RestDataSource} from '../../../model/rest.datasource';
-
+declare let gtag: Function;
 
 @Component({
     selector: 'app-checkout',
@@ -35,6 +35,7 @@ export class CheckoutComponent implements OnInit {
        this.sendSms();
         this.loading = true;
         if (form.valid) {
+            gtag('event', 'sendemail', { 'event_category': 'zakaz', 'event_action': 'send', });
             this.repository.saveOrder(this.order).subscribe(order => {
                 this.sendOder();
                 this.order.clear();

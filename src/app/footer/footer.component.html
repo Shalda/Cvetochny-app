@@ -1,9 +1,9 @@
 <footer id="footer">
     <div class="footer">
         <div class="footer_elem footer_social">
-            <a class="navLink" href="">Instagram</a>
-            <a class="navLink" href="">Linkedin</a>
-            <a class="navLink" href="">Facebook</a>
+            <a class="navLink"  href="https://www.instagram.com/_cvetochniy/" target="_blank">Instagram</a>
+            <a class="navLink" href="https://www.instagram.com/_cvetochniy/" target="_blank">Linkedin</a>
+            <a class="navLink" href="https://www.instagram.com/_cvetochniy/" target="_blank">Facebook</a>
         </div>
         <div class="footer_elem footer_adress">
             <a class="navbar-phone" href="tel:+380956979520">095&#8209;697&#8209;95&#8209;20</a>
@@ -21,9 +21,10 @@
             <div class="consultation consultation-wrapper">
                 <div class="consultation_popup-overlay" (click)="modalSwitcher()" [class.modal_open]="class"></div>
                 <div class="consultation_popWindow consultation_subscribe_window" [class.modal_open]="class">
-                    <p class="consultation_subcsribe-text">Оставьте ваш комментарий и мы свяжемся с Вами в
-                        ближайшее время</p>
-                    <form #form="ngForm" (ngSubmit)="sendEmail(form)" class="consultation_subscribe-form"
+                    <p class="consultation_subcsribe-text">Форма обратной связи</p>
+<!--ng-submit="gtag('event', 'sendemail', { 'event_category': 'konsult', 'event_action': 'send', });return true;"-->
+                    <form #form="ngForm"
+                          (ngSubmit)="sendEmail(form)" class="consultation_subscribe-form"
                           autocomplete="off">
                         <div>
                             <input type="text"
@@ -87,7 +88,7 @@
                         <div class="consultation_aligncenter">
                             <button [disabled]="form.invalid && loading"
                                     type="submit"
-                                    class="consultation_btn">
+                                    class="consultation_btn orange_btn">
                                 <i *ngIf="messageSent" class="fa fa-check" aria-hidden="true" style="color: #89e100"></i> {{buttonText}}
                             </button>
                         </div>

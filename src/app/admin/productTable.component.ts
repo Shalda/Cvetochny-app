@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProductRepository} from '../model/product.repository';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Product} from '../model/product.model';
 
 @Component({
     templateUrl: 'productTable.component.html',
@@ -9,7 +10,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class ProductTableComponent implements OnInit {
     public parentCategory: string = undefined;
     public categoryIsProduct: boolean;
-
     constructor(private router: Router, private repository: ProductRepository, private _activeRoute: ActivatedRoute) {
         this.parentCategory = _activeRoute.snapshot.url[0].path;
     }
@@ -22,6 +22,11 @@ export class ProductTableComponent implements OnInit {
 
         }
     }
+    // get products(): Product[] {
+    //     this.length = this.getAllproducts().length;
+    //     const pageIndex = this.pageSelected * this.pageSize;
+    //     return  this.getAllproducts().slice(pageIndex, pageIndex + this.pageSize);
+    // }
 
     deleteProduct(id: number) {
         if (!this.categoryIsProduct) {

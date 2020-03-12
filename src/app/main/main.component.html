@@ -1,8 +1,15 @@
 <section class="main_page_section" >
-  <button class='btn_main' [routerLink]="['category', 'shop']">в магазин</button>
-  <div id="video" *responsive="{sizes:{min:992}}">
-    <video id="videoHero" [muted]="'muted'"  autoplay loop>
-    <source src="./assets/images/main/main.mp4" type="video/mp4">
-</video>
-</div>
+    <div class="season_banner">
+        <span class="season_banner_text">
+        <h2>Букет к 8 марта</h2>
+        <h3>от <span class="banner_price">199 грн.</span></h3>
+            <div class="banner_btn cart-button" [routerLink]="['category', 'shop', 'Букеты к 8 марта']">Перейти в магазин</div>
+        </span>
+    </div>
+<!--  <button class='btn_main' [routerLink]="['category', 'shop', 'Букеты']">в магазин</button>-->
+<!--  <div id="video" *responsive="{sizes:{min:992}}">-->
+<!--    <video id="videoHero" [muted]="'muted'"  autoplay loop>-->
+<!--    <source src="./assets/images/main/main.mp4" type="video/mp4">-->
+<!--    </video>-->
+<!--  </div>-->
 </section>

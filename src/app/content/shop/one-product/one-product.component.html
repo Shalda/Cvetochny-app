@@ -18,6 +18,9 @@
     </div>
     <div class="product-card__wrapper" *ngIf="!isLoading">
         <div class="product-card__left">
+            <app-cart-modal id="{{product._id}}">
+                <span>{{product.name}}</span>
+            </app-cart-modal>
             <div class="product-card__img">
                 <img id="productImg" [src]="product.img" [alt]="product.name" (click)="popUpSwitcher()">
             </div>
@@ -53,17 +56,20 @@
                         </p>
                     </div>
                 </div>
-                <span>*</span>
-                <span>Примечание: уважаемый посетитель, учитывая сезонность растений, использованных в букетах, внешний вид и компоновка товара может несколько отличаться от фотографий на сайте.</span>
+                <p class="note_wrapper" *ngIf="product.note"><span>*&nbsp;</span>
+                    <span class="note_title">Примечание:&nbsp;</span>{{product.note}}.</p>
+                <div class="consultation consultation-wrapper">
+                    <div class="consultation_popup-overlay" (click)="modalSwitcher()" [class.modal_open]="class"></div>
                 <div class="consultation consultation-wrapper">
                     <div class="consultation_popup-overlay" (click)="modalSwitcher()" [class.modal_open]="class"></div>
                     <!-- //оверлей - отображение формы на затемненном фоне -->
                     <div class="consultation_popWindow consultation_subscribe_window" [class.modal_open]="class">
                         <!-- //основное окно формы Подписки -->
-                        <p class="consultation_subcsribe-text">Оставьте ваши данные и мы свяжемся с вами в
-                            ближайшее время</p>
-                        <form novalidate #form="ngForm" (ngSubmit)="sendEmail(form)"
-                              class="consultation_subscribe-form">
+                        <p class="consultation_subcsribe-text">Форма обратной связи</p>
+                        <form novalidate #form="ngForm"
+                              (ngSubmit)="sendEmail(form)"
+                              class="consultation_subscribe-form"
+                        >
                             <div>
                                 <input type="text"
                                        id="name-contact"
@@ -103,7 +109,7 @@
                             <div class="consultation_aligncenter">
                                 <button [disabled]="form.invalid && loading"
                                         type="submit"
-                                        class="consultation_btn">
+                                        class="consultation_btn orange_btn">
                                     <i *ngIf="messageSent" class="fa fa-check" aria-hidden="true"
                                        style="color: #89e100"></i> {{buttonText}}
                                 </button>
@@ -113,7 +119,6 @@
                     </div>
                 </div>
             </div>
-            <!--<div class="product-card__btn btn-shop-only"><button type="submit" class="product-button-buy">Купить</button></div></div>-->
         </div>
     </div>
 </div>
