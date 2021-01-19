@@ -2,13 +2,13 @@
     <div class="footer">
         <div class="footer_elem footer_social">
             <a class="navLink"  href="https://www.instagram.com/_cvetochniy/" target="_blank">Instagram</a>
-            <a class="navLink" href="https://www.instagram.com/_cvetochniy/" target="_blank">Linkedin</a>
-            <a class="navLink" href="https://www.instagram.com/_cvetochniy/" target="_blank">Facebook</a>
+<!--            <a class="navLink" href="https://www.instagram.com/_cvetochniy/" target="_blank">Linkedin</a>-->
+<!--            <a class="navLink" href="https://www.instagram.com/_cvetochniy/" target="_blank">Facebook</a>-->
         </div>
         <div class="footer_elem footer_adress">
-            <a class="navbar-phone" href="tel:+380956979520">095&#8209;697&#8209;95&#8209;20</a>
-            <span class="footer-address-fullsize">Сумская 77/79 (напротив ЛетоПарка)&nbsp;</span>
-            <span class="footer-address-mobile">Сумская 77/79</span>
+            <a class="navbar-phone" href="tel:+380956979520" (click)="metrika('nomer')">095&#8209;697&#8209;95&#8209;20</a>
+            <span class="footer-address-fullsize"><a [routerLink]="['category', 'contact']">Сумская 77/79 (напротив ЛетоПарка)&nbsp;</a></span>
+            <span class="footer-address-mobile"><a [routerLink]="['category', 'contact']">Сумская 77/79</a></span>
         </div>
         <div class="footer_elem footer_consultation ">
             <a class="navLink" id="consultationPopup"

@@ -6,16 +6,16 @@
             </div>
             <div class="navbar_elem navbar_menu" [class.link_disable]="menuStatus">
                 <a class="navLink" [routerLink]="['category', 'shop', 'Букеты']" routerLinkActive="active-link">Магазин</a>
-                <a class="navLink" [routerLink]="['category', 'wedding']"  routerLinkActive="active-link">Свадебная
+                <a class="navLink" [routerLink]="['category', 'wedding', 'Букет невесты']"  routerLinkActive="active-link">Свадебная
                     флористика</a>
-                <a class="navLink" [routerLink]="['category', 'oformlenie', 'Фотозоны'] || ['category', 'oformlenie']"
+                <a class="navLink" [routerLink]="['category', 'oformlenie'] || ['category', 'oformlenie']"
                    routerLinkActive="active-link">Оформление</a>
                 <a class="navLink" [routerLink]="['category', 'contact']" routerLinkActive="active-link">Контакты</a>
             </div>
             <div class="navbar_elem navbar_phone">
-                <a class="navbar-phone navLink" href="tel:+380956979520">095&#8209;697&#8209;95&#8209;20</a>
+                <a class="navbar-phone navLink" href="tel:+380956979520" (click)="metrika('nomer')">095&#8209;697&#8209;95&#8209;20</a>
             </div>
-            <div class="navbar_elem navbar_cart">
+            <div class="navbar_elem navbar_cart" (click)="metrika('cart')">
                 <app-cart-summary></app-cart-summary>
             </div>
             <div class="header-menu_popup-overlay" (click)="menuToggle()" [class.modal_open]="menuStatus"></div>
@@ -60,13 +60,16 @@
                             </div>
                             <div *ngSwitchCase="'cooperation'" class="menu_right_text open">
                                 <h3>Предложения сотрудничества </h3>
-                                <a class="cooperation_link" href="tel:+380956979520">095-697-95-20</a>
+                                <a class="cooperation_link" href="tel:+380956979520" (click)="metrika('nomer')">095-697-95-20</a>
                                 <a class="cooperation_link" href="mailto:cvetochniykharkiv@gmail.com">cvetochniykharkiv@gmail.com</a>
                             </div>
                             <div *ngSwitchCase="'delivery'" class="menu_right_text open">
                                 <h3>Доставка курьреом</h3>
                                 <span>по Харькову от 50 гривен</span>
-                                <span>Бесплатная доставка <strong>от 1 000 гривен</strong></span>
+                                <span>Бесплатная доставка <strong>от 1 500 гривен</strong></span>
+<!--                                <p><span style="color: #ff4500; padding: 0 ">Бесплатная</span></p>-->
+<!--                                <span>доставка курьреом</span>-->
+<!--                                <span>во время действия карантина</span>-->
                             </div>
                         </div>
                     </div>
@@ -74,7 +77,7 @@
                         <div class="nav_menu_left">
                             <a [routerLink]="['category', 'shop', 'Букеты']" class="shop"
                                (click)="menuToggle()">магазин</a>
-                            <a [routerLink]="['category', 'wedding']" class="weddingLinkMobile"
+                            <a [routerLink]="['category', 'wedding', 'Букет невесты']" class="weddingLinkMobile"
                                (click)="menuToggle()">Свадебная флористика
                             </a>
                             <a [routerLink]="['category', 'oformlenie', 'Фотозоны'] || ['category', 'oformlenie']"

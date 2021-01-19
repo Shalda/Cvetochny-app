@@ -21,6 +21,7 @@ import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator'
 import {MatPaginatorIntlRu} from './right-cards/matPaginatorIntlRuClass';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {ToCartModalService} from '../../common/services/toCartModal.service';
+import {MetrikaService} from '../../common/services/metrika.service';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
 
@@ -43,7 +44,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
         ShopComponent, OneProductComponent, OrderByPipe, RightCardsComponent, CheckoutComponent, CartComponent,
         CartSummaryComponent
     ],
-    providers: [{provide: MatPaginatorIntl, useClass: MatPaginatorIntlRu}, ToCartModalService],
+    providers: [{provide: MatPaginatorIntl, useClass: MatPaginatorIntlRu}, ToCartModalService, MetrikaService],
     exports: [NgxMaskModule, CartComponent, CartSummaryComponent]
 })
 export class ShopModule {

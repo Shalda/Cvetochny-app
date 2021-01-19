@@ -5,7 +5,7 @@ import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {MainComponent} from './main/main.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {RouterModule} from '@angular/router';
+import {NavigationEnd, Router, RouterModule} from '@angular/router';
 import {routes} from './routes';
 import {ProductRepository} from './model/product.repository';
 import {RestDataSource} from './model/rest.datasource';
@@ -24,6 +24,8 @@ import {AuthInterceptor} from './admin/auth-interseptor';
 import {AuthService} from './model/auth.service';
 import {FormsModule} from '@angular/forms';
 import {ResponsiveModule} from 'ngx-responsive';
+import {MetrikaService} from './common/services/metrika.service';
+import {MetrikaModule, Metrika} from 'ng-yandex-metrika';
 
 @NgModule({
     declarations: [
@@ -55,13 +57,24 @@ import {ResponsiveModule} from 'ngx-responsive';
             apiKey: 'AIzaSyA5xKkA8Df4hBmqTbhNzTgbVPkWE7Y2b4o'
         }),
         CommonAppModule,
-        ResponsiveModule.forRoot()
+        ResponsiveModule.forRoot(),
+        // MetrikaModule.forRoot(
+        //     {
+        //         id: 60702883,
+        //         clickmap: true,
+        //         trackLinks: true,
+        //         accurateTrackBounce: true,
+        //         webvisor: true
+        //     }
+        // ),
     ],
-    providers: [ProductRepository, RestDataSource, [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}]],
+    providers: [ProductRepository, MetrikaService, RestDataSource, [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}]],
     bootstrap: [AppComponent]
 })
 export class AppModule implements OnInit {
-    constructor(private _auth: AuthService) {
+    constructor(
+        private _auth: AuthService
+        ) {
     }
 
     ngOnInit() {

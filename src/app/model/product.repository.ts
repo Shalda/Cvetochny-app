@@ -67,8 +67,9 @@ export class ProductRepository {
     }
 
     getCategories(parentCategory: string): string[] {
-        const category: string[] = this.products.filter(p => parentCategory === p.parentCategory).map(p => p.category);
-        return this._uniqueCategory(category).reverse();
+        const prodArray = [...this.products];
+        const category: string[] = prodArray.reverse().filter(p => parentCategory === p.parentCategory).map(p => p.category);
+        return this._uniqueCategory(category);
 
     }
 

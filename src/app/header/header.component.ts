@@ -1,7 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ProductRepository} from '../model/product.repository';
 import {ActivatedRoute, Router} from '@angular/router';
+import {MetrikaService} from '../common/services/metrika.service';
 
+declare let gtag: Function;
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
@@ -10,9 +12,15 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class HeaderComponent implements OnInit, OnDestroy {
     public menuStatus = false;
     public menuCategory: string;
+
     // public routerSub: Subscription;
 
-    constructor(private _repository: ProductRepository, private _router: Router, private _activeRoute: ActivatedRoute) {
+    constructor(
+        private _repository: ProductRepository,
+        private _router: Router,
+        private _activeRoute: ActivatedRoute,
+        private metrikaService: MetrikaService
+    ) {
     }
 
     public getCategory(cat): string[] {
@@ -30,6 +38,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     public menuToggle(): void {
         this.menuStatus = !this.menuStatus;
+    }
+
+    public metrika(value) {
+        this.metrikaService.metrika(value);
     }
 
     ngOnInit() {

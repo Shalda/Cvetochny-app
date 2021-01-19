@@ -3,6 +3,8 @@ import {NgForm} from '@angular/forms';
 import {SendEmailService} from '../model/send-email.service';
 import {RestDataSource} from '../model/rest.datasource';
 import {GoogleTagManagerService} from 'angular-google-tag-manager';
+import {MetrikaService} from '../common/services/metrika.service';
+
 declare let gtag: Function;
 @Component({
     selector: 'app-footer',
@@ -18,8 +20,12 @@ export class FooterComponent implements OnInit {
     public email: string;
     public message: string;
     public phonenumber: number;
-    constructor( private _sendService: SendEmailService, private _restData: RestDataSource) {
+    constructor( private _sendService: SendEmailService, private _restData: RestDataSource,  private metrikaService: MetrikaService) {
     }
+    public metrika(value) {
+        this.metrikaService.metrika(value);
+    }
+
 
     public modalSwitcher(): void {
         this.buttonText = 'Отправить';
@@ -34,7 +40,7 @@ export class FooterComponent implements OnInit {
         this.sendSMS();
         this.loading = true;
         if (form.valid) {
-            gtag('event', 'sendemail', { 'event_category': 'konsult', 'event_action': 'send', });
+            this.metrika('konsult');
             this.loading = true;
             this.buttonText = 'Отправка...';
             this._sendService.sendEmail('' , this.username, this.phonenumber, null, null, this.email, this.message).subscribe(

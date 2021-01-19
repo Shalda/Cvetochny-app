@@ -1,6 +1,7 @@
 import {Component, ElementRef, Input, OnInit, OnDestroy} from '@angular/core';
 import {ToCartModalService} from './toCartModal.service';
 import {Router} from '@angular/router';
+import {MetrikaService} from './metrika.service';
 
 @Component({
     selector: 'app-cart-modal',
@@ -29,11 +30,12 @@ export class ToCartModalComponent implements OnInit, OnDestroy {
     @Input() id: string;
     private element: any;
 
-    constructor(private modalService: ToCartModalService, private el: ElementRef, private _router: Router) {
+    constructor(private modalService: ToCartModalService, private el: ElementRef, private _router: Router, private metrikaService: MetrikaService) {
         this.element = el.nativeElement;
     }
     public navToCart() {
         this.close();
+        this.metrikaService.metrika('cart');
         this._router.navigateByUrl('category/cart');
     }
     ngOnInit(): void {

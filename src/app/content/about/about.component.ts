@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {MetrikaService} from '../../common/services/metrika.service';
 
 @Component({
     selector: 'app-about',
@@ -128,7 +129,13 @@ export class AboutComponent implements OnInit {
         }
     ];
 
-    constructor() {
+    constructor(
+        private metrikaService: MetrikaService
+    ) {
+    }
+
+    public metrika(value) {
+        this.metrikaService.metrika(value);
     }
 
     ngOnInit() {

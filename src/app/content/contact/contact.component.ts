@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {MetrikaService} from '../../common/services/metrika.service';
 
 @Component({
     selector: 'app-contact',
@@ -18,12 +19,7 @@ export class ContactComponent implements OnInit {
             height: 50
         }
     };
-    // myLatLng = {lat: this.lat, lng: this.lng};
-    // marker = new google.maps.Marker({
-    //     position: this.myLatLng,
-    //     title: 'Магазин Цветочный',
-    //     disableDefaultUI: true,
-    // });
+
     styles = [
         {
             'stylers': [
@@ -129,7 +125,10 @@ export class ContactComponent implements OnInit {
         }
     ];
 
-    constructor() {
+    constructor(private metrikaService: MetrikaService) {
+    }
+    public metrika(value) {
+        this.metrikaService.metrika(value);
     }
 
     ngOnInit() {

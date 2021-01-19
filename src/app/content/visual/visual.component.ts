@@ -7,7 +7,10 @@ import {Observable, of} from 'rxjs';
 import {NgForm} from '@angular/forms';
 import {SendEmailService} from '../../model/send-email.service';
 import {RestDataSource} from '../../model/rest.datasource';
+import {MetrikaService} from '../../common/services/metrika.service';
+
 declare let gtag: Function;
+
 @Component({
     selector: 'app-view',
     templateUrl: './visual.component.html',
@@ -25,7 +28,8 @@ export class VisualComponent {
     constructor(private _sendService: SendEmailService,
                 private _repository: ProductRepository,
                 private _activeRoute: ActivatedRoute,
-                private _restData: RestDataSource) {
+                private _restData: RestDataSource,
+                private metrikaService: MetrikaService) {
         _activeRoute.pathFromRoot.forEach(route => route.params.subscribe(params => {
             if (params['category']) {
                 this.selectedCategory = params['category'];
@@ -44,13 +48,19 @@ export class VisualComponent {
     public buttonText = 'Отправить';
     public username: string;
     public phonenumber: number;
-    public sendSms () {
+
+    public sendSms() {
         this._restData.sendSMS('на консультацию');
     }
+
+    public metrika(value) {
+        this.metrikaService.metrika(value);
+    }
+
     sendEmail(form: NgForm) {
         this.loading = true;
         if (form.valid) {
-            gtag('event', 'sendemail', { 'event_category': 'konsult', 'event_action': 'send', });
+            this.metrika('konsult');
             this.sendSms();
             this.loading = true;
             this.buttonText = 'Отправка...';

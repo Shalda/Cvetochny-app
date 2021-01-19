@@ -5,8 +5,6 @@ import {ProductRepository} from '../../../model/product.repository';
 import {Cart} from '../../../model/cart.model';
 import {ToCartModalService} from '../../../common/services/toCartModal.service';
 
-declare let gtag: Function;
-
 @Component({
     selector: 'app-right-cards',
     templateUrl: './right-cards.component.html',
@@ -64,7 +62,6 @@ export class RightCardsComponent implements OnInit {
     }
 
     addProductToCart(product: Product) {
-        gtag('event', 'sendemail', {'event_category': 'cart', 'event_action': 'send',});
         this.cart.addLine(product);
         this.openModal(product._id);
     }

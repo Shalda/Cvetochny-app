@@ -7,6 +7,7 @@ import {OrderRepository} from '../../../model/order.repository';
 import {Order} from '../../../model/order.model';
 import {NgForm} from '@angular/forms';
 import {RestDataSource} from '../../../model/rest.datasource';
+import {MetrikaService} from '../../../common/services/metrika.service';
 declare let gtag: Function;
 
 @Component({
@@ -25,17 +26,22 @@ export class CheckoutComponent implements OnInit {
         private _router: Router,
         private _adapter: DateAdapter<any>,
         public repository: OrderRepository,
+        private metrikaService: MetrikaService,
         public order: Order, private _restData: RestDataSource
     ) {
     }
     public sendSms() {
         this._restData.sendSMS('с помощью корзины');
     }
+    public metrika(value) {
+        this.metrikaService.metrika(value);
+    }
+
     submitOrder(form: NgForm) {
        this.sendSms();
         this.loading = true;
         if (form.valid) {
-            gtag('event', 'sendemail', { 'event_category': 'zakaz', 'event_action': 'send', });
+           this.metrika('zakaz');
             this.repository.saveOrder(this.order).subscribe(order => {
                 this.sendOder();
                 this.order.clear();
@@ -45,6 +51,7 @@ export class CheckoutComponent implements OnInit {
             });
         }
     }
+
 
     sendOder() {
         this._sendService.sendEmail(
