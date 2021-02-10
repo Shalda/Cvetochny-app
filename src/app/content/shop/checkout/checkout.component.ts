@@ -8,6 +8,7 @@ import {Order} from '../../../model/order.model';
 import {NgForm} from '@angular/forms';
 import {RestDataSource} from '../../../model/rest.datasource';
 import {MetrikaService} from '../../../common/services/metrika.service';
+
 declare let gtag: Function;
 
 @Component({
@@ -27,21 +28,34 @@ export class CheckoutComponent implements OnInit {
         private _adapter: DateAdapter<any>,
         public repository: OrderRepository,
         private metrikaService: MetrikaService,
-        public order: Order, private _restData: RestDataSource
+        public order: Order,
+        private _restData: RestDataSource
     ) {
     }
+
     public sendSms() {
         this._restData.sendSMS('с помощью корзины');
     }
+
     public metrika(value) {
         this.metrikaService.metrika(value);
     }
 
+    dateChange(date) {
+        const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', 'timeZone': 'Europe/Kiev'};
+        this.order.dateDelivery = date.toLocaleString('uk-UA', options);
+    }
+
+    clearOrder() {
+        this.order.clear();
+    }
+
     submitOrder(form: NgForm) {
-       this.sendSms();
+        this.sendSms();
         this.loading = true;
         if (form.valid) {
-           this.metrika('zakaz');
+            this.metrika('zakaz');
+            this.dateChange( this.order.dateDelivery);
             this.repository.saveOrder(this.order).subscribe(order => {
                 this.sendOder();
                 this.order.clear();
@@ -97,6 +111,7 @@ export class CheckoutComponent implements OnInit {
         this.order.itemCount = this.cart.itemCount;
         this.order.cartPrice = this.cart.cartPrice;
     }
+
 
     deliveryLog() {
         this.delivery = !this.delivery;

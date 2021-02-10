@@ -44,7 +44,12 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
         ShopComponent, OneProductComponent, OrderByPipe, RightCardsComponent, CheckoutComponent, CartComponent,
         CartSummaryComponent
     ],
-    providers: [{provide: MatPaginatorIntl, useClass: MatPaginatorIntlRu}, ToCartModalService, MetrikaService],
+    providers: [
+        {
+            provide: MatPaginatorIntl,
+            useClass: MatPaginatorIntlRu
+        }, ToCartModalService, MetrikaService
+    ],
     exports: [NgxMaskModule, CartComponent, CartSummaryComponent]
 })
 export class ShopModule {

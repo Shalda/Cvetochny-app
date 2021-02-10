@@ -1,8 +1,8 @@
 <section class="checkout_section">
     <div class="back-link_wrapper back-link_checkout" *ngIf="!orderSent">
-        <i class="fa fa-chevron-circle-left fa-3x back-link_fa" onclick="history.back(); return false;"></i>
-        <a class="back-link" onclick="history.back(); return false;">назад в корзину</a>
-        <svg onclick="history.back(); return false;" class="arrow-svg" width="60" height="8" viewBox="0 0 60 8"
+        <i class="fa fa-chevron-circle-left fa-3x back-link_fa" (click)="clearOrder()" onclick=" history.back(); return false;"></i>
+        <a class="back-link" (click)="clearOrder()" onclick="history.back(); return false;">назад в корзину</a>
+        <svg (click)="clearOrder()" onclick="history.back(); return false;" class="arrow-svg" width="60" height="8" viewBox="0 0 60 8"
              fill="black"
              xmlns="http://www.w3.org/2000/svg">
             <path opacity="0.75"
@@ -151,7 +151,6 @@
                                    data-timepicker="true"
                                    mask="Hh:m0"
                                    required
-
                             >
                             <ul class="form_error_message"
                                 *ngIf="timeD.touched && timeD.invalid || loading && timeD.invalid">

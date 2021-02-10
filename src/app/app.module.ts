@@ -74,7 +74,7 @@ import {MetrikaModule, Metrika} from 'ng-yandex-metrika';
 export class AppModule implements OnInit {
     constructor(
         private _auth: AuthService
-        ) {
+    ) {
     }
 
     ngOnInit() {
